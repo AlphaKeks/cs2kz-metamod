@@ -6,17 +6,17 @@ on:
       - v*
 
 jobs:
-  main-branch-check:
-    name: Check if main branch
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Exit if not on main branch
-        if: endsWith(github.ref, 'master') == false
-        run: exit -1
-
-      - run: echo Release build triggered by ${{ github.ref_name }}
+  # main-branch-check:
+  #   name: Check if main branch
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #
+  #     - name: Exit if not on main branch
+  #       if: endsWith(github.ref, 'master') == false
+  #       run: exit -1
+  #
+  #     - run: echo Release build triggered by ${{ github.ref_name }}
 
   build:
     name: Build
@@ -56,3 +56,11 @@ jobs:
             /home/runner/releases/cs2kz-windows-${{ github.ref_name }}.zip
           generate_release_notes: true
           prerelease: false
+
+      - name: Notify API
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: 'https://staging.cs2.kz/plugin/versions'
+          method: 'POST'
+          customHeaders: '{"Authorization": "Bearer ${{ secrets.API_KEY }}"}'
+          data: '{"semver":"${{ github.ref_name }}","git_revision":"${{ github.sha }}"}'
