@@ -1,3 +1,5 @@
+#pragma once
+
 #include "common.h"
 #include "sdk/serversideclient.h"
 #include "sdk/datatypes.h"
@@ -112,6 +114,7 @@ public:
 public:
 	// General
 	const i32 index;
+	const char *name;
 
 private:
 	CSteamID unauthenticatedSteamID = k_steamIDNil;

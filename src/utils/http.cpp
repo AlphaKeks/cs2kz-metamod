@@ -29,12 +29,13 @@
 #include "common.h"
 #include <string>
 
-ISteamHTTP* g_pHTTP = nullptr;
+ISteamHTTP *g_pHTTP = nullptr;
 HTTPManager g_HTTPManager;
 
 #undef strdup
 
-HTTPManager::TrackedRequest::TrackedRequest(HTTPRequestHandle hndl, SteamAPICall_t hCall, std::string strUrl, std::string strText, CompletedCallback callback)
+HTTPManager::TrackedRequest::TrackedRequest(HTTPRequestHandle hndl, SteamAPICall_t hCall, std::string strUrl, std::string strText,
+											CompletedCallback callback)
 {
 	m_hHTTPReq = hndl;
 	m_CallResult.SetGameserverFlag();
@@ -59,9 +60,9 @@ HTTPManager::TrackedRequest::~TrackedRequest()
 	}
 }
 
-void HTTPManager::TrackedRequest::OnHTTPRequestCompleted(HTTPRequestCompleted_t* arg, bool bFailed)
+void HTTPManager::TrackedRequest::OnHTTPRequestCompleted(HTTPRequestCompleted_t *arg, bool bFailed)
 {
-	if (bFailed || arg->m_eStatusCode < 200 || arg->m_eStatusCode > 299)
+	if (bFailed)
 	{
 		Msg("HTTP request to %s failed with status code %i\n", m_strUrl.c_str(), arg->m_eStatusCode);
 	}
@@ -70,51 +71,56 @@ void HTTPManager::TrackedRequest::OnHTTPRequestCompleted(HTTPRequestCompleted_t*
 		uint32 size;
 		g_pHTTP->GetHTTPResponseBodySize(arg->m_hRequest, &size);
 
-		uint8* response = new uint8[size + 1];
+		uint8 *response = new uint8[size + 1];
 		g_pHTTP->GetHTTPResponseBodyData(arg->m_hRequest, response, size);
 		response[size] = 0; // Add null terminator
 
-		m_callback(arg->m_hRequest, arg->m_eStatusCode, (char*)response);
+		m_callback(arg->m_hRequest, arg->m_eStatusCode, (char *)response);
 
 		delete[] response;
 	}
 
 	if (g_pHTTP)
+	{
 		g_pHTTP->ReleaseHTTPRequest(arg->m_hRequest);
+	}
 
 	delete this;
 }
 
-void HTTPManager::Get(const char* pszUrl, CompletedCallback callback, std::vector<HTTPHeader>* headers)
+void HTTPManager::Get(const char *pszUrl, CompletedCallback callback, std::vector<HTTPHeader> *headers)
 {
 	GenerateRequest(k_EHTTPMethodGET, pszUrl, "", callback, headers);
 }
 
-void HTTPManager::Post(const char* pszUrl, const char* pszText, CompletedCallback callback, std::vector<HTTPHeader>* headers)
+void HTTPManager::Post(const char *pszUrl, const char *pszText, CompletedCallback callback, std::vector<HTTPHeader> *headers)
 {
 	GenerateRequest(k_EHTTPMethodPOST, pszUrl, pszText, callback, headers);
 }
 
-void HTTPManager::GenerateRequest(EHTTPMethod method, const char* pszUrl, const char* pszText, CompletedCallback callback, std::vector<HTTPHeader>* headers)
+void HTTPManager::GenerateRequest(EHTTPMethod method, const char *pszUrl, const char *pszText, CompletedCallback callback,
+								  std::vector<HTTPHeader> *headers)
 {
 	// Msg("Sending HTTP request to `%s`:\n```\n%s\n```\n", pszUrl, pszText);
 	auto hReq = g_pHTTP->CreateHTTPRequest(method, pszUrl);
 	int size = strlen(pszText);
-	//Msg("HTTP request: %p\n", hReq);
+	// Msg("HTTP request: %p\n", hReq);
 
-	if (method == k_EHTTPMethodPOST && !g_pHTTP->SetHTTPRequestRawPostBody(hReq, "application/json", (uint8*)pszText, size))
+	if (method == k_EHTTPMethodPOST && !g_pHTTP->SetHTTPRequestRawPostBody(hReq, "application/json", (uint8 *)pszText, size))
 	{
 		Msg("Failed to SetHTTPRequestRawPostBody\n");
 		return;
 	}
 
 	// Prevent HTTP error 411 (probably not necessary?)
-	//g_pHTTP->SetHTTPRequestHeaderValue(hReq, "Content-Length", std::to_string(size).c_str());
+	// g_pHTTP->SetHTTPRequestHeaderValue(hReq, "Content-Length", std::to_string(size).c_str());
 
 	if (headers != nullptr)
 	{
 		for (HTTPHeader header : *headers)
+		{
 			g_pHTTP->SetHTTPRequestHeaderValue(hReq, header.GetName(), header.GetValue());
+		}
 	}
 
 	SteamAPICall_t hCall;

@@ -3,6 +3,7 @@
 #include "common.h"
 #include "movement/movement.h"
 #include "sdk/datatypes.h"
+#include "global/types/players.h"
 
 #define KZ_COLLISION_GROUP_STANDARD  COLLISION_GROUP_DEBRIS
 #define KZ_COLLISION_GROUP_NOTRIGGER LAST_SHARED_COLLISION_GROUP
@@ -125,6 +126,8 @@ public:
 	virtual bool OnTriggerEndTouch(CBaseTrigger *trigger) override;
 
 	void PlayErrorSound();
+
+	KZ::API::FullPlayer *info {};
 
 private:
 	bool hideLegs {};

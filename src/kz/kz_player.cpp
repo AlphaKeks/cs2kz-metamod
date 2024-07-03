@@ -13,6 +13,8 @@
 #include "style/kz_style.h"
 #include "timer/kz_timer.h"
 #include "tip/kz_tip.h"
+#include "global/types/players.h"
+#include "global/kz_global.h"
 
 #include "tier0/memdbgon.h"
 

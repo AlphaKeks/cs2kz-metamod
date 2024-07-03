@@ -7,7 +7,6 @@
 #include "../language/kz_language.h"
 #include "kz/option/kz_option.h"
 #include "kz_global.h"
-#include "types/players.h"
 #include "utils/ctimer.h"
 #include "utils/http.h"
 #include "utils/simplecmds.h"
@@ -54,74 +53,28 @@ void KZGlobalService::OnHeartbeat(HTTPRequestHandle request, int status, std::st
 	}
 }
 
-void KZGlobalService::FetchPlayer(KZPlayer *player, std::function<void(KZ::API::Player)> callback)
-{
-	std::string url = KZGlobalService::apiUrl + "/players/:";
-	u64 steamID = player->GetSteamId64();
-	sprintf(&url.back(), "%llu", steamID);
-
-	auto on_response = [player, callback](HTTPRequestHandle request, int status, std::string rawBody)
-	{
-		switch (status)
-		{
-			case 200:
-				// good
-				break;
-
-			default:
-				player->languageService->PrintChat(true, false, "API Error", status, rawBody.c_str());
-				return;
-		}
-
-		const auto json = nlohmann::json::parse(rawBody);
-		const auto playerInfo = KZ::API::Player::Deserialize(json);
-
-		callback(playerInfo);
-	};
-
-	g_HTTPManager.Get(url.c_str(), on_response);
-}
-
-void KZGlobalService::FetchPreferences(KZPlayer *player, std::function<void(nlohmann::json)> callback)
-{
-	std::string url = KZGlobalService::apiUrl + "/players/:";
-	u64 steamID = player->GetSteamId64();
-	sprintf(&url.back(), "%llu/preferences", steamID);
-
-	auto on_response = [player, callback](HTTPRequestHandle request, int status, std::string rawBody)
-	{
-		switch (status)
-		{
-			case 200:
-				// good
-				break;
-
-			default:
-				player->languageService->PrintChat(true, false, "API Error", status, rawBody.c_str());
-				return;
-		}
-
-		const auto json = nlohmann::json::parse(rawBody);
-
-		callback(json);
-	};
-
-	g_HTTPManager.Get(url.c_str(), on_response);
-}
-
 internal SCMD_CALLBACK(Command_KzWho)
 {
 	KZPlayer *player = g_pKZPlayerManager->ToPlayer(controller);
-	auto callback = [player](KZ::API::Player playerInfo)
+	auto callback = [player](KZ::API::FullPlayer info)
 	{
-		const char *name = playerInfo.name.c_str();
-		const char *steamID = playerInfo.steamID.c_str();
-		const char *bannedText = playerInfo.isBanned ? " " : " not ";
+		const char *name = info.name.c_str();
+		const char *steamID = info.steamID.c_str();
+		const char *isBanned = info.isBanned ? "" : "not ";
 
-		player->languageService->PrintChat(true, false, "Display PlayerInfo", name, steamID, bannedText);
+		player->languageService->PrintChat(true, false, "Display PlayerInfo", name, steamID, isBanned);
 	};
 
-	KZGlobalService::FetchPlayer(player, callback);
+	const char *playerIdentifier = args->Arg(1);
+
+	if (playerIdentifier[0] == '\0')
+	{
+		KZGlobalService::FetchPlayer(player, callback);
+	}
+	else
+	{
+		KZGlobalService::FetchPlayer(player, playerIdentifier, callback);
+	}
 
 	return MRES_SUPERCEDE;
 }

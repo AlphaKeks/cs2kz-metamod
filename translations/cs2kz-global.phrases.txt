@@ -2,21 +2,32 @@
 {
 	"API Error"
 	{
-		"#format"	"status:d,response:s"
-		"en"		"{red}API request failed with code {default}{status}{red}: {default}{response}"
+		"#format"	"status:d"
+		"en"		"{red}API request failed with code {default}{status}{red}. Please check your console for details."
 	}
-
+	"API Error Details"
+	{
+		"#format"	"message:s,details:s"
+		"en"		"API Error: {message}{details}"
+	}
+	"Display Hello"
+	{
+		"#format"	"name:s"
+		"en"		"{grey}Hello, {default}{name}{grey}! You have been authenticated with the API."
+	}
 	"Display PlayerInfo"
 	{
 		"#format"	"name:s,steamID:s,banned:s"
-		"en"		"{grey}Hello, {default}{name}{grey}! Your SteamID is {default}{steamID}{grey} and you are currently{default}{banned}{grey}banned."
+		"en"		"{default}{name}{grey} is currently {default}{banned}{grey}banned. Their SteamID is {default}{steamID}{grey}."
 	}
-
+	"Player not found"
+	{
+		"en"		"{grey}Player not found."
+	}
 	"View Preferences Response"
 	{
 		"en"		"{grey}Open your console."
 	}
-
 	"Display Raw Preferences"
 	{
 		"#format"	"preferences:s"

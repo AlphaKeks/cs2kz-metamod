@@ -10,9 +10,16 @@ namespace KZ::API
 	{
 		std::string name;
 		std::string steamID;
+
+		static Player Deserialize(const nlohmann::json &);
+	};
+
+	struct FullPlayer
+	{
+		std::string name;
+		std::string steamID;
 		bool isBanned;
 
-		nlohmann::json Serialize() const;
-		static Player Deserialize(const nlohmann::json &);
+		static FullPlayer Deserialize(const nlohmann::json &);
 	};
 } // namespace KZ::API

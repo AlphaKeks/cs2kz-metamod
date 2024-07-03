@@ -1,3 +1,6 @@
+#include "../kz/kz.h"
+#include "../kz/language/kz_language.h"
+#include "../kz/global/kz_global.h"
 #include "player.h"
 #include "utils/utils.h"
 
@@ -76,6 +79,8 @@ Player *PlayerManager::ToPlayer(CPlayerUserId userID)
 void PlayerManager::OnClientConnect(CPlayerSlot slot, const char *pszName, uint64 xuid, const char *pszNetworkID, bool unk1,
 									CBufferString *pRejectReason)
 {
+	Player *player = ToPlayer(slot);
+	player->name = pszName;
 }
 
 void PlayerManager::OnClientConnected(CPlayerSlot slot, const char *pszName, uint64 xuid, const char *pszNetworkID, const char *pszAddress,
@@ -83,7 +88,17 @@ void PlayerManager::OnClientConnected(CPlayerSlot slot, const char *pszName, uin
 {
 }
 
-void PlayerManager::OnClientFullyConnect(CPlayerSlot slot) {}
+void PlayerManager::OnClientFullyConnect(CPlayerSlot slot)
+{
+	KZPlayer *player = g_pKZPlayerManager->ToPlayer(slot);
+	auto on_response = [player](KZ::API::FullPlayer info)
+	{
+		player->languageService->PrintChat(true, false, "Display Hello", info.name.c_str());
+		player->info = new KZ::API::FullPlayer(info);
+	};
+
+	KZGlobalService::FetchPlayer(player, on_response);
+}
 
 void PlayerManager::OnClientPutInServer(CPlayerSlot slot, char const *pszName, int type, uint64 xuid) {}
 
