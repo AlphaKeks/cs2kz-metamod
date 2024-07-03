@@ -1,10 +1,11 @@
 "ServerCfg"
 {
-	"defaultMode"			"Classic"
-	"defaultStyle"			"Normal"
-	"defaultLanguage"		"en"
-	"tipInterval"			"75"
-	"defaultJSBroadcastMinTier"	"4"
-	"defaultJSSoundMinTier"		"4"
-	"chatPrefix"			"{lime}KZ {grey}|{default}"
+	"defaultMode"                "Classic"
+	"defaultStyle"               "Normal"
+	"defaultLanguage"            "en"
+	"tipInterval"                "75"
+	"defaultJSBroadcastMinTier"  "4"
+	"defaultJSSoundMinTier"      "4"
+	"chatPrefix"                 "{lime}KZ {grey}|{default}"
+	"apiUrl"                     "http://localhost:42069"
 }

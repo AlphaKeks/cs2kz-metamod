@@ -13,6 +13,7 @@
 #include "kz/spec/kz_spec.h"
 #include "kz/style/kz_style.h"
 #include "kz/tip/kz_tip.h"
+#include "kz/global/kz_global.h"
 #include "kz/option/kz_option.h"
 #include "kz/language/kz_language.h"
 
@@ -58,6 +59,7 @@ bool KZPlugin::Load(PluginId id, ISmmAPI *ismm, char *error, size_t maxlen, bool
 
 	KZOptionService::InitOptions();
 	KZTipService::InitTips();
+	KZGlobalService::Init();
 	return true;
 }
 

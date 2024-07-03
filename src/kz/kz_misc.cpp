@@ -14,6 +14,7 @@
 #include "spec/kz_spec.h"
 #include "timer/kz_timer.h"
 #include "tip/kz_tip.h"
+#include "global/kz_global.h"
 
 internal SCMD_CALLBACK(Command_KzHidelegs)
 {
@@ -108,6 +109,7 @@ void KZ::misc::RegisterCommands()
 	KZNoclipService::RegisterCommands();
 	KZHUDService::RegisterCommands();
 	KZLanguageService::RegisterCommands();
+	KZGlobalService::RegisterCommands();
 	KZ::mode::RegisterCommands();
 	KZ::style::RegisterCommands();
 }
