@@ -369,4 +369,12 @@
 		"sv"		"Byt till Classic mode."
 		"ua"		"Переключитися на режим Classic."
 	}
+	"Command Description - kz_who"
+	{
+		"en"		"Fetch information about a player from the API."
+	}
+	"Command Description - kz_preferences"
+	{
+		"en"		"Fetch a player's preference data from the API."
+	}
 }

@@ -1,0 +1,25 @@
+"Phrases"
+{
+	"API Error"
+	{
+		"#format"	"status:d,response:s"
+		"en"		"{red}API request failed with code {default}{status}{red}: {default}{response}"
+	}
+
+	"Display PlayerInfo"
+	{
+		"#format"	"name:s,steamID:s,banned:s"
+		"en"		"{grey}Hello, {default}{name}{grey}! Your SteamID is {default}{steamID}{grey} and you are currently{default}{banned}{grey}banned."
+	}
+
+	"View Preferences Response"
+	{
+		"en"		"{grey}Open your console."
+	}
+
+	"Display Raw Preferences"
+	{
+		"#format"	"preferences:s"
+		"en"		"Preferences:\n{preferences}"
+	}
+}

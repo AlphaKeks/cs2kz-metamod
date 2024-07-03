@@ -4,6 +4,7 @@
 #include "vendor/nlohmann/json.hpp"
 
 #include "../kz.h"
+#include "../language/kz_language.h"
 #include "kz/option/kz_option.h"
 #include "kz_global.h"
 #include "types/players.h"
@@ -59,7 +60,7 @@ void KZGlobalService::FetchPlayer(KZPlayer *player, std::function<void(KZ::API::
 	u64 steamID = player->GetSteamId64();
 	sprintf(&url.back(), "%llu", steamID);
 
-	auto on_response = [callback](HTTPRequestHandle request, int status, std::string rawBody)
+	auto on_response = [player, callback](HTTPRequestHandle request, int status, std::string rawBody)
 	{
 		switch (status)
 		{
@@ -67,12 +68,8 @@ void KZGlobalService::FetchPlayer(KZPlayer *player, std::function<void(KZ::API::
 				// good
 				break;
 
-			case 404:
-				META_CONPRINTF("[KZ] The API doesn't know you :( this is a bug!\n", status, rawBody.c_str());
-				return;
-
 			default:
-				META_CONPRINTF("[KZ] Failed to fetch your information (%d): %s\n", status, rawBody.c_str());
+				player->languageService->PrintChat(true, false, "API Error", status, rawBody.c_str());
 				return;
 		}
 
@@ -99,12 +96,8 @@ void KZGlobalService::FetchPreferences(KZPlayer *player, std::function<void(nloh
 				// good
 				break;
 
-			case 404:
-				player->PrintChat(true, true, "The API doesn't know you :( this is a bug!\n", status, rawBody.c_str());
-				return;
-
 			default:
-				player->PrintChat(true, true, "Failed to fetch your information (%d): %s\n", status, rawBody.c_str());
+				player->languageService->PrintChat(true, false, "API Error", status, rawBody.c_str());
 				return;
 		}
 
@@ -125,7 +118,7 @@ internal SCMD_CALLBACK(Command_KzWho)
 		const char *steamID = playerInfo.steamID.c_str();
 		const char *bannedText = playerInfo.isBanned ? " " : " not ";
 
-		player->PrintChat(true, true, "Hello, %s! Your SteamID is %s and you are currently%sbanned.\n", name, steamID, bannedText);
+		player->languageService->PrintChat(true, false, "Display PlayerInfo", name, steamID, bannedText);
 	};
 
 	KZGlobalService::FetchPlayer(player, callback);
@@ -140,7 +133,8 @@ internal SCMD_CALLBACK(Command_KzPreferences)
 	{
 		std::string text = json.dump();
 
-		player->PrintConsole(false, true, "Your preferences:\n%s\n", text.c_str());
+		player->languageService->PrintChat(true, false, "View Preferences Response");
+		player->languageService->PrintConsole(false, false, "Display Raw Preferences", text.c_str());
 	};
 
 	KZGlobalService::FetchPreferences(player, callback);
