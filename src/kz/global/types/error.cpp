@@ -4,6 +4,11 @@
 
 namespace KZ::API
 {
+	void Error::Report() const
+	{
+		META_CONPRINTF("[KZ] API request failed with code %d: %s (%s)\n", status, message.c_str(), details.is_null() ? "" : details.dump().c_str());
+	}
+
 	void Error::Report(KZPlayer *player) const
 	{
 		player->languageService->PrintChat(true, false, "API Error", status);

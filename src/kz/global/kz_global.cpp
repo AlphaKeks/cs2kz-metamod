@@ -8,49 +8,24 @@
 #include "kz/option/kz_option.h"
 #include "kz_global.h"
 #include "utils/ctimer.h"
-#include "utils/http.h"
 #include "utils/simplecmds.h"
 
-extern ISteamHTTP *g_pHTTP;
-CSteamGameServerAPIContext g_steamAPI;
 std::string KZGlobalService::apiUrl;
+std::string *KZGlobalService::apiKey = nullptr;
 
 void KZGlobalService::Init()
 {
 	KZGlobalService::apiUrl = std::string(KZOptionService::GetOptionStr("apiUrl", "https://api.cs2kz.org"));
 	META_CONPRINTF("[KZ] Registered API URL: `%s`\n", KZGlobalService::apiUrl.c_str());
 
+	const char *apiKey = KZOptionService::GetOptionStr("apiKey", "");
+
+	if (apiKey[0] != '\0')
+	{
+		KZGlobalService::apiKey = new std::string(apiKey);
+	}
+
 	StartTimer(Heartbeat, true, true);
-}
-
-f64 KZGlobalService::Heartbeat()
-{
-	if (!g_pHTTP)
-	{
-		g_steamAPI.Init();
-		g_pHTTP = g_steamAPI.SteamHTTP();
-	}
-
-	g_HTTPManager.Get(apiUrl.c_str(), &OnHeartbeat);
-
-	return 30.0f;
-}
-
-void KZGlobalService::OnHeartbeat(HTTPRequestHandle request, int status, std::string rawBody)
-{
-	switch (status)
-	{
-		case 0:
-			META_CONPRINTF("[KZ] API is unreachable.\n");
-			break;
-
-		case 200:
-			META_CONPRINTF("[KZ] API is healthy %s\n", rawBody.c_str());
-			break;
-
-		default:
-			META_CONPRINTF("[KZ] API returned unexpected status on healthcheck: %d (%s)\n", status, rawBody.c_str());
-	}
 }
 
 internal SCMD_CALLBACK(Command_KzWho)

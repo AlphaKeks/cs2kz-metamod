@@ -98,6 +98,8 @@ for sdk_target in MMSPlugin.sdk_targets:
     os.path.join(builder.sourcePath, 'src', 'kz', 'checkpoint', 'kz_checkpoint.cpp'),
     os.path.join(builder.sourcePath, 'src', 'kz', 'checkpoint', 'commands.cpp'),
     os.path.join(builder.sourcePath, 'src', 'kz', 'global', 'kz_global.cpp'),
+    os.path.join(builder.sourcePath, 'src', 'kz', 'global', 'heartbeat.cpp'),
+    os.path.join(builder.sourcePath, 'src', 'kz', 'global', 'auth.cpp'),
     os.path.join(builder.sourcePath, 'src', 'kz', 'global', 'players.cpp'),
     os.path.join(builder.sourcePath, 'src', 'kz', 'global', 'types', 'error.cpp'),
     os.path.join(builder.sourcePath, 'src', 'kz', 'global', 'types', 'players.cpp'),

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <atomic>
 #include <string>
 
 #include "../kz.h"
@@ -15,8 +16,14 @@ class KZGlobalService : public KZBaseService
 	static_global f64 Heartbeat();
 	static_global void OnHeartbeat(HTTPRequestHandle request, int status, std::string body);
 
+	static_global f64 Auth();
+	static_global void OnAuth(HTTPRequestHandle request, int status, std::string body);
+
 public:
 	static_global std::string apiUrl;
+	static_global std::atomic<bool> authTimerInitialized;
+	static_global std::string *apiKey;
+	static_global std::string *currentJWT;
 
 	static_global void Init();
 	static_global void RegisterCommands();

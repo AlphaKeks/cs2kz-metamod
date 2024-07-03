@@ -12,6 +12,7 @@ namespace KZ::API
 		std::string message;
 		nlohmann::json details;
 
+		void Report() const;
 		void Report(KZPlayer *player) const;
 		static Error Deserialize(const nlohmann::json &, u16 status);
 	};
