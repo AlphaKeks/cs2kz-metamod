@@ -28,9 +28,10 @@ public:
 	static_global void Init();
 	static_global void RegisterCommands();
 
-	static_global void FetchPlayer(KZPlayer *player, std::function<void(KZ::API::FullPlayer)> callback);
+	static_global void FetchPlayer(KZPlayer *player, bool createIfNotExists, std::function<void(KZ::API::FullPlayer)> callback);
 	static_global void FetchPlayer(KZPlayer *player, u64 steamID, std::function<void(KZ::API::FullPlayer)> callback);
 	static_global void FetchPlayer(KZPlayer *player, const char *name, std::function<void(KZ::API::FullPlayer)> callback);
+	static_global void RegisterPlayer(KZPlayer *player, std::function<void()> callback);
 	static_global void FetchPreferences(KZPlayer *player, std::function<void(nlohmann::json)> callback);
 	static_global void FetchMap(KZPlayer *player, std::function<void(KZ::API::Map)> callback);
 };

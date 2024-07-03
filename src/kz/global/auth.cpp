@@ -39,8 +39,9 @@ void KZGlobalService::OnAuth(HTTPRequestHandle request, int status, std::string 
 
 		case 201:
 		{
+			const nlohmann::json jwtResponse = nlohmann::json::parse(rawBody);
 			META_CONPRINTF("[KZ] Authenticated with the API. JWT=%s\n", rawBody.c_str());
-			KZGlobalService::currentJWT = new std::string(rawBody);
+			KZGlobalService::currentJWT = new std::string(jwtResponse["access_key"]);
 			break;
 		}
 

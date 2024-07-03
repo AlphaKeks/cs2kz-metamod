@@ -44,7 +44,7 @@ internal SCMD_CALLBACK(Command_KzWho)
 
 	if (playerIdentifier[0] == '\0')
 	{
-		KZGlobalService::FetchPlayer(player, callback);
+		KZGlobalService::FetchPlayer(player, false, callback);
 	}
 	else
 	{

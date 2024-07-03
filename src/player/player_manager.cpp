@@ -91,13 +91,13 @@ void PlayerManager::OnClientConnected(CPlayerSlot slot, const char *pszName, uin
 void PlayerManager::OnClientFullyConnect(CPlayerSlot slot)
 {
 	KZPlayer *player = g_pKZPlayerManager->ToPlayer(slot);
-	auto on_response = [player](KZ::API::FullPlayer info)
+	auto onResponse = [player](KZ::API::FullPlayer info)
 	{
 		player->languageService->PrintChat(true, false, "Display Hello", info.name.c_str());
 		player->info = new KZ::API::FullPlayer(info);
 	};
 
-	KZGlobalService::FetchPlayer(player, on_response);
+	KZGlobalService::FetchPlayer(player, true, onResponse);
 }
 
 void PlayerManager::OnClientPutInServer(CPlayerSlot slot, char const *pszName, int type, uint64 xuid) {}
