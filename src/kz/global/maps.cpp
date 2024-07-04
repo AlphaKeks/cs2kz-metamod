@@ -11,7 +11,7 @@ void KZGlobalService::FetchMap(std::string mapIdentifier, std::function<void(KZ:
 {
 	std::string url = KZGlobalService::apiUrl + "/maps/" + mapIdentifier;
 
-	auto onResponse = [callback](HTTPRequestHandle request, int status, std::string rawBody) {
+	g_HTTPManager.Get(url.c_str(), [callback](HTTPRequestHandle request, int status, std::string rawBody) {
 		switch (status)
 		{
 			case 200:
@@ -35,7 +35,5 @@ void KZGlobalService::FetchMap(std::string mapIdentifier, std::function<void(KZ:
 				error.Report();
 			}
 		}
-	};
-
-	g_HTTPManager.Get(url.c_str(), onResponse);
+	});
 }

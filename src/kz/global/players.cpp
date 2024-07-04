@@ -10,7 +10,7 @@
 
 internal void FetchPlayerImpl(KZPlayer *player, const std::string &url, bool createIfNotExists, std::function<void(KZ::API::FullPlayer)> callback)
 {
-	auto onResponse = [=](HTTPRequestHandle request, int status, std::string rawBody) {
+	g_HTTPManager.Get(url.c_str(), [=](HTTPRequestHandle request, int status, std::string rawBody) {
 		const auto json = nlohmann::json::parse(rawBody);
 
 		switch (status)
@@ -42,9 +42,7 @@ internal void FetchPlayerImpl(KZPlayer *player, const std::string &url, bool cre
 				error.Report(player);
 			}
 		}
-	};
-
-	g_HTTPManager.Get(url.c_str(), onResponse);
+	});
 }
 
 void KZGlobalService::FetchPlayer(KZPlayer *player, bool createIfNotExists, std::function<void(KZ::API::FullPlayer)> callback)
@@ -75,7 +73,7 @@ void KZGlobalService::FetchPreferences(KZPlayer *player, std::function<void(nloh
 	u64 steamID = player->GetSteamId64();
 	sprintf(&url.back(), "%llu/preferences", steamID);
 
-	auto onResponse = [player, callback](HTTPRequestHandle request, int status, std::string rawBody) {
+	g_HTTPManager.Get(url.c_str(), [player, callback](HTTPRequestHandle request, int status, std::string rawBody) {
 		switch (status)
 		{
 			case 200:
@@ -92,9 +90,7 @@ void KZGlobalService::FetchPreferences(KZPlayer *player, std::function<void(nloh
 				error.Report(player);
 			}
 		}
-	};
-
-	g_HTTPManager.Get(url.c_str(), onResponse);
+	});
 }
 
 void KZGlobalService::RegisterPlayer(KZPlayer *player, std::function<void()> callback)
@@ -105,17 +101,24 @@ void KZGlobalService::RegisterPlayer(KZPlayer *player, std::function<void()> cal
 		return;
 	}
 
+	nlohmann::json payload;
+	payload["name"] = player->GetName();
+	payload["steam_id"] = player->GetSteamId64();
+	payload["ip_address"] = player->GetIpAddress();
+
+	std::vector<HTTPHeader> headers;
+	headers.emplace_back("Authorization", (std::string("Bearer ") + KZGlobalService::currentJWT->c_str()));
+
 	auto onResponse = [player](HTTPRequestHandle request, int status, std::string rawBody) {
 		switch (status)
 		{
 			case 201:
 			{
-				auto onResponse = [player](KZ::API::FullPlayer info) {
+				KZGlobalService::FetchPlayer(player, false, [player](KZ::API::FullPlayer info) {
 					player->languageService->PrintChat(true, false, "Display Hello", info.name.c_str());
 					player->info = new KZ::API::FullPlayer(info);
-				};
+				});
 
-				KZGlobalService::FetchPlayer(player, false, onResponse);
 				break;
 			}
 
@@ -136,14 +139,6 @@ void KZGlobalService::RegisterPlayer(KZPlayer *player, std::function<void()> cal
 			}
 		}
 	};
-
-	nlohmann::json payload;
-	payload["name"] = player->GetName();
-	payload["steam_id"] = player->GetSteamId64();
-	payload["ip_address"] = player->GetIpAddress();
-
-	std::vector<HTTPHeader> headers;
-	headers.emplace_back("Authorization", (std::string("Bearer ") + KZGlobalService::currentJWT->c_str()));
 
 	g_HTTPManager.Post((apiUrl + "/players").c_str(), payload.dump().c_str(), onResponse, &headers);
 }

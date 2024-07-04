@@ -699,15 +699,14 @@ internal bool Hook_ActivateServer()
 		}
 	}
 
-	auto onResponse = [](KZ::API::Map map) {
-		META_CONPRINTF("[KZ] Fetched %s from the API.\n", map.name.c_str());
-		KZGlobalService::currentMap = new KZ::API::Map(map);
-	};
-
 	CNetworkGameServerBase *networkGameServer = (CNetworkGameServerBase *)g_pNetworkServerService->GetIGameServer();
-	if (networkGameServer)
+
+	if (networkGameServer != nullptr)
 	{
-		KZGlobalService::FetchMap(networkGameServer->GetMapName(), onResponse);
+		KZGlobalService::FetchMap(networkGameServer->GetMapName(), [](KZ::API::Map map) {
+			META_CONPRINTF("[KZ] Fetched %s from the API.\n", map.name.c_str());
+			KZGlobalService::currentMap = new KZ::API::Map(map);
+		});
 	}
 
 	interfaces::pEngine->ServerCommand("exec cs2kz.cfg");

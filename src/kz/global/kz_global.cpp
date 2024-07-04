@@ -58,14 +58,13 @@ internal SCMD_CALLBACK(Command_KzProfile)
 internal SCMD_CALLBACK(Command_KzPreferences)
 {
 	KZPlayer *player = g_pKZPlayerManager->ToPlayer(controller);
-	auto callback = [player](nlohmann::json json) {
+
+	KZGlobalService::FetchPreferences(player, [player](nlohmann::json json) {
 		std::string text = json.dump();
 
 		player->languageService->PrintChat(true, false, "View Preferences Response");
 		player->languageService->PrintConsole(false, false, "Display Raw Preferences", text.c_str());
-	};
-
-	KZGlobalService::FetchPreferences(player, callback);
+	});
 
 	return MRES_SUPERCEDE;
 }

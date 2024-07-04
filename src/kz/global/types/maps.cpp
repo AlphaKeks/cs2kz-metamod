@@ -1,4 +1,6 @@
 #include "vendor/nlohmann/json.hpp"
+
+#include "kz/language/kz_language.h"
 #include "maps.h"
 
 namespace KZ::API
@@ -46,7 +48,7 @@ namespace KZ::API
 		}
 	}
 
-	void Display(KZPlayer *player) const
+	void Map::Display(KZPlayer *player) const
 	{
 		std::string sep;
 
@@ -55,19 +57,19 @@ namespace KZ::API
 			sep = " | ";
 		}
 
-		std::string mappers;
+		std::string mappersText;
 
 		for (size_t idx = 0; idx < mappers.size(); idx++)
 		{
-			mappers += mappers[idx].name;
+			mappersText += mappers[idx].name;
 
 			if (idx != (mappers.size() - 1))
 			{
-				mappers += ", ";
+				mappersText += ", ";
 			}
 		}
 
-		player->languageService->PrintChat(true, false, "CurrentMap", id, name, sep.c_str(), description.c_str(), workshopID, mappers.c_str());
+		player->languageService->PrintChat(true, false, "CurrentMap", id, name, sep.c_str(), description.c_str(), workshopID, mappersText.c_str());
 	}
 
 	Course Course::Deserialize(const nlohmann::json &json)
