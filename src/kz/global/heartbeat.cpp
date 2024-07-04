@@ -6,18 +6,10 @@
 #include "utils/http.h"
 
 extern ISteamHTTP *g_pHTTP;
-CSteamGameServerAPIContext g_steamAPI;
 std::atomic<bool> KZGlobalService::authTimerInitialized = false;
 
 f64 KZGlobalService::Heartbeat()
 {
-	if (!g_pHTTP)
-	{
-		META_CONPRINTF("[KZ] Initializing HTTP client\n");
-		g_steamAPI.Init();
-		g_pHTTP = g_steamAPI.SteamHTTP();
-	}
-
 	g_HTTPManager.Get(apiUrl.c_str(), &OnHeartbeat);
 	return 30.0f;
 }

@@ -88,8 +88,9 @@ void KZGlobalService::FetchPreferences(KZPlayer *player, std::function<void(nloh
 
 			default:
 			{
-				player->languageService->PrintChat(true, false, "API Error", status, rawBody.c_str());
-				return;
+				const auto json = nlohmann::json::parse(rawBody);
+				const auto error = KZ::API::Error::Deserialize(json, status);
+				error.Report(player);
 			}
 		}
 	};

@@ -8,15 +8,8 @@ namespace KZ::API
 		Map map;
 		json.at("id").get_to(map.id);
 		json.at("name").get_to(map.name);
-
-		auto description = json.value("description", "");
-
-		if (description != "")
-		{
-			map.description = new std::string(description);
-		}
-
-		json.at("global_status").get_to(map.globalStatus);
+		map.description = json.value("description", "");
+		map.globalStatus = Map::DeserializeGlobalStatus(json);
 		json.at("workshop_id").get_to(map.workshopID);
 		json.at("checksum").get_to(map.checksum);
 		json.at("created_on").get_to(map.createdOn);
@@ -34,25 +27,32 @@ namespace KZ::API
 		return map;
 	}
 
+	Map::GlobalStatus Map::DeserializeGlobalStatus(const nlohmann::json &json)
+	{
+		std::string globalStatus;
+		json.at("global_status").get_to(globalStatus);
+
+		if (globalStatus == "global")
+		{
+			return Map::GlobalStatus::GLOBAL;
+		}
+		else if (globalStatus == "in_testing")
+		{
+			return Map::GlobalStatus::IN_TESTING;
+		}
+		else
+		{
+			return Map::GlobalStatus::NOT_GLOBAL;
+		}
+	}
+
 	Course Course::Deserialize(const nlohmann::json &json)
 	{
 		Course course;
 
 		json.at("id").get_to(course.id);
-
-		auto name = json.value("name", "");
-
-		if (name != "")
-		{
-			course.name = new std::string(name);
-		}
-
-		auto description = json.value("description", "");
-
-		if (description != "")
-		{
-			course.description = new std::string(description);
-		}
+		course.name = json.value("name", "");
+		course.description = json.value("description", "");
 
 		for (const auto &mapper : json.at("mappers"))
 		{
@@ -72,18 +72,21 @@ namespace KZ::API
 		Filter filter;
 
 		json.at("id").get_to(filter.id);
-		json.at("mode").get_to(filter.mode);
+		filter.mode = DeserializeMode(json);
 		json.at("teleports").get_to(filter.teleports);
-		json.at("tier").get_to(filter.tier);
-		json.at("ranked_status").get_to(filter.rankedStatus);
-
-		auto notes = json.value("notes", "");
-
-		if (notes != "")
-		{
-			filter.notes = new std::string(notes);
-		}
+		filter.tier = DeserializeTier(json);
+		filter.rankedStatus = Filter::DeserializeRankedStatus(json);
+		filter.notes = json.value("notes", "");
 
 		return filter;
+	}
+
+	Filter::RankedStatus Filter::DeserializeRankedStatus(const nlohmann::json &json)
+	{
+		std::string rankedStatus;
+		json.at("ranked_status").get_to(rankedStatus);
+
+		// TODO
+		return Filter::RankedStatus::NEVER;
 	}
 } // namespace KZ::API

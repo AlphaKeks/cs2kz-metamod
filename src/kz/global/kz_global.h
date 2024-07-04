@@ -24,6 +24,7 @@ public:
 	static_global std::atomic<bool> authTimerInitialized;
 	static_global std::string *apiKey;
 	static_global std::string *currentJWT;
+	static_global KZ::API::Map *currentMap;
 
 	static_global void Init();
 	static_global void RegisterCommands();
@@ -33,5 +34,5 @@ public:
 	static_global void FetchPlayer(KZPlayer *player, const char *name, std::function<void(KZ::API::FullPlayer)> callback);
 	static_global void RegisterPlayer(KZPlayer *player, std::function<void()> callback);
 	static_global void FetchPreferences(KZPlayer *player, std::function<void(nlohmann::json)> callback);
-	static_global void FetchMap(KZPlayer *player, std::function<void(KZ::API::Map)> callback);
+	static_global void FetchMap(std::string mapName, std::function<void(KZ::API::Map)> callback);
 };

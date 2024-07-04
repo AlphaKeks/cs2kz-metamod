@@ -7,6 +7,5 @@
 	"defaultJSBroadcastMinTier"  "4"
 	"defaultJSSoundMinTier"      "4"
 	"chatPrefix"                 "{lime}KZ {grey}|{default}"
-	"apiUrl"                     "http://192.168.178.161:42069"
-	"apiKey"                     "a107320d-ad7e-40f5-98e5-aa0e15171bc0"
+	"apiUrl"                     "http://localhost:42069"
 }

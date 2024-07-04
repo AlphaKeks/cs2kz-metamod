@@ -9,4 +9,6 @@ namespace KZ::API
 		VANILLA = 1,
 		CLASSIC = 2,
 	};
+
+	Mode DeserializeMode(const nlohmann::json &);
 } // namespace KZ::API

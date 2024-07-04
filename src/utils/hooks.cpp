@@ -7,10 +7,11 @@
 
 #include "cs2kz.h"
 #include "ctimer.h"
+#include "entityclass.h"
+#include "kz/global/kz_global.h"
 #include "kz/quiet/kz_quiet.h"
 #include "kz/timer/kz_timer.h"
 #include "utils/utils.h"
-#include "entityclass.h"
 
 class GameSessionConfiguration_t
 {
@@ -696,6 +697,18 @@ internal bool Hook_ActivateServer()
 		{
 			META_CONPRINTF("Warning: sv_infinite_ammo is not found!\n");
 		}
+	}
+
+	auto onResponse = [](KZ::API::Map map)
+	{
+		META_CONPRINTF("[KZ] Fetched %s from the API.\n", map.name.c_str());
+		KZGlobalService::currentMap = new KZ::API::Map(map);
+	};
+
+	CNetworkGameServerBase *networkGameServer = (CNetworkGameServerBase *)g_pNetworkServerService->GetIGameServer();
+	if (networkGameServer)
+	{
+		KZGlobalService::FetchMap(networkGameServer->GetMapName(), onResponse);
 	}
 
 	interfaces::pEngine->ServerCommand("exec cs2kz.cfg");

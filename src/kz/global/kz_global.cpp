@@ -7,11 +7,13 @@
 #include "../language/kz_language.h"
 #include "kz/option/kz_option.h"
 #include "kz_global.h"
+#include "types/maps.h"
 #include "utils/ctimer.h"
 #include "utils/simplecmds.h"
 
 std::string KZGlobalService::apiUrl;
 std::string *KZGlobalService::apiKey = nullptr;
+KZ::API::Map *KZGlobalService::currentMap = nullptr;
 
 void KZGlobalService::Init()
 {
@@ -70,8 +72,47 @@ internal SCMD_CALLBACK(Command_KzPreferences)
 	return MRES_SUPERCEDE;
 }
 
+internal SCMD_CALLBACK(Command_KzMapInfo)
+{
+	KZPlayer *player = g_pKZPlayerManager->ToPlayer(controller);
+	auto currentMap = KZGlobalService::currentMap;
+
+	if (currentMap == nullptr)
+	{
+		player->languageService->PrintChat(true, false, "CurrentMapNotGlobal");
+	}
+	else
+	{
+		std::string sep;
+
+		if (!currentMap->description.empty())
+		{
+			sep = " | ";
+		}
+
+		std::string mappers;
+
+		for (size_t idx = 0; idx < currentMap->mappers.size(); idx++)
+		{
+			mappers += currentMap->mappers[idx].name;
+
+			if (idx != (currentMap->mappers.size() - 1))
+			{
+				mappers += ", ";
+			}
+		}
+
+		player->languageService->PrintChat(true, false, "CurrentMap", currentMap->id, currentMap->name, sep.c_str(), currentMap->description.c_str(),
+										   currentMap->workshopID, mappers.c_str());
+	}
+
+	return MRES_SUPERCEDE;
+}
+
 void KZGlobalService::RegisterCommands()
 {
 	scmd::RegisterCmd("kz_who", Command_KzWho);
 	scmd::RegisterCmd("kz_preferences", Command_KzPreferences);
+	scmd::RegisterCmd("kz_mapinfo", Command_KzMapInfo);
+	scmd::RegisterCmd("kz_minfo", Command_KzMapInfo);
 }

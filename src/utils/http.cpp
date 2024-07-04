@@ -31,6 +31,7 @@
 
 ISteamHTTP* g_pHTTP = nullptr;
 HTTPManager g_HTTPManager;
+CSteamGameServerAPIContext g_steamAPI;
 
 #undef strdup
 
@@ -97,6 +98,13 @@ void HTTPManager::Post(const char* pszUrl, const char* pszText, CompletedCallbac
 
 void HTTPManager::GenerateRequest(EHTTPMethod method, const char* pszUrl, const char* pszText, CompletedCallback callback, std::vector<HTTPHeader>* headers)
 {
+	if (!g_pHTTP)
+	{
+		Msg("[KZ] Initializing HTTP client\n");
+		g_steamAPI.Init();
+		g_pHTTP = g_steamAPI.SteamHTTP();
+	}
+
 	// Msg("Sending HTTP request to `%s`:\n```\n%s\n```\n", pszUrl, pszText);
 	auto hReq = g_pHTTP->CreateHTTPRequest(method, pszUrl);
 	int size = strlen(pszText);

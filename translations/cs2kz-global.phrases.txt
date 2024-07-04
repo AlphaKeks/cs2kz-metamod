@@ -33,4 +33,13 @@
 		"#format"	"preferences:s"
 		"en"		"Preferences:\n{preferences}"
 	}
+	"CurrentMapNotGlobal"
+	{
+		"en"		"{grey}Current map is not global."
+	}
+	"CurrentMap"
+	{
+		"#format"	"id:d,name:s,sep:s,description:s,workshopID:d,mappers:s"
+		"en"		"{name} {grey}{default}{sep}{description}\n{grey}⠀⠀• ID: {default}{id}\n{grey}⠀⠀• Workshop ID: {default}{workshopID}\n{grey}⠀⠀• Mapper(s): {default}{mappers}"
+	}
 }

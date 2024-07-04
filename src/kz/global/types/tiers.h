@@ -17,4 +17,6 @@ namespace KZ::API
 		UNFEASIBLE,
 		IMPOSSIBLE,
 	};
+
+	Tier DeserializeTier(const nlohmann::json &);
 } // namespace KZ::API

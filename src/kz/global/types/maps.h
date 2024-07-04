@@ -27,16 +27,17 @@ namespace KZ::API
 		bool teleports;
 		Tier tier;
 		RankedStatus rankedStatus;
-		std::string *notes;
+		std::string notes;
 
 		static Filter Deserialize(const nlohmann::json &);
+		static RankedStatus DeserializeRankedStatus(const nlohmann::json &);
 	};
 
 	struct Course
 	{
 		u16 id;
-		std::string *name;
-		std::string *description;
+		std::string name;
+		std::string description;
 		std::vector<Player> mappers;
 		std::vector<Filter> filters;
 
@@ -54,7 +55,7 @@ namespace KZ::API
 
 		u16 id;
 		std::string name;
-		std::string *description;
+		std::string description;
 		GlobalStatus globalStatus;
 		u32 workshopID;
 		u32 checksum;
@@ -63,5 +64,6 @@ namespace KZ::API
 		std::string createdOn;
 
 		static Map Deserialize(const nlohmann::json &);
+		static GlobalStatus DeserializeGlobalStatus(const nlohmann::json &);
 	};
 } // namespace KZ::API
