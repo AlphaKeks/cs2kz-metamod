@@ -24,7 +24,9 @@ void KZ::style::InitStyleManager()
 	{
 		return;
 	}
-	StyleServiceFactory vnlFactory = [](KZPlayer *player) -> KZStyleService * { return new KZNormalStyleService(player); };
+	StyleServiceFactory vnlFactory = [](KZPlayer *player) -> KZStyleService * {
+		return new KZNormalStyleService(player);
+	};
 	styleManager.RegisterStyle(0, "NRM", "Normal", vnlFactory);
 	initialized = true;
 }

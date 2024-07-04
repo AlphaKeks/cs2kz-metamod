@@ -10,8 +10,7 @@
 
 internal void FetchPlayerImpl(KZPlayer *player, const std::string &url, bool createIfNotExists, std::function<void(KZ::API::FullPlayer)> callback)
 {
-	auto onResponse = [=](HTTPRequestHandle request, int status, std::string rawBody)
-	{
+	auto onResponse = [=](HTTPRequestHandle request, int status, std::string rawBody) {
 		const auto json = nlohmann::json::parse(rawBody);
 
 		switch (status)
@@ -31,7 +30,8 @@ internal void FetchPlayerImpl(KZPlayer *player, const std::string &url, bool cre
 					break;
 				}
 
-				KZGlobalService::RegisterPlayer(player, []() {});
+				KZGlobalService::RegisterPlayer(player, []() {
+				});
 
 				break;
 			}
@@ -75,8 +75,7 @@ void KZGlobalService::FetchPreferences(KZPlayer *player, std::function<void(nloh
 	u64 steamID = player->GetSteamId64();
 	sprintf(&url.back(), "%llu/preferences", steamID);
 
-	auto onResponse = [player, callback](HTTPRequestHandle request, int status, std::string rawBody)
-	{
+	auto onResponse = [player, callback](HTTPRequestHandle request, int status, std::string rawBody) {
 		switch (status)
 		{
 			case 200:
@@ -106,14 +105,12 @@ void KZGlobalService::RegisterPlayer(KZPlayer *player, std::function<void()> cal
 		return;
 	}
 
-	auto onResponse = [player](HTTPRequestHandle request, int status, std::string rawBody)
-	{
+	auto onResponse = [player](HTTPRequestHandle request, int status, std::string rawBody) {
 		switch (status)
 		{
 			case 201:
 			{
-				auto onResponse = [player](KZ::API::FullPlayer info)
-				{
+				auto onResponse = [player](KZ::API::FullPlayer info) {
 					player->languageService->PrintChat(true, false, "Display Hello", info.name.c_str());
 					player->info = new KZ::API::FullPlayer(info);
 				};

@@ -699,8 +699,7 @@ internal bool Hook_ActivateServer()
 		}
 	}
 
-	auto onResponse = [](KZ::API::Map map)
-	{
+	auto onResponse = [](KZ::API::Map map) {
 		META_CONPRINTF("[KZ] Fetched %s from the API.\n", map.name.c_str());
 		KZGlobalService::currentMap = new KZ::API::Map(map);
 	};

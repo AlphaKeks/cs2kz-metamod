@@ -41,7 +41,9 @@ void KZ::mode::InitModeManager()
 	{
 		return;
 	}
-	ModeServiceFactory vnlFactory = [](KZPlayer *player) -> KZModeService * { return new KZVanillaModeService(player); };
+	ModeServiceFactory vnlFactory = [](KZPlayer *player) -> KZModeService * {
+		return new KZVanillaModeService(player);
+	};
 	modeManager.RegisterMode(0, "VNL", "Vanilla", vnlFactory);
 	initialized = true;
 }
