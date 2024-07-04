@@ -369,8 +369,20 @@
 		"sv"		"Byt till Classic mode."
 		"ua"		"Переключитися на режим Classic."
 	}
+	"Command Description - kz_profile"
+	{
+		"en"		"Display player stats."
+	}
 	"Command Description - kz_preferences"
 	{
 		"en"		"Fetch a player's preference data from the API."
+	}
+	"Command Description - kz_mapinfo"
+	{
+		"en"		"Display information about the current map."
+	}
+	"Command Description - kz_minfo"
+	{
+		"en"		"Alias for kz_mapinfo"
 	}
 }

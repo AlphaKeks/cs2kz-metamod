@@ -30,7 +30,7 @@ void KZGlobalService::Init()
 	StartTimer(Heartbeat, true, true);
 }
 
-internal SCMD_CALLBACK(Command_KzWho)
+internal SCMD_CALLBACK(Command_KzProfile)
 {
 	KZPlayer *player = g_pKZPlayerManager->ToPlayer(controller);
 	auto callback = [player](KZ::API::FullPlayer info)
@@ -111,7 +111,7 @@ internal SCMD_CALLBACK(Command_KzMapInfo)
 
 void KZGlobalService::RegisterCommands()
 {
-	scmd::RegisterCmd("kz_who", Command_KzWho);
+	scmd::RegisterCmd("kz_profile", Command_KzProfile);
 	scmd::RegisterCmd("kz_preferences", Command_KzPreferences);
 	scmd::RegisterCmd("kz_mapinfo", Command_KzMapInfo);
 	scmd::RegisterCmd("kz_minfo", Command_KzMapInfo);
