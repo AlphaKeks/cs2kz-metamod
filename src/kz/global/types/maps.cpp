@@ -46,6 +46,30 @@ namespace KZ::API
 		}
 	}
 
+	void Display(KZPlayer *player) const
+	{
+		std::string sep;
+
+		if (!description.empty())
+		{
+			sep = " | ";
+		}
+
+		std::string mappers;
+
+		for (size_t idx = 0; idx < mappers.size(); idx++)
+		{
+			mappers += mappers[idx].name;
+
+			if (idx != (mappers.size() - 1))
+			{
+				mappers += ", ";
+			}
+		}
+
+		player->languageService->PrintChat(true, false, "CurrentMap", id, name, sep.c_str(), description.c_str(), workshopID, mappers.c_str());
+	}
+
 	Course Course::Deserialize(const nlohmann::json &json)
 	{
 		Course course;

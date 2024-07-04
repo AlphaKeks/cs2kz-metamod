@@ -33,8 +33,7 @@ void KZGlobalService::Init()
 internal SCMD_CALLBACK(Command_KzProfile)
 {
 	KZPlayer *player = g_pKZPlayerManager->ToPlayer(controller);
-	auto callback = [player](KZ::API::FullPlayer info)
-	{
+	auto callback = [player](KZ::API::FullPlayer info) {
 		const char *name = info.name.c_str();
 		const char *steamID = info.steamID.c_str();
 		const char *isBanned = info.isBanned ? "" : "not ";
@@ -59,8 +58,7 @@ internal SCMD_CALLBACK(Command_KzProfile)
 internal SCMD_CALLBACK(Command_KzPreferences)
 {
 	KZPlayer *player = g_pKZPlayerManager->ToPlayer(controller);
-	auto callback = [player](nlohmann::json json)
-	{
+	auto callback = [player](nlohmann::json json) {
 		std::string text = json.dump();
 
 		player->languageService->PrintChat(true, false, "View Preferences Response");
@@ -75,35 +73,21 @@ internal SCMD_CALLBACK(Command_KzPreferences)
 internal SCMD_CALLBACK(Command_KzMapInfo)
 {
 	KZPlayer *player = g_pKZPlayerManager->ToPlayer(controller);
-	auto currentMap = KZGlobalService::currentMap;
+	const char *mapIdentifier = args->Arg(1);
 
-	if (currentMap == nullptr)
+	if (mapIdentifier[0] == '\0')
 	{
-		player->languageService->PrintChat(true, false, "CurrentMapNotGlobal");
+		KZGlobalService::FetchMap(mapIdentifier, [player](KZ::API::Map mapInfo) {
+			mapInfo.Display(player);
+		});
+	}
+	else if (KZGlobalService::currentMap != nullptr)
+	{
+		KZGlobalService::currentMap->Display(player);
 	}
 	else
 	{
-		std::string sep;
-
-		if (!currentMap->description.empty())
-		{
-			sep = " | ";
-		}
-
-		std::string mappers;
-
-		for (size_t idx = 0; idx < currentMap->mappers.size(); idx++)
-		{
-			mappers += currentMap->mappers[idx].name;
-
-			if (idx != (currentMap->mappers.size() - 1))
-			{
-				mappers += ", ";
-			}
-		}
-
-		player->languageService->PrintChat(true, false, "CurrentMap", currentMap->id, currentMap->name, sep.c_str(), currentMap->description.c_str(),
-										   currentMap->workshopID, mappers.c_str());
+		player->languageService->PrintChat(true, false, "CurrentMapNotGlobal");
 	}
 
 	return MRES_SUPERCEDE;

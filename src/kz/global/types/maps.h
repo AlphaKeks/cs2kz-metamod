@@ -7,6 +7,7 @@
 #include "vendor/nlohmann/json_fwd.hpp"
 
 #include "common.h"
+#include "kz/kz.h"
 #include "modes.h"
 #include "players.h"
 #include "tiers.h"
@@ -65,5 +66,7 @@ namespace KZ::API
 
 		static Map Deserialize(const nlohmann::json &);
 		static GlobalStatus DeserializeGlobalStatus(const nlohmann::json &);
+
+		void Display(KZPlayer *player) const;
 	};
 } // namespace KZ::API

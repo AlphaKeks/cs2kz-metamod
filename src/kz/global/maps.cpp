@@ -7,9 +7,9 @@
 #include "types/maps.h"
 #include "utils/http.h"
 
-void KZGlobalService::FetchMap(std::string mapName, std::function<void(KZ::API::Map)> callback)
+void KZGlobalService::FetchMap(std::string mapIdentifier, std::function<void(KZ::API::Map)> callback)
 {
-	std::string url = KZGlobalService::apiUrl + "/maps/" + mapName;
+	std::string url = KZGlobalService::apiUrl + "/maps/" + mapIdentifier;
 
 	auto onResponse = [callback](HTTPRequestHandle request, int status, std::string rawBody)
 	{
