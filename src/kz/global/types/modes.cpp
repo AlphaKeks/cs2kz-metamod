@@ -1,30 +1,16 @@
 #include "vendor/nlohmann/json.hpp"
 #include "modes.h"
+#include "utils/json.h"
 
 namespace KZ::API
 {
 	std::optional<Mode> DeserializeMode(const nlohmann::json &json, std::string &parseError)
 	{
-		if (!json.is_string())
-		{
-			parseError = "mode returned by API is not a string.";
-			return std::nullopt;
-		}
+		std::vector<std::pair<std::string, Mode>> expected = {
+			std::make_pair("vanilla", Mode::VANILLA),
+			std::make_pair("classic", Mode::CLASSIC),
+		};
 
-		std::string mode = json;
-
-		if (mode == "vanilla")
-		{
-			return Mode::VANILLA;
-		}
-		else if (mode == "classic")
-		{
-			return Mode::CLASSIC;
-		}
-		else
-		{
-			parseError = "unknown mode";
-			return std::nullopt;
-		}
+		return KZ::utils::json::ParseEnum(json, parseError, expected);
 	}
 } // namespace KZ::API

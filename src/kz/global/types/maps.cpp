@@ -2,6 +2,7 @@
 
 #include "kz/language/kz_language.h"
 #include "maps.h"
+#include "utils/json.h"
 
 namespace KZ::API
 {
@@ -139,31 +140,13 @@ namespace KZ::API
 
 	std::optional<Map::GlobalStatus> Map::DeserializeGlobalStatus(const nlohmann::json &json, std::string &parseError)
 	{
-		if (!json.is_string())
-		{
-			parseError = "global status is not a string.";
-			return std::nullopt;
-		}
+		std::vector<std::pair<std::string, Map::GlobalStatus>> expected = {
+			std::make_pair("not_global", Map::GlobalStatus::NOT_GLOBAL),
+			std::make_pair("in-testing", Map::GlobalStatus::IN_TESTING),
+			std::make_pair("global", Map::GlobalStatus::GLOBAL),
+		};
 
-		std::string globalStatus = json;
-
-		if (globalStatus == "global")
-		{
-			return Map::GlobalStatus::GLOBAL;
-		}
-		else if (globalStatus == "in_testing")
-		{
-			return Map::GlobalStatus::IN_TESTING;
-		}
-		else if (globalStatus == "not_global")
-		{
-			return Map::GlobalStatus::NOT_GLOBAL;
-		}
-		else
-		{
-			parseError = "unknown global status";
-			return std::nullopt;
-		}
+		return KZ::utils::json::ParseEnum(json, parseError, expected);
 	}
 
 	void Map::Display(KZPlayer *player) const
@@ -374,30 +357,12 @@ namespace KZ::API
 
 	std::optional<Filter::RankedStatus> Filter::DeserializeRankedStatus(const nlohmann::json &json, std::string &parseError)
 	{
-		if (!json.is_string())
-		{
-			parseError = "ranked status is not a string";
-			return std::nullopt;
-		}
+		std::vector<std::pair<std::string, Filter::RankedStatus>> expected = {
+			std::make_pair("never", Filter::RankedStatus::NEVER),
+			std::make_pair("unranked", Filter::RankedStatus::UNRANKED),
+			std::make_pair("ranked", Filter::RankedStatus::RANKED),
+		};
 
-		std::string rankedStatus = json;
-
-		if (rankedStatus == "never")
-		{
-			return Filter::RankedStatus::NEVER;
-		}
-		else if (rankedStatus == "unranked")
-		{
-			return Filter::RankedStatus::UNRANKED;
-		}
-		else if (rankedStatus == "ranked")
-		{
-			return Filter::RankedStatus::RANKED;
-		}
-		else
-		{
-			parseError = "unknown ranked status";
-			return std::nullopt;
-		}
+		return KZ::utils::json::ParseEnum(json, parseError, expected);
 	}
 } // namespace KZ::API
