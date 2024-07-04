@@ -28,21 +28,21 @@ namespace KZ::API
 		bool teleports;
 		Tier tier;
 		RankedStatus rankedStatus;
-		std::string notes;
+		std::optional<std::string> notes;
 
-		static Filter Deserialize(const nlohmann::json &);
-		static RankedStatus DeserializeRankedStatus(const nlohmann::json &);
+		static std::optional<Filter> Deserialize(const nlohmann::json &json, std::string &parseError);
+		static std::optional<RankedStatus> DeserializeRankedStatus(const nlohmann::json &json, std::string &parseError);
 	};
 
 	struct Course
 	{
 		u16 id;
-		std::string name;
-		std::string description;
+		std::optional<std::string> name;
+		std::optional<std::string> description;
 		std::vector<Player> mappers;
 		std::vector<Filter> filters;
 
-		static Course Deserialize(const nlohmann::json &);
+		static std::optional<Course> Deserialize(const nlohmann::json &json, std::string &parseError);
 	};
 
 	struct Map
@@ -56,7 +56,7 @@ namespace KZ::API
 
 		u16 id;
 		std::string name;
-		std::string description;
+		std::optional<std::string> description;
 		GlobalStatus globalStatus;
 		u32 workshopID;
 		u32 checksum;
@@ -64,8 +64,8 @@ namespace KZ::API
 		std::vector<Course> courses;
 		std::string createdOn;
 
-		static Map Deserialize(const nlohmann::json &);
-		static GlobalStatus DeserializeGlobalStatus(const nlohmann::json &);
+		static std::optional<Map> Deserialize(const nlohmann::json &json, std::string &parseError);
+		static std::optional<GlobalStatus> DeserializeGlobalStatus(const nlohmann::json &json, std::string &parseError);
 
 		void Display(KZPlayer *player) const;
 	};

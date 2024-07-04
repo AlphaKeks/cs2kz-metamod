@@ -15,19 +15,43 @@ namespace KZ::API
 		player->languageService->PrintConsole(false, false, "API Error Details", message.c_str(), details.is_null() ? "" : details.dump().c_str());
 	}
 
-	Error Error::Deserialize(const nlohmann::json &json, u16 status)
+	std::optional<Error> Error::Deserialize(const nlohmann::json &json, u16 status, std::string &parseError)
 	{
-		Error error;
-		error.status = status;
-		json.at("message").get_to(error.message);
-
-		auto details = json.value("details", nullptr);
-
-		if (details != nullptr)
+		if (!json.is_object())
 		{
-			error.details = details;
+			parseError = "API error is not a JSON object";
+			return std::nullopt;
 		}
 
-		return error;
+		if (!json.contains("message"))
+		{
+			parseError = "API error does not contain a message";
+			return std::nullopt;
+		}
+
+		if (!json["message"].is_string())
+		{
+			parseError = "API error message is not a string";
+			return std::nullopt;
+		}
+
+		auto error = Error {
+			.status = status,
+			.message = json["message"],
+		};
+
+		if (json.contains("details"))
+		{
+			if (!json["details"].is_object())
+			{
+				META_CONPRINTF("[KZ] ERROR: API error details are not a JSON object.");
+			}
+			else
+			{
+				error.details = json["details"];
+			}
+		}
+
+		return std::make_optional(error);
 	}
 } // namespace KZ::API

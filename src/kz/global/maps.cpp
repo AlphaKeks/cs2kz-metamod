@@ -17,8 +17,16 @@ void KZGlobalService::FetchMap(std::string mapIdentifier, std::function<void(KZ:
 			case 200:
 			{
 				const auto json = nlohmann::json::parse(rawBody);
-				const auto map = KZ::API::Map::Deserialize(json);
-				callback(map);
+				std::string parseError;
+				const auto map = KZ::API::Map::Deserialize(json, parseError);
+
+				if (!map)
+				{
+					META_CONPRINTF("[KZ] Failed to parse API response: %s\n", parseError.c_str());
+					return;
+				}
+
+				callback(map.value());
 				break;
 			}
 
@@ -31,8 +39,16 @@ void KZGlobalService::FetchMap(std::string mapIdentifier, std::function<void(KZ:
 			default:
 			{
 				const auto json = nlohmann::json::parse(rawBody);
-				const auto error = KZ::API::Error::Deserialize(json, status);
-				error.Report();
+				std::string parseError;
+				const auto error = KZ::API::Error::Deserialize(json, status, parseError);
+
+				if (!error)
+				{
+					META_CONPRINTF("[KZ] Failed to parse API error: %s\n", parseError.c_str());
+					return;
+				}
+
+				error->Report();
 			}
 		}
 	});

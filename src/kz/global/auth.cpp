@@ -51,8 +51,18 @@ void KZGlobalService::OnAuth(HTTPRequestHandle request, int status, std::string 
 		case 500:
 		{
 			const auto json = nlohmann::json::parse(rawBody);
-			const auto error = KZ::API::Error::Deserialize(json, status);
-			error.Report();
+			std::string parseError;
+			const auto error = KZ::API::Error::Deserialize(json, status, parseError);
+
+			if (!error)
+			{
+				META_CONPRINTF("[KZ] Failed to parse API error: %s\n", parseError.c_str());
+			}
+			else
+			{
+				error->Report();
+			}
+
 			break;
 		}
 

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <optional>
 #include <string>
 
 #include "vendor/nlohmann/json_fwd.hpp"
@@ -11,7 +12,7 @@ namespace KZ::API
 		std::string name;
 		std::string steamID;
 
-		static Player Deserialize(const nlohmann::json &);
+		static std::optional<Player> Deserialize(const nlohmann::json &json, std::string &parseError);
 	};
 
 	struct FullPlayer
@@ -20,6 +21,6 @@ namespace KZ::API
 		std::string steamID;
 		bool isBanned;
 
-		static FullPlayer Deserialize(const nlohmann::json &);
+		static std::optional<FullPlayer> Deserialize(const nlohmann::json &json, std::string &parseError);
 	};
 } // namespace KZ::API

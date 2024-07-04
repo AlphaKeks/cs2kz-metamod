@@ -17,8 +17,15 @@ internal void FetchPlayerImpl(KZPlayer *player, const std::string &url, bool cre
 		{
 			case 200:
 			{
-				const auto playerInfo = KZ::API::FullPlayer::Deserialize(json);
-				callback(playerInfo);
+				std::string parseError;
+				const auto playerInfo = KZ::API::FullPlayer::Deserialize(json, parseError);
+
+				if (!playerInfo)
+				{
+					META_CONPRINTF("[KZ] Failed to fetch player from API: %s\n", parseError.c_str());
+				}
+
+				callback(playerInfo.value());
 				break;
 			}
 
@@ -38,8 +45,17 @@ internal void FetchPlayerImpl(KZPlayer *player, const std::string &url, bool cre
 
 			default:
 			{
-				const auto error = KZ::API::Error::Deserialize(json, status);
-				error.Report(player);
+				std::string parseError;
+				const auto error = KZ::API::Error::Deserialize(json, status, parseError);
+
+				if (!error)
+				{
+					META_CONPRINTF("[KZ] Failed to parse API error: %s\n", parseError.c_str());
+				}
+				else
+				{
+					error->Report(player);
+				}
 			}
 		}
 	});
@@ -86,8 +102,19 @@ void KZGlobalService::FetchPreferences(KZPlayer *player, std::function<void(nloh
 			default:
 			{
 				const auto json = nlohmann::json::parse(rawBody);
-				const auto error = KZ::API::Error::Deserialize(json, status);
-				error.Report(player);
+				std::string parseError;
+				const auto error = KZ::API::Error::Deserialize(json, status, parseError);
+
+				if (!error)
+				{
+					META_CONPRINTF("[KZ] Failed to parse API error: %s\n", parseError.c_str());
+				}
+				else
+				{
+					error->Report();
+				}
+
+				break;
 			}
 		}
 	});
@@ -128,8 +155,18 @@ void KZGlobalService::RegisterPlayer(KZPlayer *player, std::function<void()> cal
 			case 500:
 			{
 				const auto json = nlohmann::json::parse(rawBody);
-				const auto error = KZ::API::Error::Deserialize(json, status);
-				error.Report();
+				std::string parseError;
+				const auto error = KZ::API::Error::Deserialize(json, status, parseError);
+
+				if (!error)
+				{
+					META_CONPRINTF("[KZ] Failed to parse API error: %s\n", parseError.c_str());
+				}
+				else
+				{
+					error->Report();
+				}
+
 				break;
 			}
 

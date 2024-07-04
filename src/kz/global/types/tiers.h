@@ -1,5 +1,8 @@
 #pragma once
 
+#include <optional>
+#include <string>
+
 #include "vendor/nlohmann/json_fwd.hpp"
 
 namespace KZ::API
@@ -18,5 +21,5 @@ namespace KZ::API
 		IMPOSSIBLE,
 	};
 
-	Tier DeserializeTier(const nlohmann::json &);
+	std::optional<Tier> DeserializeTier(const nlohmann::json &json, std::string &parseError);
 } // namespace KZ::API

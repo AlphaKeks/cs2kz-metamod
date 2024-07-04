@@ -3,18 +3,28 @@
 
 namespace KZ::API
 {
-	Mode DeserializeMode(const nlohmann::json &json)
+	std::optional<Mode> DeserializeMode(const nlohmann::json &json, std::string &parseError)
 	{
-		std::string mode;
-		json.at("mode").get_to(mode);
+		if (!json.is_string())
+		{
+			parseError = "mode returned by API is not a string.";
+			return std::nullopt;
+		}
+
+		std::string mode = json;
 
 		if (mode == "vanilla")
 		{
 			return Mode::VANILLA;
 		}
-		else
+		else if (mode == "classic")
 		{
 			return Mode::CLASSIC;
+		}
+		else
+		{
+			parseError = "unknown mode";
+			return std::nullopt;
 		}
 	}
 } // namespace KZ::API

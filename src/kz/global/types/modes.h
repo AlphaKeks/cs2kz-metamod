@@ -1,5 +1,8 @@
 #pragma once
 
+#include <optional>
+#include <string>
+
 #include "vendor/nlohmann/json_fwd.hpp"
 
 namespace KZ::API
@@ -10,5 +13,5 @@ namespace KZ::API
 		CLASSIC = 2,
 	};
 
-	Mode DeserializeMode(const nlohmann::json &);
+	std::optional<Mode> DeserializeMode(const nlohmann::json &json, std::string &parseError);
 } // namespace KZ::API
