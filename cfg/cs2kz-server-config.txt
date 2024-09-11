@@ -25,4 +25,7 @@
 		//"timeout"			"60"
 		//"port"			"3306"
 	}
+
+	"apiUrl"				"https://api.cs2kz.org"
+	"apiKey"				"00000000-0000-0000-0000-000000000000"
 }

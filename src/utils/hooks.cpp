@@ -15,6 +15,7 @@
 #include "kz/quiet/kz_quiet.h"
 #include "kz/timer/kz_timer.h"
 #include "kz/db/kz_db.h"
+#include "kz/global/kz_global.h"
 #include "utils/utils.h"
 #include "entityclass.h"
 
@@ -792,6 +793,7 @@ static_function bool Hook_ActivateServer()
 	g_pKZUtils->GetCurrentMapMD5(md5, sizeof(md5));
 	META_CONPRINTF("[KZ] Loading map %s, workshop ID %llu, size %llu, md5 %s\n", g_pKZUtils->GetCurrentMapVPK().Get(), id, size, md5);
 	KZDatabaseService::SetupMap();
+	KZGlobalService::Init();
 	RETURN_META_VALUE(MRES_IGNORED, 1);
 }
 

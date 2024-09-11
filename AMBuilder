@@ -16,6 +16,7 @@ for sdk_target in MMSPlugin.sdk_targets:
       os.path.join(builder.sourcePath, 'hl2sdk-cs2', 'public', 'entity2'),
       os.path.join(builder.sourcePath, 'hl2sdk-cs2', 'game', 'server'),
       os.path.join(builder.sourcePath, 'vendor', 'funchook', 'include'),
+      os.path.join(builder.sourcePath, 'vendor', 'ixwebsocket'),
   ]
 
   PROTOS = [
@@ -84,6 +85,7 @@ for sdk_target in MMSPlugin.sdk_targets:
     os.path.join(builder.sourcePath, 'src', 'utils', 'schema.cpp'),
     os.path.join(builder.sourcePath, 'src', 'utils', 'simplecmds.cpp'),
     os.path.join(builder.sourcePath, 'src', 'utils', 'ctimer.cpp'),
+    os.path.join(builder.sourcePath, 'src', 'utils', 'http.cpp'),
     
     os.path.join(builder.sourcePath, 'src', 'player', 'player_manager.cpp'),
     os.path.join(builder.sourcePath, 'src', 'player', 'player.cpp'),
@@ -148,6 +150,12 @@ for sdk_target in MMSPlugin.sdk_targets:
     
     os.path.join(builder.sourcePath, 'src', 'kz', 'tip', 'kz_tip.cpp'),
   ]
+
+  ws_dir = os.path.join(builder.sourcePath, 'vendor', 'ixwebsocket', 'ixwebsocket')
+
+  for file in os.listdir(ws_dir):
+    if file.endswith('.cpp'):
+      binary.sources.append(os.path.join(ws_dir, file))
 
   binary.custom = [builder.tools.Protoc(protoc = sdk_target.protoc, sources = PROTOS)]
 
