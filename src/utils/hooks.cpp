@@ -20,6 +20,7 @@
 #include "kz/trigger/kz_trigger.h"
 #include "kz/db/kz_db.h"
 #include "kz/mappingapi/kz_mappingapi.h"
+#include "kz/global/kz_global.h"
 #include "utils/utils.h"
 
 #include "sdk/entity/cbasetrigger.h"
@@ -664,6 +665,7 @@ static_function bool Hook_ActivateServer()
 	g_pKZUtils->GetCurrentMapMD5(md5, sizeof(md5));
 	META_CONPRINTF("[KZ] Loading map %s, workshop ID %llu, size %llu, md5 %s\n", g_pKZUtils->GetCurrentMapVPK().Get(), id, size, md5);
 	KZDatabaseService::SetupMap();
+	KZGlobalService::OnActivateServer();
 	RETURN_META_VALUE(MRES_IGNORED, 1);
 }
 
