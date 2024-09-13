@@ -1,3 +1,6 @@
+#include <thread>
+#include <chrono>
+
 #include "kz_global.h"
 #include "../kz.h"
 #include "hello.h"
@@ -8,7 +11,6 @@
 #include "kz/option/kz_option.h"
 #include "utils/json.h"
 #include "utils/http.h"
-#include "utils/ctimer.h"
 
 std::string KZGlobalService::apiUrl = "https://api.cs2kz.org";
 std::string KZGlobalService::apiKey = "";
@@ -18,7 +20,8 @@ u64 KZGlobalService::nextMessageId = 1;
 std::vector<KZGlobalService::Callback> KZGlobalService::callbacks {};
 static_global bool initialized = false;
 static_global bool handshakeDone = false;
-static_global CTimer<> *heartbeatTimer;
+
+static_function void HeartbeatThread();
 
 void KZGlobalService::Init()
 {
@@ -68,8 +71,6 @@ void KZGlobalService::OnActivateServer()
 		KZGlobalService::Init();
 		return;
 	}
-
-	KZGlobalService::Heartbeat();
 
 	bool getMapNameSuccess = false;
 	CUtlString currentMapName = g_pKZUtils->GetCurrentMapName(&getMapNameSuccess);
@@ -181,7 +182,8 @@ void KZGlobalService::OnMessageCallback(const ix::WebSocketMessagePtr &message)
 					META_CONPRINTF("[KZ::Global] Could not get current map name.\n");
 				}
 
-				heartbeatTimer = StartTimer(KZGlobalService::Heartbeat, 1.0, true, true);
+				std::thread(HeartbeatThread).detach();
+
 				handshakeDone = true;
 				break;
 			}
@@ -303,7 +305,7 @@ f64 KZGlobalService::Heartbeat()
 		META_CONPRINTF("[KZ::Global] Cannot heartbeat while disconnected.\n");
 
 		// TODO: adjust once we have proper retries
-		return heartbeatInterval * 0.5;
+		return KZGlobalService::heartbeatInterval * 0.5;
 	}
 
 	KZ::API::Heartbeat heartbeat;
@@ -326,4 +328,15 @@ f64 KZGlobalService::Heartbeat()
 	META_CONPRINTF("[KZ::Global] Sent heartbeat.\n");
 
 	return KZGlobalService::heartbeatInterval;
+}
+
+void KZGlobalService::HeartbeatThread()
+{
+	f64 heartbeatInterval = Heartbeat();
+
+	while (heartbeatInterval > 0)
+	{
+		std::this_thread::sleep_for(std::chrono::milliseconds((u64)(heartbeatInterval * 1000)));
+		heartbeatInterval = Heartbeat();
+	}
 }

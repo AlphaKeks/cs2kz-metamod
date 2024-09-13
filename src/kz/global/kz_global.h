@@ -26,12 +26,6 @@ public:
 	}
 
 	/**
-	 * Gets called every `heartbeatInterval` seconds and sends a heartbeat
-	 * message to the API.
-	 */
-	static f64 Heartbeat();
-
-	/**
 	 * Fetches a map by its ID.
 	 *
 	 * Note that this must be the ID used by the API, not the local database.
@@ -87,6 +81,23 @@ private:
 	 * responds.
 	 */
 	static std::vector<Callback> callbacks;
+
+	/**
+	 * Gets called every `heartbeatInterval` seconds and sends a heartbeat
+	 * message to the API.
+	 */
+	static f64 Heartbeat();
+
+	/**
+	 * The function executed by the heartbeat thread.
+	 *
+	 * It will call `KZGlobalService::Heartbeat()` repeatedly, sleeping after every
+	 * call for the amount of seconds returned by the call.
+	 *
+	 * If `KZGlobalService::Heartbeat()` ever returns 0, or a negative value, the
+	 * function will return and the thread will exit.
+	 */
+	static void HeartbeatThread();
 
 	/**
 	 * Sends a message over the WebSocket.
