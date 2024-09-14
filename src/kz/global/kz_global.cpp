@@ -1,6 +1,8 @@
 // required for ws library
+#ifdef _WIN32
 #pragma comment(lib, "Ws2_32.Lib")
 #pragma comment(lib, "Crypt32.Lib")
+#endif
 
 #include <thread>
 #include <chrono>
@@ -38,8 +40,9 @@ void KZGlobalService::Init()
 
 	META_CONPRINTF("[KZ::Global] Initializing GlobalService...\n");
 
-	// Required on Windows
+#ifdef _WIN32
 	ix::initNetSystem();
+#endif
 
 	KZGlobalService::apiUrl = KZOptionService::GetOptionStr("apiUrl", "https://api.cs2kz.org");
 	KZGlobalService::apiKey = KZOptionService::GetOptionStr("apiKey");
