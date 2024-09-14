@@ -1,3 +1,7 @@
+// required for ws library
+#pragma comment(lib, "Ws2_32.Lib")
+#pragma comment(lib, "Crypt32.Lib")
+
 #include <thread>
 #include <chrono>
 
@@ -11,6 +15,8 @@
 #include "kz/option/kz_option.h"
 #include "utils/json.h"
 #include "utils/http.h"
+
+#include <ixwebsocket/IXNetSystem.h>
 
 std::string KZGlobalService::apiUrl = "https://api.cs2kz.org";
 std::string KZGlobalService::apiKey = "";
@@ -31,6 +37,9 @@ void KZGlobalService::Init()
 	}
 
 	META_CONPRINTF("[KZ::Global] Initializing GlobalService...\n");
+
+	// Required on Windows
+	ix::initNetSystem();
 
 	KZGlobalService::apiUrl = KZOptionService::GetOptionStr("apiUrl", "https://api.cs2kz.org");
 	KZGlobalService::apiKey = KZOptionService::GetOptionStr("apiKey");
