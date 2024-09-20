@@ -17,6 +17,7 @@
 #include "timer/kz_timer.h"
 #include "tip/kz_tip.h"
 #include "trigger/kz_trigger.h"
+#include "global/kz_global.h"
 
 #include "sdk/entity/cbasetrigger.h"
 
@@ -46,6 +47,7 @@ void KZPlayer::Init()
 	delete this->tipService;
 	delete this->telemetryService;
 	delete this->triggerService;
+	delete this->globalService;
 
 	this->checkpointService = new KZCheckpointService(this);
 	this->jumpstatsService = new KZJumpstatsService(this);
@@ -61,6 +63,7 @@ void KZPlayer::Init()
 	this->tipService = new KZTipService(this);
 	this->telemetryService = new KZTelemetryService(this);
 	this->triggerService = new KZTriggerService(this);
+	this->globalService = new KZGlobalService(this);
 
 	KZ::mode::InitModeService(this);
 }
@@ -99,12 +102,18 @@ void KZPlayer::OnPlayerActive()
 	g_pKZStyleManager->RefreshStyles(this);
 
 	this->optionService->OnPlayerActive();
+	this->hideLegs = this->optionService->GetPreferenceBool("hideLegs", false);
+
+	KZGlobalService::PlayerCountChange();
 }
 
 void KZPlayer::OnAuthorized()
 {
 	MovementPlayer::OnAuthorized();
 	this->databaseService->SetupClient();
+
+	KZGlobalService::PlayerCountChange();
+	this->globalService->InitializePreferences();
 }
 
 META_RES KZPlayer::GetPlayerMaxSpeed(f32 &maxSpeed)
@@ -718,6 +727,7 @@ void KZPlayer::UpdateTriggerTouchList()
 void KZPlayer::OnChangeTeamPost(i32 team)
 {
 	this->timerService->OnPlayerJoinTeam(team);
+	this->globalService->OnPlayerJoinTeam(team);
 }
 
 CUtlString KZPlayer::ComputeCvarValueFromModeStyles(const char *name)

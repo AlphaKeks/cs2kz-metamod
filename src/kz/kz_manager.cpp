@@ -1,4 +1,5 @@
 #include "kz.h"
+#include "kz/global/kz_global.h"
 
 #include "tier0/memdbgon.h"
 KZPlayerManager g_KZPlayerManager;

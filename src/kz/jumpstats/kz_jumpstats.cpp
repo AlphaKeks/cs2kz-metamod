@@ -8,6 +8,7 @@
 #include "../option/kz_option.h"
 #include "../language/kz_language.h"
 #include "kz/trigger/kz_trigger.h"
+#include "../global/kz_global.h"
 
 #include "tier0/memdbgon.h"
 
@@ -776,7 +777,27 @@ void KZJumpstatsService::OnAirMovePost()
 
 void KZJumpstatsService::AddJump()
 {
-	this->jumps.AddToTail(Jump(this->player));
+	Jump jump(this->player);
+
+	this->jumps.AddToTail(jump);
+
+	int bhopJumpTypes = JumpType_Bhop | JumpType_MultiBhop | JumpType_WeirdJump;
+	JumpType jumpType = jump.GetJumpType();
+
+	// `JumpType_LongJump` is 0, so the AND alone isn't enough
+	if (jumpType != JumpType_LongJump && (bhopJumpTypes & jumpType) == jumpType)
+	{
+		// TODO: figure out when perfs are tick-perfect
+
+		if (this->player->inPerf)
+		{
+			this->player->globalService->session.RegisterPerf();
+		}
+		else
+		{
+			this->player->globalService->session.RegisterBhop();
+		}
+	}
 }
 
 void KZJumpstatsService::UpdateJump()

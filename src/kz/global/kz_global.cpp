@@ -11,9 +11,13 @@
 #include "../kz.h"
 #include "hello.h"
 #include "message.h"
-#include "heartbeat.h"
 #include "map.h"
+#include "preferences.h"
 #include "events/map_change.h"
+#include "events/get_map.h"
+#include "events/player_count_change.h"
+#include "events/player_update.h"
+#include "events/get_preferences.h"
 #include "kz/option/kz_option.h"
 #include "utils/json.h"
 #include "utils/http.h"
@@ -28,8 +32,6 @@ u64 KZGlobalService::nextMessageId = 1;
 std::vector<KZGlobalService::Callback> KZGlobalService::callbacks {};
 static_global bool initialized = false;
 static_global bool handshakeDone = false;
-
-static_function void HeartbeatThread();
 
 void KZGlobalService::Init()
 {
@@ -80,7 +82,12 @@ void KZGlobalService::OnActivateServer()
 {
 	if (!initialized)
 	{
-		KZGlobalService::Init();
+		Init();
+		return;
+	}
+
+	if (!KZGlobalService::Connected())
+	{
 		return;
 	}
 
@@ -101,23 +108,116 @@ void KZGlobalService::OnActivateServer()
 			}
 		};
 
-		KZGlobalService::FetchMap(currentMapName, callback);
+		KZ::API::Events::MapChange mapChange {std::string(currentMapName)};
+		KZ::API::Message<KZ::API::Events::MapChange> message("map-change", mapChange);
+
+		auto ws_callback = [callback](json raw_response)
+		{
+			KZ::API::Message<std::optional<KZ::API::Map>> response("map-info", std::nullopt);
+
+			if (!raw_response["payload"].is_null())
+			{
+				response.payload = raw_response["payload"];
+			}
+
+			callback(response.payload);
+		};
+
+		KZGlobalService::SendMessage(message, ws_callback);
 	}
 }
 
-void KZGlobalService::FetchMap(u16 mapId, std::function<void(std::optional<KZ::API::Map>)> callback)
+void KZGlobalService::OnPlayerJoinTeam(i32 team)
 {
-	META_CONPRINTF("[KZ::Global] TODO: FetchMap(u16)\n");
+	switch (team)
+	{
+		case CS_TEAM_T: // fallthrough
+		case CS_TEAM_CT:
+		{
+			this->session.SwitchState(KZ::API::GameSession::PlayerState::ACTIVE);
+			break;
+		}
+		case CS_TEAM_SPECTATOR:
+		{
+			this->session.SwitchState(KZ::API::GameSession::PlayerState::SPECTATING);
+			break;
+		}
+	}
+}
 
-	callback(std::nullopt);
+void KZGlobalService::PlayerCountChange(KZPlayer *currentPlayer)
+{
+	KZ::API::Events::PlayerCountChange event;
+	event.max_players = g_pKZUtils->GetServerGlobals()->maxClients;
+
+	for (Player *player : g_pKZPlayerManager->players)
+	{
+		KZPlayer *kzPlayer = static_cast<KZPlayer *>(player);
+
+		if (!kzPlayer->IsConnected())
+		{
+			continue;
+		}
+
+		if (currentPlayer == kzPlayer)
+		{
+			continue;
+		}
+
+		event.total_players++;
+
+		if (kzPlayer->IsAuthenticated())
+		{
+			event.authenticated_players.push_back({kzPlayer->GetName(), kzPlayer->GetSteamId64(), kzPlayer->GetIpAddress()});
+		}
+
+		META_CONPRINTF("[KZ::Global] player.name=%s player.steam_id=%llu\n", kzPlayer->GetName(), kzPlayer->GetSteamId64());
+	}
+
+	KZ::API::Message<KZ::API::Events::PlayerCountChange> message("player-count-change", event);
+
+	KZGlobalService::SendMessage(message);
+}
+
+void KZGlobalService::PlayerDisconnect()
+{
+	if (!this->player->IsAuthenticated())
+	{
+		return;
+	}
+
+	// Flush timestamps
+	this->session.SwitchState(KZ::API::GameSession::PlayerState::ACTIVE);
+
+	u64 steamID = this->player->GetSteamId64();
+
+	CUtlString getPrefsError;
+	CUtlString getPrefsResult;
+	this->player->optionService->GetPreferencesAsJSON(&getPrefsError, &getPrefsResult);
+
+	if (!getPrefsError.IsEmpty())
+	{
+		META_CONPRINTF("[KZ::Global] Failed to get preferences: %s\n", getPrefsError.Get());
+		META_CONPRINTF("[KZ::Global] Not sending `PlayerDisconnect` event.\n");
+		return;
+	}
+
+	KZ::API::PlayerInfo playerInfo = {this->player->GetName(), steamID, this->player->GetIpAddress()};
+	json preferences = json::parse(getPrefsResult.Get());
+
+	KZ::API::Events::PlayerUpdate event {playerInfo, preferences, this->session};
+	KZ::API::Message<KZ::API::Events::PlayerUpdate> message("player-update", event);
+
+	KZGlobalService::SendMessage(message);
+	KZGlobalService::PlayerCountChange(this->player);
 }
 
 void KZGlobalService::FetchMap(const char *mapName, std::function<void(std::optional<KZ::API::Map>)> callback)
 {
-	KZ::API::Events::MapChange mapChange {std::string(mapName)};
-	KZ::API::Message<KZ::API::Events::MapChange> message("map-change", mapChange);
+	KZ::API::Events::GetMap<std::string> getMap(mapName);
+	KZ::API::Message<KZ::API::Events::GetMap<std::string>> message("get-map", getMap);
 
-	auto ws_callback = [callback](json raw_response) mutable
+	auto ws_callback = [callback](json raw_response)
 	{
 		KZ::API::Message<std::optional<KZ::API::Map>> response("map-info", std::nullopt);
 
@@ -132,15 +232,75 @@ void KZGlobalService::FetchMap(const char *mapName, std::function<void(std::opti
 	KZGlobalService::SendMessage(message, ws_callback);
 }
 
-template<typename T>
-void KZGlobalService::SendMessage(KZ::API::Message<T> message, std::function<void(json)> callback)
+void KZGlobalService::InitializePreferences()
 {
-	message.id = KZGlobalService::nextMessageId++;
+	KZ::API::Events::GetPreferences event {this->player->GetSteamId64()};
+	KZ::API::Message<KZ::API::Events::GetPreferences> message("get-preferences", event);
 
-	json payload = message;
-	KZGlobalService::callbacks.push_back({message.id, callback});
-	KZGlobalService::apiSocket->send(payload.dump());
-	META_CONPRINTF("[KZ::Global] sent `%s`\n", payload.dump().c_str());
+	auto ws_callback = [userID = this->player->GetClient()->GetUserID()](json raw_response)
+	{
+		KZPlayer *player = g_pKZPlayerManager->ToPlayer(userID);
+
+		if (!player)
+		{
+			return;
+		}
+
+		KZ::API::Message<KZ::API::Preferences> response("preferences", {});
+		response.payload = raw_response["payload"];
+
+		player->optionService->InitializeGlobalPrefs(response.payload.preferences.dump());
+	};
+
+	KZGlobalService::SendMessage(message, ws_callback);
+}
+
+void KZGlobalService::Cleanup()
+{
+	if (KZGlobalService::apiSocket)
+	{
+		delete KZGlobalService::apiSocket;
+		KZGlobalService::apiSocket = nullptr;
+	}
+
+#ifdef _WIN32
+	ix::uninitNetSystem();
+#endif
+}
+
+f64 KZGlobalService::Heartbeat()
+{
+	META_CONPRINTF("[KZ::Global] HeartBeat() interval=%fs\n", KZGlobalService::heartbeatInterval);
+
+	if (!KZGlobalService::Connected())
+	{
+		META_CONPRINTF("[KZ::Global] Cannot heartbeat while disconnected.\n");
+
+		// TODO: adjust once we have proper retries
+		return KZGlobalService::heartbeatInterval;
+	}
+
+	KZGlobalService::apiSocket->ping("");
+
+	META_CONPRINTF("[KZ::Global] Sent heartbeat.\n");
+
+	return KZGlobalService::heartbeatInterval;
+}
+
+void KZGlobalService::HeartbeatThread()
+{
+	if (KZGlobalService::apiSocket == nullptr)
+	{
+		return;
+	}
+
+	f64 heartbeatInterval = KZGlobalService::Heartbeat();
+
+	while (heartbeatInterval > 0)
+	{
+		std::this_thread::sleep_for(std::chrono::milliseconds((u64)(heartbeatInterval * 1000)));
+		heartbeatInterval = KZGlobalService::Heartbeat();
+	}
 }
 
 void KZGlobalService::OnMessageCallback(const ix::WebSocketMessagePtr &message)
@@ -194,9 +354,12 @@ void KZGlobalService::OnMessageCallback(const ix::WebSocketMessagePtr &message)
 					META_CONPRINTF("[KZ::Global] Could not get current map name.\n");
 				}
 
-				std::thread(HeartbeatThread).detach();
+				std::thread(KZGlobalService::HeartbeatThread).detach();
 
 				handshakeDone = true;
+
+				KZGlobalService::PlayerCountChange();
+
 				break;
 			}
 
@@ -214,14 +377,14 @@ void KZGlobalService::OnMessageCallback(const ix::WebSocketMessagePtr &message)
 
 			u64 messageId = payload["id"];
 
-			for (auto cb = KZGlobalService::callbacks.begin(); cb != KZGlobalService::callbacks.end(); cb++)
+			for (auto cb = callbacks.begin(); cb != callbacks.end(); cb++)
 			{
 				if (cb->messageId == messageId)
 				{
 					META_CONPRINTF("[KZ::Global] Executing callback for message #%d.\n", messageId);
 					cb->callback(payload);
 					META_CONPRINTF("[KZ::Global] Executed callback for message #%d.\n", messageId);
-					KZGlobalService::callbacks.erase(cb);
+					callbacks.erase(cb);
 					break;
 				}
 			}
@@ -232,7 +395,7 @@ void KZGlobalService::OnMessageCallback(const ix::WebSocketMessagePtr &message)
 		case ix::WebSocketMessageType::Open:
 		{
 			META_CONPRINTF("[KZ::Global] WebSocket connection established.\n");
-			PerformHandshake(message);
+			KZGlobalService::PerformHandshake(message);
 			break;
 		}
 
@@ -293,12 +456,12 @@ void KZGlobalService::PerformHandshake(const ix::WebSocketMessagePtr &message)
 
 	for (Player *player : g_pPlayerManager->players)
 	{
-		u64 steam_id = player->GetSteamId64();
-
-		if (steam_id != 0)
+		if (!player->IsAuthenticated())
 		{
-			hello.players.push_back({player->GetName(), steam_id});
+			continue;
 		}
+
+		hello.players.push_back({player->GetName(), player->GetSteamId64()});
 	}
 
 	json helloJson = hello;
@@ -308,47 +471,35 @@ void KZGlobalService::PerformHandshake(const ix::WebSocketMessagePtr &message)
 	META_CONPRINTF("[KZ::Global] Sent 'Hello' message.\n");
 }
 
-f64 KZGlobalService::Heartbeat()
+template<typename T>
+void KZGlobalService::SendMessage(KZ::API::Message<T> message)
 {
-	META_CONPRINTF("[KZ::Global] HeartBeat() interval=%fs\n", KZGlobalService::heartbeatInterval);
-
 	if (!KZGlobalService::Connected())
 	{
-		META_CONPRINTF("[KZ::Global] Cannot heartbeat while disconnected.\n");
-
-		// TODO: adjust once we have proper retries
-		return KZGlobalService::heartbeatInterval * 0.5;
+		return;
 	}
 
-	KZ::API::Heartbeat heartbeat;
+	message.id = nextMessageId++;
 
-	for (Player *player : g_pPlayerManager->players)
-	{
-		u64 steam_id = player->GetSteamId64();
-
-		if (steam_id != 0)
-		{
-			heartbeat.players.push_back({player->GetName(), steam_id});
-		}
-	}
-
-	KZ::API::Message<KZ::API::Heartbeat> message("heartbeat", heartbeat);
 	json payload = message;
-
 	KZGlobalService::apiSocket->send(payload.dump());
 
-	META_CONPRINTF("[KZ::Global] Sent heartbeat.\n");
-
-	return KZGlobalService::heartbeatInterval;
+	META_CONPRINTF("[KZ::Global] sent `%s`\n", payload.dump().c_str());
 }
 
-void KZGlobalService::HeartbeatThread()
+template<typename T>
+void KZGlobalService::SendMessage(KZ::API::Message<T> message, std::function<void(json)> callback)
 {
-	f64 heartbeatInterval = Heartbeat();
-
-	while (heartbeatInterval > 0)
+	if (!KZGlobalService::Connected())
 	{
-		std::this_thread::sleep_for(std::chrono::milliseconds((u64)(heartbeatInterval * 1000)));
-		heartbeatInterval = Heartbeat();
+		return;
 	}
+
+	message.id = nextMessageId++;
+
+	json payload = message;
+	KZGlobalService::callbacks.push_back({message.id, callback});
+	KZGlobalService::apiSocket->send(payload.dump());
+
+	META_CONPRINTF("[KZ::Global] sent `%s`\n", payload.dump().c_str());
 }

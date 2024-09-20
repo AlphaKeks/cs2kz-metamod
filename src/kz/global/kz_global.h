@@ -6,6 +6,7 @@
 #include "utils/json.h"
 #include "message.h"
 #include "map.h"
+#include "game_session.h"
 
 #include <vendor/ixwebsocket/ixwebsocket/IXWebSocket.h>
 
@@ -15,27 +16,60 @@ class KZGlobalService : public KZBaseService
 
 public:
 	static void Init();
+
+	/**
+	 * Called whenever the server loads a new map.
+	 *
+	 * This also takes care of the `MapChange` API event; there is no separate
+	 * method for that.
+	 */
 	static void OnActivateServer();
+
+	/**
+	 * Called whenever the player joins a team.
+	 */
+	void OnPlayerJoinTeam(i32 team);
 
 	/**
 	 * Returns wheter we are currently connected to the API.
 	 */
 	static bool Connected()
 	{
-		return apiSocket && apiSocket->getReadyState() == ix::ReadyState::Open;
+		return KZGlobalService::apiSocket && KZGlobalService::apiSocket->getReadyState() == ix::ReadyState::Open;
 	}
 
 	/**
-	 * Fetches a map by its ID.
-	 *
-	 * Note that this must be the ID used by the API, not the local database.
+	 * Called whenever the player count changes.
 	 */
-	static void FetchMap(u16 mapId, std::function<void(std::optional<KZ::API::Map>)> callback);
+	static void PlayerCountChange(KZPlayer *currentPlayer = nullptr);
+
+	/**
+	 * Called when a player disconnects.
+	 */
+	void PlayerDisconnect();
 
 	/**
 	 * Fetches a map by its name.
 	 */
 	static void FetchMap(const char *mapName, std::function<void(std::optional<KZ::API::Map>)> callback);
+
+	/**
+	 * Fetches the player's preferences from the API and registers them in the
+	 * option service.
+	 */
+	void InitializePreferences();
+
+	/**
+	 * Called when the server shuts down.
+	 *
+	 * This closes the WS connection gracefully.
+	 */
+	static void Cleanup();
+
+	/**
+	 * The player's current session.
+	 */
+	KZ::API::GameSession session {};
 
 private:
 	/**
@@ -54,7 +88,7 @@ private:
 	static ix::WebSocket *apiSocket;
 
 	/**
-	 * Interval at which we need to send heartbeat messages.
+	 * Interval at which we need to send heartbeat pings.
 	 */
 	static f64 heartbeatInterval;
 
@@ -64,9 +98,19 @@ private:
 	 */
 	static u64 nextMessageId;
 
+	/**
+	 * A callback to execute when a message with a specific message ID arrives.
+	 */
 	struct Callback
 	{
+		/**
+		 * The message ID we expect from the response.
+		 */
 		u64 messageId;
+
+		/**
+		 * The actual callback to execute.
+		 */
 		std::function<void(json)> callback;
 	};
 
@@ -91,19 +135,13 @@ private:
 	/**
 	 * The function executed by the heartbeat thread.
 	 *
-	 * It will call `KZGlobalService::Heartbeat()` repeatedly, sleeping after every
-	 * call for the amount of seconds returned by the call.
+	 * It will call `KZGlobalService::Heartbeat()` repeatedly, sleeping after
+	 * every call for the amount of seconds returned by the call.
 	 *
-	 * If `KZGlobalService::Heartbeat()` ever returns 0, or a negative value, the
-	 * function will return and the thread will exit.
+	 * If `KZGlobalService::Heartbeat()` ever returns 0, or a negative value,
+	 * the function will return and the thread will exit.
 	 */
 	static void HeartbeatThread();
-
-	/**
-	 * Sends a message over the WebSocket.
-	 */
-	template<typename T>
-	static void SendMessage(KZ::API::Message<T> message, std::function<void(json)> callback);
 
 	/**
 	 * Callback invoked by the WebSocket library anytime we receive a message.
@@ -111,7 +149,21 @@ private:
 	static void OnMessageCallback(const ix::WebSocketMessagePtr &message);
 
 	/**
-	 * Callback invoked right after the WebSocket connection has been established.
+	 * Callback invoked right after the WebSocket connection has been
+	 * established.
 	 */
 	static void PerformHandshake(const ix::WebSocketMessagePtr &message);
+
+	/**
+	 * Sends a message over the WebSocket.
+	 */
+	template<typename T>
+	static void SendMessage(KZ::API::Message<T> message);
+
+	/**
+	 * Sends a message over the WebSocket with a callback to execute when we
+	 * get a response.
+	 */
+	template<typename T>
+	static void SendMessage(KZ::API::Message<T> message, std::function<void(json)> callback);
 };

@@ -21,6 +21,7 @@
 #include "kz/option/kz_option.h"
 #include "kz/language/kz_language.h"
 #include "kz/mappingapi/kz_mappingapi.h"
+#include "kz/global/kz_global.h"
 
 #include "version.h"
 
@@ -89,6 +90,7 @@ bool KZPlugin::Unload(char *error, size_t maxlen)
 	g_pKZModeManager->Cleanup();
 	g_pKZStyleManager->Cleanup();
 	g_pPlayerManager->Cleanup();
+	KZGlobalService::Cleanup();
 	KZDatabaseService::Cleanup();
 	return true;
 }

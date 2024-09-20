@@ -81,7 +81,7 @@ public:
 
 	const char *GetIpAddress()
 	{
-		return GetClient() ? GetClient()->GetRemoteAddress()->ToString(true) : nullptr;
+		return GetClient() ? GetClient()->GetRemoteAddress()->ToString(true) : "";
 	}
 
 	const CSteamID &GetSteamId(bool validated = true)
