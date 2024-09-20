@@ -9,7 +9,7 @@ namespace KZ::API
 {
 	struct Map
 	{
-		enum class GlobalStatus;
+		enum class GlobalStatus : i8;
 		struct Mapper;
 		struct Course;
 
@@ -23,7 +23,7 @@ namespace KZ::API
 		std::vector<Course> courses {};
 		std::string created_on {};
 
-		enum class GlobalStatus
+		enum class GlobalStatus : i8
 		{
 			NotGlobal = -1,
 			InTesting = 0,
@@ -50,8 +50,8 @@ namespace KZ::API
 
 			struct Filter
 			{
-				enum class Tier;
-				enum class RankedStatus;
+				enum class Tier : u8;
+				enum class RankedStatus : i8;
 
 				u16 id = 0;
 				Mode mode = Mode::Vanilla;
@@ -60,7 +60,7 @@ namespace KZ::API
 				RankedStatus ranked_status = RankedStatus::Never;
 				std::optional<std::string> notes {};
 
-				enum class Tier
+				enum class Tier : u8
 				{
 					VeryEasy = 1,
 					Easy = 2,
@@ -74,7 +74,7 @@ namespace KZ::API
 					Impossible = 10,
 				};
 
-				enum class RankedStatus
+				enum class RankedStatus : i8
 				{
 					Never = -1,
 					Unranked = 0,

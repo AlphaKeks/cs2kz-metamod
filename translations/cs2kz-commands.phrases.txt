@@ -807,4 +807,20 @@
 		"ua"		"Показати поточний курс, а також список всіх доступних курсів на мапі."
 		"tr"		"Şuanki rotayı ve haritadaki tüm rotaları göster."
 	}
+	"Command Description - kz_mapinfo"
+	{
+		"en"		"See detailed information about a specific map."
+	}
+	"Command Description - kz_minfo"
+	{
+		"en"		"See detailed information about a specific map."
+	}
+	"Command Description - kz_courseinfo"
+	{
+		"en"		"See detailed information about a specific course."
+	}
+	"Command Description - kz_cinfo"
+	{
+		"en"		"See detailed information about a specific course."
+	}
 }

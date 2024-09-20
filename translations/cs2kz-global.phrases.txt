@@ -1,0 +1,21 @@
+"Phrases"
+{
+	"MapInfo"
+	{
+		"#format"	"id:d,name:s,sep:s,description:s,workshopID:d,mappers:s"
+		"en"		"{name} {grey}{default}{sep}{description}\n{grey}⠀⠀• ID: {default}{id}\n{grey}⠀⠀• Workshop ID: {default}{workshopID}\n{grey}⠀⠀• Mapper(s): {default}{mappers}"
+	}
+	"MapNotGlobal"
+	{
+		"en"		"{grey}Map is not global."
+	}
+	"CourseInfo"
+	{
+		"#format"	"id:d,name:s,sep:s,description:s,mappers:s,mode:s,tp_tier:d,tp_ranked:s,pro_tier:d,pro_ranked:s"
+		"en"		"{name} {grey}{default}{sep}{description} ({mode})\n{grey}⠀⠀• ID: {default}{id}\n{grey}⠀⠀• Mapper(s): {default}{mappers}\n{grey}⠀⠀• TP: {default}T{tp_tier} ({tp_ranked})\n{grey}⠀⠀• Pro: {default}T{pro_tier} ({pro_ranked})"
+	}
+	"CourseNotFound"
+	{
+		"en"		"{darkred} Course not found."
+	}
+}

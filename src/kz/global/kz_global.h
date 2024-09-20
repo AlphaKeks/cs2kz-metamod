@@ -16,6 +16,7 @@ class KZGlobalService : public KZBaseService
 
 public:
 	static void Init();
+	static void RegisterCommands();
 
 	/**
 	 * Called whenever the server loads a new map.
@@ -65,6 +66,13 @@ public:
 	 * This closes the WS connection gracefully.
 	 */
 	static void Cleanup();
+
+	/**
+	 * API information about the current map.
+	 *
+	 * Will be `std::nullopt` if the current map is not global.
+	 */
+	static std::optional<KZ::API::Map> currentMap;
 
 	/**
 	 * The player's current session.

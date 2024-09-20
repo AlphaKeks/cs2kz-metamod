@@ -24,6 +24,7 @@
 
 #include <ixwebsocket/IXNetSystem.h>
 
+std::optional<KZ::API::Map> KZGlobalService::currentMap = std::nullopt;
 std::string KZGlobalService::apiUrl = "https://api.cs2kz.org";
 std::string KZGlobalService::apiKey = "";
 ix::WebSocket *KZGlobalService::apiSocket = nullptr;
@@ -101,6 +102,7 @@ void KZGlobalService::OnActivateServer()
 			if (map.has_value())
 			{
 				META_CONPRINTF("[KZ::Global] Fetched map %s with ID %d.\n", map->name.c_str(), map->id);
+				KZGlobalService::currentMap = map.value();
 			}
 			else
 			{
@@ -170,8 +172,6 @@ void KZGlobalService::PlayerCountChange(KZPlayer *currentPlayer)
 		{
 			event.authenticated_players.push_back({kzPlayer->GetName(), kzPlayer->GetSteamId64(), kzPlayer->GetIpAddress()});
 		}
-
-		META_CONPRINTF("[KZ::Global] player.name=%s player.steam_id=%llu\n", kzPlayer->GetName(), kzPlayer->GetSteamId64());
 	}
 
 	KZ::API::Message<KZ::API::Events::PlayerCountChange> message("player-count-change", event);
@@ -270,8 +270,6 @@ void KZGlobalService::Cleanup()
 
 f64 KZGlobalService::Heartbeat()
 {
-	META_CONPRINTF("[KZ::Global] HeartBeat() interval=%fs\n", KZGlobalService::heartbeatInterval);
-
 	if (!KZGlobalService::Connected())
 	{
 		META_CONPRINTF("[KZ::Global] Cannot heartbeat while disconnected.\n");
@@ -282,7 +280,7 @@ f64 KZGlobalService::Heartbeat()
 
 	KZGlobalService::apiSocket->ping("");
 
-	META_CONPRINTF("[KZ::Global] Sent heartbeat.\n");
+	META_CONPRINTF("[KZ::Global] Sent heartbeat. (interval=%.2fs)\n", KZGlobalService::heartbeatInterval);
 
 	return KZGlobalService::heartbeatInterval;
 }
@@ -323,7 +321,7 @@ void KZGlobalService::OnMessageCallback(const ix::WebSocketMessagePtr &message)
 			{
 				KZ::API::HelloAck ack = payload;
 
-				META_CONPRINTF("[KZ::Global] Received 'HelloAck' (heartbeat_interval=%fs)\n", ack.heartbeat_interval);
+				META_CONPRINTF("[KZ::Global] Received 'HelloAck' (heartbeat_interval=%.2fs)\n", ack.heartbeat_interval);
 
 				// We actually send heartbeats slightly more frequently than
 				// requested by the API, so that we don't miss any even if
