@@ -32,6 +32,11 @@ public:
 	void OnPlayerJoinTeam(i32 team);
 
 	/**
+	 * Called whenever the player enters an end zone.
+	 */
+	void OnTimerEnd(u32 announceID, u32 globalCourseID, KZ::API::Mode mode, u32 styles, u32 teleports, f64 time, u64 playerID);
+
+	/**
 	 * Returns wheter we are currently connected to the API.
 	 */
 	static bool Connected()
@@ -175,3 +180,8 @@ private:
 	template<typename T>
 	static void SendMessage(KZ::API::Message<T> message, std::function<void(json)> callback);
 };
+
+namespace KZ::global
+{
+	u32 styleNamesToBitflags(const CCopyableUtlVector<CUtlString> &styleNames);
+}; // namespace KZ::global

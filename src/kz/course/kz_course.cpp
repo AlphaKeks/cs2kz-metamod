@@ -132,11 +132,11 @@ bool KZ::course::UpdateCourseLocalID(const char *courseName, u32 databaseID)
 	return false;
 }
 
-bool KZ::course::UpdateCourseGlobalID(const char *courseName, i32 courseID, u32 globalID)
+bool KZ::course::UpdateCourseGlobalID(const char *courseName, u32 globalID)
 {
 	FOR_EACH_VEC(courseList, i)
 	{
-		if (courseList[i].HasMatchingIdentifiers(courseID, courseName))
+		if (courseList[i].GetName() == courseName)
 		{
 			courseList[i].globalDatabaseID = globalID;
 			return true;

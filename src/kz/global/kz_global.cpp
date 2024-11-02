@@ -18,7 +18,9 @@
 #include "events/player_count_change.h"
 #include "events/player_update.h"
 #include "events/get_preferences.h"
+#include "events/submit_record.h"
 #include "kz/option/kz_option.h"
+#include "kz/course/kz_course.h"
 #include "utils/json.h"
 #include "utils/http.h"
 
@@ -103,6 +105,11 @@ void KZGlobalService::OnActivateServer()
 			{
 				META_CONPRINTF("[KZ::Global] Fetched map %s with ID %d.\n", map->name.c_str(), map->id);
 				KZGlobalService::currentMap = map.value();
+
+				for (const KZ::API::Map::Course &course : map->courses)
+				{
+					KZ::course::UpdateCourseGlobalID(course.name.c_str(), course.id);
+				}
 			}
 			else
 			{
@@ -145,6 +152,14 @@ void KZGlobalService::OnPlayerJoinTeam(i32 team)
 			break;
 		}
 	}
+}
+
+void KZGlobalService::OnTimerEnd(u32 announceID, u32 globalCourseID, KZ::API::Mode mode, u32 styles, u32 teleports, f64 time, u64 playerID)
+{
+	KZ::API::Events::SubmitRecord event = {globalCourseID, mode, styles, teleports, time, playerID};
+	KZ::API::Message<KZ::API::Events::SubmitRecord> message("submit-record", event);
+
+	KZGlobalService::SendMessage(message);
 }
 
 void KZGlobalService::PlayerCountChange(KZPlayer *currentPlayer)
@@ -500,4 +515,19 @@ void KZGlobalService::SendMessage(KZ::API::Message<T> message, std::function<voi
 	KZGlobalService::apiSocket->send(payload.dump());
 
 	META_CONPRINTF("[KZ::Global] sent `%s`\n", payload.dump().c_str());
+}
+
+u32 KZ::global::styleNamesToBitflags(const CCopyableUtlVector<CUtlString> &styleNames)
+{
+	u32 styles = 0;
+
+	FOR_EACH_VEC(styleNames, i)
+	{
+		if (styleNames[i] == "abh")
+		{
+			styles |= (1 << 0);
+		}
+	}
+
+	return styles;
 }

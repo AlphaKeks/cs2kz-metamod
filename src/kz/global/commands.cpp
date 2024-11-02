@@ -111,8 +111,8 @@ static_function void DisplayCourseInfo(const KZ::API::Map::Course &course, KZPla
 		}
 	}
 
-	player->languageService->PrintChat(true, false, "CourseInfo", course.id, course.name.value_or("unknown").c_str(), sep,
-									   course.description.value_or("").c_str(), mappersText, mode, tpTier, tpRanked, proTier, proRanked);
+	player->languageService->PrintChat(true, false, "CourseInfo", course.id, course.name.c_str(), sep, course.description.value_or("").c_str(),
+									   mappersText, mode, tpTier, tpRanked, proTier, proRanked);
 }
 
 static_function SCMD_CALLBACK(Command_KzMapInfo)
@@ -164,7 +164,7 @@ static_function SCMD_CALLBACK(Command_KzCourseInfo)
 
 		for (const KZ::API::Map::Course &course : KZGlobalService::currentMap->courses)
 		{
-			if (course.name.has_value() && V_stricmp(course.name->c_str(), courseName) == 0)
+			if (V_stricmp(course.name.c_str(), courseName) == 0)
 			{
 				found = true;
 				DisplayCourseInfo(course, player);

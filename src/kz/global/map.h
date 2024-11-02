@@ -43,7 +43,7 @@ namespace KZ::API
 			struct Filter;
 
 			u16 id = 0;
-			std::optional<std::string> name {};
+			std::string name {};
 			std::optional<std::string> description {};
 			std::vector<Mapper> mappers {};
 			std::vector<Filter> filters {};
@@ -159,13 +159,9 @@ namespace KZ::API
 			friend void from_json(const json &j, Course &course)
 			{
 				j.at("id").get_to(course.id);
+				j.at("name").get_to(course.name);
 				j.at("mappers").get_to(course.mappers);
 				j.at("filters").get_to(course.filters);
-
-				if (j.contains("name"))
-				{
-					course.name = j.at("name");
-				}
 
 				if (j.contains("description"))
 				{

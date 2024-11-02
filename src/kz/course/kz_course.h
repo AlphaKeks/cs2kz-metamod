@@ -129,7 +129,7 @@ namespace KZ
 		bool UpdateCourseLocalID(const char *courseName, u32 databaseID);
 
 		// Update the course's global ID given its map-defined name and ID.
-		bool UpdateCourseGlobalID(const char *courseName, i32 courseID, u32 globalID);
+		bool UpdateCourseGlobalID(const char *courseName, u32 globalID);
 
 		void RegisterCommands();
 	} // namespace course

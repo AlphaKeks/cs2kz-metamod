@@ -3,6 +3,7 @@
 #include "kz/language/kz_language.h"
 #include "kz/mode/kz_mode.h"
 #include "kz/style/kz_style.h"
+#include "kz/global/kz_global.h"
 using namespace KZ::timer;
 #define ANNOUNCEMENT_WAIT_THRESHOLD 5.0f
 
@@ -24,6 +25,20 @@ public:
 		if (KZDatabaseService::IsReady() && player->IsAuthenticated())
 		{
 			KZDatabaseService::SaveTime(id, player, courseName, time, teleportsUsed, metadata);
+		}
+
+		if (player->IsAuthenticated() && (modeName == "VNL" || modeName == "CKZ"))
+		{
+			u32 globalCourseID = player->timerService->GetCourse()->globalDatabaseID;
+			KZ::API::Mode mode = KZ::API::Mode::Vanilla;
+
+			if (modeName == "CKZ")
+			{
+				mode = KZ::API::Mode::Classic;
+			}
+
+			u32 styles = KZ::global::styleNamesToBitflags(styleNames);
+			player->globalService->OnTimerEnd(id, globalCourseID, mode, styles, teleportsUsed, time, player->GetSteamId64());
 		}
 	}
 
@@ -47,7 +62,7 @@ public:
 			return false;
 		}
 		// If there is a global service but the response hasn't arrived yet...
-		if (false /*KZGlobalService::IsReady*/ && !hasGlobalRank)
+		if (KZGlobalService::Connected() && !hasGlobalRank)
 		{
 			return false;
 		}
