@@ -71,6 +71,8 @@ void KZGlobalService::Init()
 	META_CONPRINTF("[KZ::Global] Establishing WebSocket connection... (url = '%s')\n", websocketUrl.c_str());
 	KZGlobalService::apiSocket->start();
 
+	KZGlobalService::EnforceConVars();
+
 	initialized = true;
 }
 
@@ -85,6 +87,11 @@ void KZGlobalService::Cleanup()
 		KZGlobalService::apiSocket->stop();
 		delete KZGlobalService::apiSocket;
 		KZGlobalService::apiSocket = nullptr;
+	}
+
+	if (initialized)
+	{
+		KZGlobalService::RestoreConVars();
 	}
 
 #ifdef _WIN32

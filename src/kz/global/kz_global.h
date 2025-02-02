@@ -36,6 +36,9 @@ public:
 	}
 
 	static void OnActivateServer();
+	static void EnforceConVars();
+	static void RestoreConVars();
+
 	void OnPlayerAuthorized();
 	void OnClientDisconnect();
 
