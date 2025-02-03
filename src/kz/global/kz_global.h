@@ -58,46 +58,46 @@ private:
 	 *
 	 * Read from the configuration file.
 	 */
-	static std::string apiUrl;
+	static inline std::string apiUrl {};
 
 	/**
 	 * Access Key used to authenticate the WebSocket connection.
 	 *
 	 * Read from the configuration file.
 	 */
-	static std::string apiKey;
+	static inline std::string apiKey {};
 
 	/**
 	 * WebSocket connected to the API.
 	 */
-	static ix::WebSocket *apiSocket;
+	static inline ix::WebSocket *apiSocket {};
 
 	/**
 	 * Interval at which we need to send ping messages over the WebSocket.
 	 *
 	 * Set by the API during the handshake.
 	 */
-	static f64 heartbeatInterval;
+	static inline f64 heartbeatInterval = -1;
 
 	/**
 	 * Whether we have completed the handshake already.
 	 */
-	static bool handshakeCompleted;
+	static inline bool handshakeCompleted {};
 
 	/**
 	 * The ID to use for the next WebSocket message.
 	 */
-	static u64 nextMessageId;
+	static inline u64 nextMessageId = 1;
 
 	/**
 	 * The API's view of the current map.
 	 */
-	static std::optional<KZ::API::Map> currentMap;
+	static inline std::optional<KZ::API::Map> currentMap {};
 
 	/**
 	 * Callbacks to execute when the API sends messages with specific IDs.
 	 */
-	static std::unordered_map<u64, Callback<const Json &>> callbacks;
+	static inline std::unordered_map<u64, Callback<const Json &>> callbacks {};
 
 	/**
 	 * Called bx IXWebSocket whenever we receive a message.

@@ -25,15 +25,6 @@ extern IClientCvarValue *g_pClientCvarValue;
 
 static_global bool initialized = false;
 
-std::string KZGlobalService::apiUrl = "";
-std::string KZGlobalService::apiKey = "";
-ix::WebSocket *KZGlobalService::apiSocket = nullptr;
-f64 KZGlobalService::heartbeatInterval = -1;
-bool KZGlobalService::handshakeCompleted = false;
-u64 KZGlobalService::nextMessageId = 1;
-std::optional<KZ::API::Map> KZGlobalService::currentMap = std::nullopt;
-std::unordered_map<u64, KZGlobalService::Callback<const Json &>> KZGlobalService::callbacks = {};
-
 void KZGlobalService::Init()
 {
 	if (initialized)
