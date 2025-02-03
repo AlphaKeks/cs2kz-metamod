@@ -176,7 +176,7 @@ namespace KZ::API::events
 		}
 	};
 
-	struct WantPlayerRecords
+	struct WantPlayerRecordsForCache
 	{
 		u16 mapId;
 		u64 playerId;
@@ -190,7 +190,7 @@ namespace KZ::API::events
 		}
 	};
 
-	struct PlayerRecords
+	struct PlayerRecordsForCache
 	{
 		std::vector<Record> records {};
 
@@ -200,11 +200,11 @@ namespace KZ::API::events
 		}
 	};
 
-	struct WantWorldRecords
+	struct WantWorldRecordsForCache
 	{
 		u16 mapId;
 
-		WantWorldRecords(u16 mapId) : mapId(mapId) {}
+		WantWorldRecordsForCache(u16 mapId) : mapId(mapId) {}
 
 		bool ToJson(Json &json) const
 		{
@@ -212,13 +212,111 @@ namespace KZ::API::events
 		}
 	};
 
-	struct WorldRecords
+	struct WorldRecordsForCache
 	{
 		std::vector<Record> records {};
 
 		bool FromJson(const Json &json)
 		{
 			return json.Get("records", this->records);
+		}
+	};
+
+	struct WantCourseTop
+	{
+		std::string mapName;
+		std::string courseNameOrNumber;
+		Mode mode;
+		u32 limit;
+		u32 offset;
+
+		bool ToJson(Json &json) const
+		{
+			bool success = true;
+			success &= json.Set("map", mapName);
+			success &= json.Set("course", courseNameOrNumber);
+			success &= json.Set("mode", (u8)mode);
+			success &= json.Set("limit", limit);
+			success &= json.Set("offset", offset);
+			return success;
+		}
+	};
+
+	struct CourseTop
+	{
+		std::vector<Record> overall;
+		std::vector<Record> pro;
+
+		bool FromJson(const Json &json)
+		{
+			return json.Get("overall", this->overall) && json.Get("pro", this->pro);
+		}
+	};
+
+	struct WantPersonalBest
+	{
+		u64 steamid64;
+		std::string playerName;
+		std::string mapName;
+		std::string courseNameOrNumber;
+		Mode mode;
+		std::vector<std::string> styles;
+
+		bool ToJson(Json &json) const
+		{
+			bool success = true;
+			if (steamid64)
+			{
+				success &= json.Set("player", steamid64);
+			}
+			else
+			{
+				success &= json.Set("player", playerName);
+			}
+			success &= json.Set("map", mapName);
+			success &= json.Set("course", courseNameOrNumber);
+			success &= json.Set("mode", (u8)mode);
+			success &= json.Set("styles", styles);
+			return success;
+		}
+	};
+
+	struct PersonalBest
+	{
+		std::optional<PlayerInfo> player;
+		std::optional<Record> overall;
+		std::optional<Record> pro;
+
+		bool FromJson(const Json &json)
+		{
+			return json.Get("player", this->player) && json.Get("overall", this->overall) && json.Get("pro", this->pro);
+		}
+	};
+
+	struct WantWorldRecords
+	{
+		std::string mapName;
+		std::string courseNameOrNumber;
+		Mode mode;
+
+		bool ToJson(Json &json) const
+		{
+			bool success = true;
+			success &= json.Set("map", mapName);
+			success &= json.Set("course", courseNameOrNumber);
+			success &= json.Set("mode", (u8)mode);
+			return success;
+		}
+	};
+
+	struct WorldRecords
+	{
+		std::optional<Record> overall;
+		std::optional<Record> pro;
+
+		bool FromJson(const Json &json)
+		{
+			return json.Get("overall", this->overall) && json.Get("pro", this->pro);
 		}
 	};
 } // namespace KZ::API::events

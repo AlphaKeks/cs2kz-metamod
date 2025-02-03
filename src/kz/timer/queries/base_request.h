@@ -123,7 +123,8 @@ protected:
 	CUtlString targetPlayerName {};
 	// If this is true, the queries should be delayed until it's true.
 	bool requestingLocalPlayer = false;
-
+	// If this is true, the *local* query should be delayed.
+	bool requestingGlobalPlayer = false;
 	u64 localModeID;
 	CUtlString modeName;
 

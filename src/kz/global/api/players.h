@@ -33,11 +33,15 @@ namespace KZ::API
 				return false;
 			}
 
+			if (!json.Get("is_banned", this->isCheater))
+			{
+				return false;
+			}
 			return true;
 		}
 
-	private:
 		std::string id {};
 		std::string name {};
+		bool isCheater;
 	};
 } // namespace KZ::API

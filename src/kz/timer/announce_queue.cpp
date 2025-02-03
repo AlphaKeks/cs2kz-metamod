@@ -28,7 +28,11 @@ public:
 		}
 		if (KZGlobalService::IsConnected() && player->IsAuthenticated())
 		{
-			player->globalService->SubmitRecord(id, courseName.Get(), modeName, time, teleportsUsed, metadata);
+			KZ::API::Mode mode;
+			if (KZ::API::DecodeModeString(modeName.Get(), mode))
+			{
+				player->globalService->SubmitRecord(id, courseName.Get(), mode, time, teleportsUsed, metadata);
+			}
 		}
 	}
 

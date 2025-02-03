@@ -67,6 +67,17 @@ public:
 		return true;
 	}
 
+	bool Set(const std::string &key, const u8 &value)
+	{
+		if (!this->inner.is_object())
+		{
+			return false;
+		}
+
+		this->inner[key] = value;
+		return true;
+	}
+
 	bool Set(const std::string &key, const u16 &value)
 	{
 		if (!this->inner.is_object())

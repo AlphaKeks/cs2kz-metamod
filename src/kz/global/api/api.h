@@ -8,14 +8,14 @@ namespace KZ::API
 		Classic = 2,
 	};
 
-	static bool DecodeModeString(const std::string &modeString, Mode &mode)
+	static bool DecodeModeString(std::string_view modeString, Mode &mode)
 	{
-		if (modeString == "vanilla")
+		if (KZ_STREQI(modeString.data(), "vanilla") || KZ_STREQI(modeString.data(), "vnl"))
 		{
 			mode = Mode::Vanilla;
 			return true;
 		}
-		else if (modeString == "classic")
+		else if (KZ_STREQI(modeString.data(), "classic") || KZ_STREQI(modeString.data(), "ckz"))
 		{
 			mode = Mode::Classic;
 			return true;

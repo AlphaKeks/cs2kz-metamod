@@ -1,5 +1,6 @@
 #include "kz_timer.h"
 #include "kz/db/kz_db.h"
+#include "kz/global/kz_global.h"
 #include "kz/language/kz_language.h"
 #include "kz/mode/kz_mode.h"
 #include "kz/style/kz_style.h"
@@ -228,6 +229,10 @@ bool KZTimerService::TimerStart(const KZCourseDescriptor *courseDesc, bool playS
 	if (!this->player->IsAuthenticated())
 	{
 		this->player->languageService->PrintChat(true, false, "No Steam Authentication Warning");
+	}
+	if (KZGlobalService::IsConnected() && !this->player->hasPrime)
+	{
+		this->player->languageService->PrintChat(true, false, "No Prime Warning");
 	}
 
 	FOR_EACH_VEC(eventListeners, i)

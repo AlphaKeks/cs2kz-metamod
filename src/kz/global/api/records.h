@@ -19,8 +19,10 @@ namespace KZ::API
 		f64 time;
 		u32 nubRank = 0;
 		f64 nubPoints = -1;
+		u32 nubMaxRank = 0;
 		u32 proRank = 0;
 		f64 proPoints = -1;
+		u32 proMaxRank = 0;
 
 		bool FromJson(const Json &json)
 		{
@@ -72,11 +74,19 @@ namespace KZ::API
 				{
 					return false;
 				}
+				if (!json.Get("nub_max_rank", this->nubMaxRank))
+				{
+					return false;
+				}
 			}
 
 			if (json.Get("pro_rank", this->proRank))
 			{
 				if (!json.Get("pro_points", this->proPoints))
+				{
+					return false;
+				}
+				if (!json.Get("pro_max_rank", this->proMaxRank))
 				{
 					return false;
 				}

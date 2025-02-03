@@ -11,6 +11,7 @@
 
 #include "common.h"
 #include "kz/kz.h"
+#include "kz/language/kz_language.h"
 #include "kz/mode/kz_mode.h"
 #include "kz/timer/kz_timer.h"
 #include "kz/option/kz_option.h"
@@ -139,9 +140,9 @@ void KZGlobalService::OnActivateServer()
 			KZ::course::UpdateCourseGlobalID(course.name.c_str(), course.id);
 		}
 
-		KZ::API::events::WantWorldRecords data(mapInfo.map->id);
+		KZ::API::events::WantWorldRecordsForCache data(mapInfo.map->id);
 
-		auto callback = [](const KZ::API::events::WorldRecords &records)
+		auto callback = [](const KZ::API::events::WorldRecordsForCache &records)
 		{
 			for (const KZ::API::Record &record : records.records)
 			{
@@ -186,11 +187,11 @@ void KZGlobalService::OnPlayerAuthorized()
 
 	if (KZGlobalService::currentMap.has_value())
 	{
-		KZ::API::events::WantPlayerRecords data;
+		KZ::API::events::WantPlayerRecordsForCache data;
 		data.mapId = KZGlobalService::currentMap->id;
 		data.playerId = this->player->GetSteamId64();
 
-		auto callback = [player = this->player](const KZ::API::events::PlayerRecords &pbs)
+		auto callback = [player = this->player](const KZ::API::events::PlayerRecordsForCache &pbs)
 		{
 			for (const KZ::API::Record &record : pbs.records)
 			{
@@ -239,17 +240,15 @@ void KZGlobalService::OnClientDisconnect()
 	KZGlobalService::SendMessage("player-leave", data);
 }
 
-bool KZGlobalService::SubmitRecord(u32 localId, const char *courseName, const char *modeName, f64 time, u32 teleports, const char *metadata)
+bool KZGlobalService::SubmitRecord(u32 localId, const char *courseName, KZ::API::Mode mode, f64 time, u32 teleports, const char *metadata)
 {
+	if (!this->player->IsAuthenticated() && !this->player->hasPrime)
+	{
+		return false;
+	}
 	if (!KZGlobalService::currentMap.has_value())
 	{
 		META_CONPRINTF("[KZ::Global] Cannot submit record on non-global map.\n");
-		return false;
-	}
-
-	if (!(KZ_STREQI(modeName, "vnl") || KZ_STREQI(modeName, "ckz")))
-	{
-		META_CONPRINTF("[KZ::Global] Cannot submit record on non-global mode.\n");
 		return false;
 	}
 
@@ -272,7 +271,7 @@ bool KZGlobalService::SubmitRecord(u32 localId, const char *courseName, const ch
 
 	KZ::API::events::NewRecord data;
 	data.playerId = this->player->GetSteamId64();
-	data.filterId = KZ_STREQI(modeName, "vnl") ? course->filters.vanilla.id : course->filters.classic.id;
+	data.filterId = (mode == KZ::API::Mode::Vanilla) ? course->filters.vanilla.id : course->filters.classic.id;
 	data.styles = {}; // TODO
 	data.teleports = teleports;
 	data.time = time;
@@ -299,6 +298,37 @@ bool KZGlobalService::SubmitRecord(u32 localId, const char *courseName, const ch
 
 	KZGlobalService::SendMessage("new-record", data, callback);
 
+	return true;
+}
+
+bool KZGlobalService::QueryPB(u64 steamid64, CUtlString targetPlayerName, CUtlString mapName, CUtlString courseNameOrNumber, KZ::API::Mode mode,
+							  CUtlVector<CUtlString> &styleNames, Callback<KZ::API::events::PersonalBest> cb)
+{
+	KZ::API::events::WantPersonalBest pbRequest = {steamid64, targetPlayerName.Get(), mapName.Get(), courseNameOrNumber, mode};
+	FOR_EACH_VEC(styleNames, i)
+	{
+		pbRequest.styles.emplace_back(styleNames[i].Get());
+	}
+
+	KZGlobalService::SendMessage("query-pb", pbRequest, cb);
+	return true;
+}
+
+bool KZGlobalService::QueryCourseTop(CUtlString mapName, CUtlString courseNameOrNumber, KZ::API::Mode mode, u32 limit, u32 offset,
+									 Callback<KZ::API::events::CourseTop> cb)
+{
+	KZ::API::events::WantCourseTop ctopRequest = {mapName.Get(), courseNameOrNumber.Get(), mode, limit, offset};
+
+	KZGlobalService::SendMessage("query-course-top", ctopRequest, cb);
+	return true;
+}
+
+bool KZGlobalService::QueryWorldRecords(CUtlString mapName, CUtlString courseNameOrNumber, KZ::API::Mode mode,
+										Callback<KZ::API::events::WorldRecords> cb)
+{
+	KZ::API::events::WantWorldRecords ctopRequest = {mapName.Get(), courseNameOrNumber.Get(), mode};
+
+	KZGlobalService::SendMessage("query-wr", ctopRequest, cb);
 	return true;
 }
 

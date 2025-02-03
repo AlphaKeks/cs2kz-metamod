@@ -5,6 +5,8 @@
 #include "utils/json.h"
 
 #include "kz/kz.h"
+#include "kz/global/api/api.h"
+#include "kz/global/api/events.h"
 #include "kz/global/api/maps.h"
 
 class KZGlobalService : public KZBaseService
@@ -12,6 +14,9 @@ class KZGlobalService : public KZBaseService
 	using KZBaseService::KZBaseService;
 
 public:
+	template<typename... Args>
+	using Callback = std::function<void(Args...)>;
+
 	static void Init();
 	static void Cleanup();
 	static void RegisterCommands();
@@ -47,12 +52,32 @@ public:
 	 *
 	 * Returns whether the record was submitted. This could be false if the filter is not ranked.
 	 */
-	bool SubmitRecord(u32 localId, const char *courseName, const char *modeName, f64 time, u32 teleports, const char *metadata);
+	bool SubmitRecord(u32 localId, const char *courseName, KZ::API::Mode mode, f64 time, u32 teleports, const char *metadata);
+
+	/**
+	 * Query the personal best of a player on a certain map, course, mode, style.
+	 *
+	 * Always return true.
+	 */
+	static bool QueryPB(u64 steamid64, CUtlString targetPlayerName, CUtlString mapName, CUtlString courseNameOrNumber, KZ::API::Mode mode,
+						CUtlVector<CUtlString> &styleNames, Callback<KZ::API::events::PersonalBest> cb);
+
+	/**
+	 * Query the course top on a certain map, mode with a certain limit and offset.
+	 *
+	 * Always return true.
+	 */
+	static bool QueryCourseTop(CUtlString mapName, CUtlString courseNameOrNumber, KZ::API::Mode mode, u32 limit, u32 offset,
+							   Callback<KZ::API::events::CourseTop> cb);
+
+	/**
+	 * Query the world record of a course on a certain mode.
+	 *
+	 * Always return true.
+	 */
+	static bool QueryWorldRecords(CUtlString mapName, CUtlString courseNameOrNumber, KZ::API::Mode mode, Callback<KZ::API::events::WorldRecords> cb);
 
 private:
-	template<typename... Args>
-	using Callback = std::function<void(Args...)>;
-
 	/**
 	 * URL to make HTTP requests to.
 	 *

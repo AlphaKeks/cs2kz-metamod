@@ -1,6 +1,7 @@
 #include "base_request.h"
 #include "kz/db/kz_db.h"
 #include "kz/course/kz_course.h"
+#include "kz/global/kz_global.h"
 #include "kz/timer/kz_timer.h"
 #include "kz/mode/kz_mode.h"
 #include "kz/style/kz_style.h"
@@ -38,8 +39,7 @@ void BaseRequest::Init(u64 features, const CCommand *args, bool queryLocal, bool
 	}
 	this->localStatus = (queryLocal && KZDatabaseService::IsReady()) ? ResponseStatus::ENABLED : ResponseStatus::DISABLED;
 
-	// TODO: check global status here
-	this->globalStatus = ResponseStatus::DISABLED;
+	this->globalStatus = (queryGlobal && KZGlobalService::IsConnected() ? ResponseStatus::ENABLED : ResponseStatus::DISABLED);
 
 	KeyValues3 *kv = NULL;
 
@@ -292,6 +292,8 @@ void BaseRequest::SetupPlayer(CUtlString playerName)
 				}
 				else
 				{
+					// TODO: Re-query the local database if we query from the global API and got a steamid through its response
+					req->requestingGlobalPlayer = true;
 					req->localStatus = ResponseStatus::DISABLED;
 				}
 				req->requestingLocalPlayer = false;
