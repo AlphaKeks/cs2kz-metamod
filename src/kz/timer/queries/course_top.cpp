@@ -35,7 +35,7 @@ struct CourseTopRequest : public BaseRequest
 	using BaseRequest::BaseRequest;
 
 	static constexpr u64 ctopFeatures =
-		RequestFeature::Course | RequestFeature::Map | RequestFeature::Mode | RequestFeature::Offset | RequestFeature::Limit | RequestFeature::Style;
+		RequestFeature::Course | RequestFeature::Map | RequestFeature::Mode | RequestFeature::Offset | RequestFeature::Limit;
 
 	struct RunStats
 	{
