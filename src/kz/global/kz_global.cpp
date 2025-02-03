@@ -19,6 +19,10 @@
 #include "kz/global/api/events.h"
 #include "kz/global/api/maps.h"
 
+#include <vendor/ClientCvarValue/public/iclientcvarvalue.h>
+
+extern IClientCvarValue *g_pClientCvarValue;
+
 static_global bool initialized = false;
 
 std::string KZGlobalService::apiUrl = "";
@@ -46,6 +50,12 @@ void KZGlobalService::Init()
 	{
 		META_CONPRINTF("[KZ::Global] Invalid API url. GlobalService will be disabled.\n");
 		KZGlobalService::apiUrl = "";
+		return;
+	}
+
+	if (!g_pClientCvarValue)
+	{
+		META_CONPRINT("[KZ::Global] ClientCvarValue not found. WebSocket connection will be disabled.\n");
 		return;
 	}
 

@@ -1,6 +1,7 @@
 #include "kz.h"
 #include "utils/utils.h"
 #include "utils/ctimer.h"
+#include "anticheat/kz_anticheat.h"
 #include "checkpoint/kz_checkpoint.h"
 #include "db/kz_db.h"
 #include "hud/kz_hud.h"
@@ -35,6 +36,7 @@ void KZPlayer::Init()
 	this->hideLegs = false;
 
 	// TODO: initialize every service.
+	delete this->anticheatService;
 	delete this->checkpointService;
 	delete this->jumpstatsService;
 	delete this->languageService;
@@ -50,6 +52,7 @@ void KZPlayer::Init()
 	delete this->triggerService;
 	delete this->globalService;
 
+	this->anticheatService = new KZAnticheatService(this);
 	this->checkpointService = new KZCheckpointService(this);
 	this->jumpstatsService = new KZJumpstatsService(this);
 	this->databaseService = new KZDatabaseService(this);
@@ -104,6 +107,11 @@ void KZPlayer::OnPlayerActive()
 	g_pKZStyleManager->RefreshStyles(this);
 
 	this->optionService->OnPlayerActive();
+}
+
+void KZPlayer::OnPlayerFullyConnect()
+{
+	this->anticheatService->OnPlayerFullyConnect();
 }
 
 void KZPlayer::OnAuthorized()
