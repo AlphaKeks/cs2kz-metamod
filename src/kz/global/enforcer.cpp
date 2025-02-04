@@ -10,6 +10,13 @@ enum EnforcedServerCvars
 	ENFORCEDCVAR_CQ_BUFFER_BLOAT_MSECS_MAX,
 	ENFORCEDCVAR_CQ_DILATION_PERCENTAGE,
 	ENFORCEDCVAR_SV_CQ_MIN_QUEUE,
+	ENFORCEDCVAR_SV_CONDENSE_LATE_BUTTONS,
+	ENFORCEDCVAR_SV_LATE_COMMANDS_ALLOWED,
+	ENFORCEDCVAR_CQ_MAX_STARVED_SUBSTITUTE_COMMANDS,
+	ENFORCEDCVAR_SV_CQ_TRIM_BLOAT_REMAINDER,
+	ENFORCEDCVAR_SV_CQ_TRIM_BLOAT_SPACE,
+	ENFORCEDCVAR_SV_CQ_TRIM_CATCHUP_REMAINDER,
+	ENFORCEDCVAR_SV_RUNCMDS,
 	ENFORCEDCVAR_COUNT
 };
 
@@ -22,7 +29,14 @@ static_global const char* enforcedServerCVars[] =
     "cq_enable",
     "cq_buffer_bloat_msecs_max",
     "cq_dilation_percentage",
-    "sv_cq_min_queue"
+    "sv_cq_min_queue",
+	"sv_condense_late_buttons",
+	"sv_late_commands_allowed",
+	"cq_max_starved_substitute_commands",
+	"sv_cq_trim_bloat_remainder",
+	"sv_cq_trim_bloat_space",
+	"sv_cq_trim_catchup_remainder",
+	"sv_runcmds"
 };
 static_assert(Q_ARRAYSIZE(enforcedServerCVars) == ENFORCEDCVAR_COUNT, "Array enforcedServerCVars length is not the same as ENFORCEDCVAR_COUNT!");
 
