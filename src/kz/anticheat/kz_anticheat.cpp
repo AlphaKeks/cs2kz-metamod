@@ -1,6 +1,7 @@
 #include "../kz.h"
 #include "kz_anticheat.h"
 #include "kz/language/kz_language.h"
+#include "kz/timer/kz_timer.h"
 #include "utils/ctimer.h"
 
 #include <vendor/ClientCvarValue/public/iclientcvarvalue.h>
@@ -37,6 +38,7 @@ static_function void ValidateCvar(CPlayerSlot nSlot, ECvarValueStatus eStatus, c
 			player->languageService->PrintChat(true, false, "Kick Player m_yaw");
 			player->languageService->PrintConsole(false, false, "Kick Player m_yaw (Console)");
 			player->anticheatService->MarkHasInvalidCvars();
+			player->timerService->TimerStop();
 			StartTimer<CPlayerUserId>(KickPlayerInvalidSettings, player->GetClient()->GetUserID(), KICK_DELAY, true, true);
 		}
 	}
@@ -47,6 +49,7 @@ static_function void ValidateCvar(CPlayerSlot nSlot, ECvarValueStatus eStatus, c
 			player->languageService->PrintChat(true, false, "Kick Player fps_max");
 			player->languageService->PrintConsole(false, false, "Kick Player fps_max (Console)");
 			player->anticheatService->MarkHasInvalidCvars();
+			player->timerService->TimerStop();
 			StartTimer<CPlayerUserId>(KickPlayerInvalidSettings, player->GetClient()->GetUserID(), KICK_DELAY, true, true);
 		}
 	}
