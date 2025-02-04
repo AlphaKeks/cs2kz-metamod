@@ -260,8 +260,8 @@ struct CourseTopRequest : public BaseRequest
 			headersPro[i] = player->languageService->PrepareMessage(columnKeysGlobalPro[i]).c_str();
 		}
 		utils::DualTable<Q_ARRAYSIZE(columnKeysGlobal), Q_ARRAYSIZE(columnKeysGlobalPro)> dualTable(
-			player->languageService->PrepareMessage(COURSE_TOP_TABLE_KEY, mapName.Get(), courseName.Get(), modeName.Get()).c_str(), headers,
-			player->languageService->PrepareMessage(COURSE_TOP_PRO_TABLE_KEY, mapName.Get(), courseName.Get(), modeName.Get()).c_str(), headersPro);
+			player->languageService->PrepareMessage(COURSE_TOP_TABLE_KEY_GLOBAL, mapName.Get(), courseName.Get(), modeName.Get()).c_str(), headers,
+			player->languageService->PrepareMessage(COURSE_TOP_PRO_TABLE_KEY_GLOBAL, mapName.Get(), courseName.Get(), modeName.Get()).c_str(), headersPro);
 		CUtlString rank;
 		FOR_EACH_VEC(wrData.overallData, i)
 		{
