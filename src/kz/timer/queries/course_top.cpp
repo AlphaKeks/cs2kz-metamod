@@ -265,13 +265,13 @@ struct CourseTopRequest : public BaseRequest
 		CUtlString rank;
 		FOR_EACH_VEC(wrData.overallData, i)
 		{
-			rank.Format("%i", this->offset + i + 1);
+			rank.Format("%llu", this->offset + i + 1);
 			RunStats stats = wrData.overallData[i];
 			dualTable.left.SetRow(i, rank, stats.name, stats.GetTime(), stats.GetTeleportCount(), stats.GetSteamID64(), stats.GetPoints(), stats.GetRunID());
 		}
 		FOR_EACH_VEC(wrData.proData, i)
 		{
-			rank.Format("%i", this->offset + i + 1);
+			rank.Format("%llu", this->offset + i + 1);
 			RunStats stats = wrData.proData[i];
 			dualTable.right.SetRow(i, rank, stats.name, stats.GetTime(), stats.GetSteamID64(), stats.GetPoints(), stats.GetRunID());
 		}
@@ -303,13 +303,13 @@ struct CourseTopRequest : public BaseRequest
 		CUtlString rank;
 		FOR_EACH_VEC(srData.overallData, i)
 		{
-			rank.Format("%i", this->offset + i + 1);
+			rank.Format("%llu", this->offset + i + 1);
 			RunStats stats = srData.overallData[i];
 			dualTable.left.SetRow(i, rank, stats.name, stats.GetTime(), stats.GetTeleportCount(), stats.GetSteamID64(), stats.GetRunID());
 		}
 		FOR_EACH_VEC(srData.proData, i)
 		{
-			rank.Format("%i", this->offset + i + 1);
+			rank.Format("%llu", this->offset + i + 1);
 			RunStats stats = srData.proData[i];
 			dualTable.right.SetRow(i, rank, stats.name, stats.GetTime(), stats.GetSteamID64(), stats.GetRunID());
 		}
