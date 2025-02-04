@@ -304,7 +304,7 @@ bool KZGlobalService::SubmitRecord(u32 localId, const char *courseName, KZ::API:
 bool KZGlobalService::QueryPB(u64 steamid64, CUtlString targetPlayerName, CUtlString mapName, CUtlString courseNameOrNumber, KZ::API::Mode mode,
 							  CUtlVector<CUtlString> &styleNames, Callback<KZ::API::events::PersonalBest> cb)
 {
-	KZ::API::events::WantPersonalBest pbRequest = {steamid64, targetPlayerName.Get(), mapName.Get(), courseNameOrNumber, mode};
+	KZ::API::events::WantPersonalBest pbRequest = {steamid64, targetPlayerName.Get(), mapName.Get(), courseNameOrNumber.Get(), mode};
 	FOR_EACH_VEC(styleNames, i)
 	{
 		pbRequest.styles.emplace_back(styleNames[i].Get());
