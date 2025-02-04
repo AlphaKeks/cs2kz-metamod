@@ -2,8 +2,6 @@
 #include "kz/timer/kz_timer.h"
 #include "kz/db/kz_db.h"
 #include "kz/global/kz_global.h"
-#include "kz/global/api/api.h"
-#include "kz/global/api/events.h"
 
 #include "utils/simplecmds.h"
 
@@ -45,12 +43,6 @@ struct TopRecordRequest : public BaseRequest
 		}
 		if (this->globalStatus == ResponseStatus::ENABLED)
 		{
-			KZ::API::Mode mode;
-			if (!KZ::API::DecodeModeString(this->modeName.Get(), mode))
-			{
-				this->globalStatus = ResponseStatus::DISABLED;
-				return;
-			}
 			auto callback = [uid = this->uid](const KZ::API::events::WorldRecords &wrs)
 			{
 				TopRecordRequest *req = (TopRecordRequest *)TopRecordRequest::Find(uid);
@@ -74,7 +66,7 @@ struct TopRecordRequest : public BaseRequest
 				}
 			};
 			this->globalStatus = ResponseStatus::PENDING;
-			KZGlobalService::QueryWorldRecords(this->mapName, this->courseName, mode, callback);
+			KZGlobalService::QueryWorldRecords(this->mapName, this->courseName, this->apiMode, callback);
 		}
 	}
 

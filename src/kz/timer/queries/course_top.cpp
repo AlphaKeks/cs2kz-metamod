@@ -2,8 +2,6 @@
 #include "kz/timer/kz_timer.h"
 #include "kz/db/kz_db.h"
 #include "kz/global/kz_global.h"
-#include "kz/global/api/api.h"
-#include "kz/global/api/events.h"
 
 #include "utils/simplecmds.h"
 
@@ -191,12 +189,6 @@ struct CourseTopRequest : public BaseRequest
 
 		if (this->globalStatus == ResponseStatus::ENABLED)
 		{
-			KZ::API::Mode mode;
-			if (!KZ::API::DecodeModeString(this->modeName.Get(), mode))
-			{
-				this->globalStatus = ResponseStatus::DISABLED;
-				return;
-			}
 			auto callback = [uid = this->uid](const KZ::API::events::CourseTop &ctops)
 			{
 				CourseTopRequest *req = (CourseTopRequest *)CourseTopRequest::Find(uid);
@@ -217,7 +209,7 @@ struct CourseTopRequest : public BaseRequest
 				}
 			};
 			this->globalStatus = ResponseStatus::PENDING;
-			KZGlobalService::QueryCourseTop(this->mapName, this->courseName, mode, this->limit, this->offset, callback);
+			KZGlobalService::QueryCourseTop(this->mapName, this->courseName, this->apiMode, this->limit, this->offset, callback);
 		}
 	}
 

@@ -43,15 +43,6 @@ void BaseRequest::Init(u64 features, const CCommand *args, bool queryLocal, bool
 
 	KeyValues3 *kv = NULL;
 
-	if (this->HasFeature(RequestFeature::Player))
-	{
-		kv = params.FindMember("player");
-		if (!kv)
-		{
-			kv = params.FindMember("p");
-		}
-		this->SetupPlayer(kv ? kv->GetString() : "");
-	}
 	if (this->HasFeature(RequestFeature::Map))
 	{
 		kv = params.FindMember("map");
@@ -94,6 +85,15 @@ void BaseRequest::Init(u64 features, const CCommand *args, bool queryLocal, bool
 	if (this->HasFeature(RequestFeature::Style) && ((kv = params.FindMember("style")) || (kv = params.FindMember("s"))))
 	{
 		this->SetupStyles(kv->GetString());
+	}
+	if (this->HasFeature(RequestFeature::Player))
+	{
+		kv = params.FindMember("player");
+		if (!kv)
+		{
+			kv = params.FindMember("p");
+		}
+		this->SetupPlayer(kv ? kv->GetString() : "");
 	}
 	if (localStatus != ResponseStatus::ENABLED && globalStatus != ResponseStatus::ENABLED)
 	{
@@ -290,10 +290,12 @@ void BaseRequest::SetupPlayer(CUtlString playerName)
 					req->targetSteamID64 = result->GetInt64(0);
 					req->targetPlayerName = result->GetString(1);
 				}
+				else if (req->globalStatus == ResponseStatus::ENABLED)
+				{
+					req->requestingGlobalPlayer = true;
+				}
 				else
 				{
-					// TODO: Re-query the local database if we query from the global API and got a steamid through its response
-					req->requestingGlobalPlayer = true;
 					req->localStatus = ResponseStatus::DISABLED;
 				}
 				req->requestingLocalPlayer = false;
@@ -305,7 +307,14 @@ void BaseRequest::SetupPlayer(CUtlString playerName)
 			BaseRequest *req = BaseRequest::Find(uid);
 			if (req)
 			{
-				req->localStatus = ResponseStatus::DISABLED;
+				if (req->globalStatus == ResponseStatus::ENABLED)
+				{
+					req->requestingGlobalPlayer = true;
+				}
+				else
+				{
+					req->localStatus = ResponseStatus::DISABLED;
+				}
 				req->requestingLocalPlayer = false;
 			}
 		};
@@ -344,8 +353,10 @@ void BaseRequest::SetupMode(CUtlString modeName)
 		this->localModeID = modeInfo.databaseID;
 	}
 
-	// Global TODO: if it is not CKZ/VNL, just don't bother with global stuff.
-	// ... globalStatus = ResponseStatus::DISABLED;
+	if (!KZ::API::DecodeModeString(this->modeName.Get(), this->apiMode))
+	{
+		this->globalStatus = ResponseStatus::DISABLED;
+	}
 }
 
 void BaseRequest::SetupStyles(CUtlString styleNames)
@@ -402,6 +413,4 @@ void BaseRequest::SetupStyles(CUtlString styleNames)
 			styleList.AddToTail(info.id != -2 ? info.shortName : stylesSplit[i]);
 		}
 	}
-	// Global TODO: Keep a list of global styles. If one of the styles are not global, don't bother with global stuff.
-	// ... globalStatus = ResponseStatus::DISABLED;
 };

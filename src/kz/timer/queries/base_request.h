@@ -7,7 +7,7 @@
 #include "utils/utils.h"
 #include "utils/argparse.h"
 #include "utils/tables.h"
-
+#include "kz/global/api/api.h"
 #include "kz/language/kz_language.h"
 
 struct BaseRequest
@@ -125,8 +125,10 @@ protected:
 	bool requestingLocalPlayer = false;
 	// If this is true, the *local* query should be delayed.
 	bool requestingGlobalPlayer = false;
+
 	u64 localModeID;
 	CUtlString modeName;
+	KZ::API::Mode apiMode;
 
 	u64 localStyleIDs;
 	CUtlVector<CUtlString> styleList;

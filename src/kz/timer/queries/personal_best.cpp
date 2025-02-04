@@ -1,8 +1,6 @@
 #include "base_request.h"
 #include "kz/db/kz_db.h"
 #include "kz/global/kz_global.h"
-#include "kz/global/api/api.h"
-#include "kz/global/api/events.h"
 
 #include "utils/simplecmds.h"
 
@@ -95,9 +93,7 @@ struct PBRequest : public BaseRequest
 		{
 			return;
 		}
-
-		KZ::API::Mode mode;
-		if (!KZ::API::DecodeModeString(this->modeName.Get(), mode))
+		if (this->globalStatus != ResponseStatus::ENABLED)
 		{
 			// If the local query is waiting for a response from the global service...
 			if (this->requestingGlobalPlayer && this->localStatus == ResponseStatus::ENABLED)
@@ -105,7 +101,6 @@ struct PBRequest : public BaseRequest
 				this->localStatus = ResponseStatus::DISABLED;
 				this->requestingGlobalPlayer = false;
 			}
-			this->globalStatus = ResponseStatus::DISABLED;
 			return;
 		}
 		auto callback = [uid = this->uid](const KZ::API::events::PersonalBest &pb)
@@ -140,7 +135,8 @@ struct PBRequest : public BaseRequest
 				req->gpbData.pointsPro = pb.pro->proPoints;
 			}
 		};
-		KZGlobalService::QueryPB(this->targetSteamID64, this->targetPlayerName, this->mapName, this->courseName, mode, this->styleList, callback);
+		KZGlobalService::QueryPB(this->targetSteamID64, this->targetPlayerName, this->mapName, this->courseName, this->apiMode, this->styleList,
+								 callback);
 	}
 
 	virtual void Reply()
