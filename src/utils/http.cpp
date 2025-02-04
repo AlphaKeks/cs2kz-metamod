@@ -30,8 +30,15 @@ namespace HTTP
 		if (!g_pHTTP)
 		{
 			META_CONPRINTF("[HTTP] Initializing HTTP client...\n");
-			g_steamAPI.Init();
-			g_pHTTP = g_steamAPI.SteamHTTP();
+			if (g_steamAPI.Init())
+			{
+				g_pHTTP = g_steamAPI.SteamHTTP();
+			}
+			else
+			{
+				META_CONPRINTF("[HTTP] Failed to send HTTP request as the steam API is not yet initialized.\n");
+				return;
+			}
 		}
 
 		EHTTPMethod volvoMethod;
