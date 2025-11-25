@@ -104,6 +104,8 @@ def configure_main(sdk_target, sdk, cxx):
     os.path.join(builder.sourcePath, 'src', 'kz', 'db', 'setup_styles.cpp'),
 
     os.path.join(builder.sourcePath, 'src', 'kz', 'global', 'kz_global.cpp'),
+    os.path.join(builder.sourcePath, 'src', 'kz', 'global2', 'kz_global.cpp'),
+    os.path.join(builder.sourcePath, 'src', 'kz', 'global2', 'convars.cpp'),
     os.path.join(builder.sourcePath, 'src', 'kz', 'global', 'commands.cpp'),
     os.path.join(builder.sourcePath, 'src', 'kz', 'global', 'enforcer.cpp'),
     os.path.join(builder.sourcePath, 'src', 'kz', 'global', 'api.cpp'),

@@ -83,6 +83,8 @@ void KZGlobalService::UpdateRecordCache()
 
 void KZGlobalService::Init()
 {
+	return;
+
 	if (KZGlobalService::state.load() != KZGlobalService::State::Uninitialized)
 	{
 		return;

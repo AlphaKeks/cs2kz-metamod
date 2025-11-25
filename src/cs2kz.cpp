@@ -22,6 +22,7 @@
 #include "kz/language/kz_language.h"
 #include "kz/mappingapi/kz_mappingapi.h"
 #include "kz/global/kz_global.h"
+#include "kz/global2/kz_global.h"
 #include "kz/beam/kz_beam.h"
 #include "kz/pistol/kz_pistol.h"
 #include "kz/recording/kz_recording.h"
@@ -101,7 +102,8 @@ bool KZPlugin::Unload(char *error, size_t maxlen)
 	g_pKZStyleManager->Cleanup();
 	g_pPlayerManager->Cleanup();
 	KZDatabaseService::Cleanup();
-	KZGlobalService::Cleanup();
+	// KZGlobalService::Cleanup();
+	KZGlobalService2::Cleanup();
 	KZLanguageService::Cleanup();
 	KZOptionService::Cleanup();
 	KZ::replaysystem::Cleanup();
