@@ -32,6 +32,7 @@ class KZBeamService;
 class KZCheckpointService;
 class KZDatabaseService;
 class KZGlobalService;
+class KZGlobalService2;
 class KZHUDService;
 class KZJumpstatsService;
 class KZLanguageService;
@@ -148,6 +149,7 @@ public:
 	KZCheckpointService *checkpointService {};
 	KZDatabaseService *databaseService {};
 	KZGlobalService *globalService {};
+	KZGlobalService2 *globalService2 {};
 	KZHUDService *hudService {};
 	KZJumpstatsService *jumpstatsService {};
 	KZLanguageService *languageService {};

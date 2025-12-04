@@ -15,6 +15,7 @@ static_function std::string_view MakeStatusString(bool checkmark)
 	return checkmark ? "{green}✓{default}"sv : "{darkred}✗{default}"sv;
 }
 
+/*
 SCMD(kz_globalcheck, SCFL_GLOBAL | SCFL_MAP | SCFL_PLAYER)
 {
 	KZPlayer *player = g_pKZPlayerManager->ToPlayer(controller);
@@ -145,3 +146,4 @@ SCMD(kz_globalcheck, SCFL_GLOBAL | SCFL_MAP | SCFL_PLAYER)
 }
 
 SCMD_LINK(kz_gc, kz_globalcheck);
+*/

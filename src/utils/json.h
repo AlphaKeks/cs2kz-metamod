@@ -25,6 +25,60 @@ public:
 		return this->inner.dump();
 	}
 
+	bool ContainsKey(const std::string &key, bool allowNull = false) const
+	{
+		if (!this->inner.is_object())
+		{
+			META_CONPRINTF("[JSON] Cannot extract value from non-object.\n");
+			return false;
+		}
+
+		if (!this->inner.contains(key))
+		{
+			META_CONPRINTF("[JSON] Key `%s` does not exist.\n", key.c_str());
+			return false;
+		}
+
+		if (!allowNull && this->inner[key].is_null())
+		{
+			META_CONPRINTF("[JSON] Key `%s` is null.\n", key.c_str());
+			return false;
+		}
+
+		return true;
+	}
+
+	template<typename T>
+	bool Decode(std::optional<T> &out)
+	{
+		if (this->inner.is_null())
+		{
+			out = std::nullopt;
+			return true;
+		}
+
+		T value;
+
+		if (!value.FromJson(*this))
+		{
+			return false;
+		}
+
+		out = std::make_optional(std::move(value));
+		return true;
+	}
+
+	template<typename T>
+	bool Decode(T &out)
+	{
+		if (this->inner.is_null())
+		{
+			return false;
+		}
+
+		return out.FromJson(*this);
+	}
+
 	template<typename T>
 	bool Set(const std::string &key, const T &value)
 	{
@@ -205,6 +259,25 @@ public:
 		return true;
 	}
 
+	template<typename T>
+	bool Set(const std::string &key, const std::optional<T> &value)
+	{
+		if (!this->inner.is_object())
+		{
+			return false;
+		}
+
+		if (value)
+		{
+			return this->Set(key, value.value());
+		}
+		else
+		{
+			this->inner[key] = nlohmann::json(nullptr);
+			return true;
+		}
+	}
+
 	bool IsValid() const
 	{
 		return !this->inner.is_discarded();
@@ -212,7 +285,7 @@ public:
 
 	bool Get(const std::string &key, Json &out) const
 	{
-		if (!this->ContainsKey(key))
+		if (!this->ContainsKey(key, /* allowNull */ true))
 		{
 			return false;
 		}
@@ -389,27 +462,4 @@ private:
 	nlohmann::json inner;
 
 	Json(nlohmann::json json) : inner(json) {}
-
-	bool ContainsKey(const std::string &key) const
-	{
-		if (!this->inner.is_object())
-		{
-			META_CONPRINTF("[JSON] Cannot extract value from non-object.\n");
-			return false;
-		}
-
-		if (!this->inner.contains(key))
-		{
-			META_CONPRINTF("[JSON] Key `%s` does not exist.\n", key.c_str());
-			return false;
-		}
-
-		if (this->inner[key].is_null())
-		{
-			META_CONPRINTF("[JSON] Key `%s` is null.\n", key.c_str());
-			return false;
-		}
-
-		return true;
-	}
 };

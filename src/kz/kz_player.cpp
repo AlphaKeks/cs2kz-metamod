@@ -23,6 +23,7 @@
 #include "recording/kz_recording.h"
 #include "replays/kz_replaysystem.h"
 #include "global/kz_global.h"
+#include "global2/kz_global.h"
 #include "profile/kz_profile.h"
 #include "pistol/kz_pistol.h"
 
@@ -56,6 +57,7 @@ void KZPlayer::Init()
 	delete this->triggerService;
 	delete this->recordingService;
 	delete this->globalService;
+	delete this->globalService2;
 	delete this->measureService;
 	delete this->profileService;
 	delete this->pistolService;
@@ -78,6 +80,7 @@ void KZPlayer::Init()
 	this->triggerService = new KZTriggerService(this);
 	this->recordingService = new KZRecordingService(this);
 	this->globalService = new KZGlobalService(this);
+	this->globalService2 = new KZGlobalService2(this);
 	this->measureService = new KZMeasureService(this);
 	this->profileService = new KZProfileService(this);
 	this->pistolService = new KZPistolService(this);
@@ -144,6 +147,7 @@ void KZPlayer::OnAuthorized()
 	this->databaseService->SetupClient();
 	this->profileService->timeToNextRatingRefresh = 0.0f; // Force immediate refresh
 	this->globalService->OnPlayerAuthorized();
+	this->globalService2->OnPlayerAuthorized();
 }
 
 void KZPlayer::OnPhysicsSimulate()

@@ -109,6 +109,10 @@ def configure_main(sdk_target, sdk, cxx):
     os.path.join(builder.sourcePath, 'src', 'kz', 'global', 'api.cpp'),
     os.path.join(builder.sourcePath, 'src', 'kz', 'global', 'handshake.cpp'),
     os.path.join(builder.sourcePath, 'src', 'kz', 'global', 'events.cpp'),
+
+    os.path.join(builder.sourcePath, 'src', 'kz', 'global2', 'kz_global.cpp'),
+    os.path.join(builder.sourcePath, 'src', 'kz', 'global2', 'convars.cpp'),
+    os.path.join(builder.sourcePath, 'src', 'kz', 'global2', 'commands.cpp'),
     
     os.path.join(builder.sourcePath, 'src', 'kz', 'hud', 'kz_hud.cpp'),
 
