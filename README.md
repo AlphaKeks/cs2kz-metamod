@@ -10,8 +10,8 @@ Automated translation linter reports for cs2kz-metamod.
 | **Linter Warnings** | 25 |
 | **Total Languages** | 13 |
 | **Total Phrases** | 521 |
-| **Phrases Missing Translations** | 455 |
-| **Total Missing Entries** | 2242 |
+| **Phrases Missing Translations** | 441 |
+| **Total Missing Entries** | 2038 |
 | **Menu Files** | 9 |
 
 ## Language Coverage (Phrases)
@@ -25,11 +25,11 @@ Automated translation linter reports for cs2kz-metamod.
   it (italian)         [████████░░░░░░░░░░░░]  44.1% (230/521)
   ko (koreana)         [███████████░░░░░░░░░]  55.9% (291/521)
   lv (latvian)         [████████████░░░░░░░░]  63.9% (333/521)
-  pl (polish)          [████████████░░░░░░░░]  61.2% (319/521)
+  pl (polish)          [████████████████████] 100.0% (521/521)
   ru (russian)         [███░░░░░░░░░░░░░░░░░]  17.7% (92/521)
   sv (swedish)         [███████████████░░░░░]  76.2% (397/521)
   tr (turkish)         [██████████░░░░░░░░░░]  51.2% (267/521)
-  ua (ukrainian)       [███████████████████░]  99.6% (519/521)
+  ua (ukrainian)       [████████████████████] 100.0% (521/521)
 ```
 
 ## Menu Translation Status
@@ -79,8 +79,8 @@ Automated translation linter reports for cs2kz-metamod.
 
 ## Last Updated
 
-- **Commit:** [`2d5025a`](https://github.com/AlphaKeks/cs2kz-metamod/commit/2d5025a4ef929efd822145a48c28ed4446000b75)
-- **Time:** 2026-01-05 20:58:35 UTC
+- **Commit:** [`76a1beb`](https://github.com/AlphaKeks/cs2kz-metamod/commit/76a1beb7587d8203f01b37e9ffce1261f7b2309e)
+- **Time:** 2026-01-09 00:43:37 UTC
 - **Message:** update racing to match new coordinator
 
 ---
