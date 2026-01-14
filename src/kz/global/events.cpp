@@ -1,5 +1,10 @@
 #include "events.h"
 
+bool KZ::API::events::Error::FromJson(const Json &json)
+{
+	return json.Get("message", this->message);
+}
+
 bool KZ::API::events::MapChange::ToJson(Json &json) const
 {
 	return json.Set("new_map", this->mapName);

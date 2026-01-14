@@ -85,7 +85,7 @@ public:
 		return rec;
 	}
 
-	static RecordAnnounce *Get(u64 uid)
+	static RecordAnnounce *Get(u32 uid)
 	{
 		auto it = std::find_if(records.begin(), records.end(), [uid](RecordAnnounce *req) { return req->uid == uid; });
 		return (it != records.end()) ? *it : nullptr;

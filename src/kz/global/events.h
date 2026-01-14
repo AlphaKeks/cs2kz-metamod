@@ -7,6 +7,13 @@
 
 namespace KZ::API::events
 {
+	struct Error
+	{
+		std::string message;
+
+		bool FromJson(const Json &json);
+	};
+
 	struct MapChange
 	{
 		std::string_view mapName;

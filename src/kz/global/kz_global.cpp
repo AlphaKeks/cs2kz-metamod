@@ -192,6 +192,52 @@ void KZGlobalService::OnServerGamePostSimulate()
 	}
 }
 
+static struct OnMapChangeCallback : KZ::global::callbacks::MessageCallback
+{
+	void OnSuccess(u32 messageID, const Json &payload)
+	{
+		KZ::API::events::MapInfo mapInfo;
+		if (!KZ::global::callbacks::ExtractPayload(payload, mapInfo))
+		{
+			return;
+		}
+
+		bool mapNameOk = false;
+		CUtlString currentMapName = g_pKZUtils->GetCurrentMapName(&mapNameOk);
+
+		if (!mapNameOk)
+		{
+			META_CONPRINTF("[KZ::Global] Failed to get current map name. Cannot send `map-change` event.\n");
+			return;
+		}
+
+		std::string_view event("map-change");
+		KZ::API::events::MapChange data(currentMapName.Get());
+
+		if (mapInfo.data.has_value())
+		{
+			META_CONPRINTF("[KZ::Global] %s is approved.\n", mapInfo.data->name.c_str());
+			if (mapInfo.data->name == currentMapName.Get())
+			{
+				for (const auto &course : mapInfo.data->courses)
+				{
+					KZ::course::UpdateCourseGlobalID(course.name.c_str(), course.id);
+					META_CONPRINTF("[KZ::Global] Registered course '%s' with ID %i!\n", course.name.c_str(), course.id);
+				}
+			}
+		}
+		else
+		{
+			META_CONPRINTF("[KZ::Global] %s is not approved.\n", currentMapName.Get());
+		}
+
+		{
+			std::unique_lock lock(KZGlobalService::currentMap.mutex);
+			KZGlobalService::currentMap.data = std::move(mapInfo.data);
+		}
+	}
+};
+
 void KZGlobalService::OnActivateServer()
 {
 	switch (KZGlobalService::state.load())
@@ -202,44 +248,7 @@ void KZGlobalService::OnActivateServer()
 
 		case KZGlobalService::State::HandshakeCompleted:
 		{
-			bool mapNameOk = false;
-			CUtlString currentMapName = g_pKZUtils->GetCurrentMapName(&mapNameOk);
-
-			if (!mapNameOk)
-			{
-				META_CONPRINTF("[KZ::Global] Failed to get current map name. Cannot send `map-change` event.\n");
-				return;
-			}
-
-			std::string_view event("map-change");
-			KZ::API::events::MapChange data(currentMapName.Get());
-
-			// clang-format off
-			KZGlobalService::SendMessage(event, data, [currentMapName](KZ::API::events::MapInfo& mapInfo)
-			{
-				if (mapInfo.data.has_value())
-				{
-					META_CONPRINTF("[KZ::Global] %s is approved.\n", mapInfo.data->name.c_str());
-					if (mapInfo.data->name == currentMapName.Get())
-					{
-						for (const auto &course : mapInfo.data->courses)
-						{
-							KZ::course::UpdateCourseGlobalID(course.name.c_str(), course.id);
-							META_CONPRINTF("[KZ::Global] Registered course '%s' with ID %i!\n", course.name.c_str(), course.id);
-						}
-					}
-				}
-				else
-				{
-					META_CONPRINTF("[KZ::Global] %s is not approved.\n", currentMapName.Get());
-				}
-
-				{
-					std::unique_lock lock(KZGlobalService::currentMap.mutex);
-					KZGlobalService::currentMap.data = std::move(mapInfo.data);
-				}
-			});
-			// clang-format on
+			KZGlobalService::SendMessage(event, data, OnMapChangeCallback {});
 		}
 		break;
 	}
@@ -449,6 +458,9 @@ void KZGlobalService::OnWebSocketMessage(const ix::WebSocketMessagePtr &message)
 					KZGlobalService::state.store(KZGlobalService::State::Disconnected);
 				}
 			}
+
+			// TODO: empty message queue
+			KZGlobalService::AddMainThreadCallback([]() { KZGlobalService::DrainMessageCallbacks(); });
 		}
 		break;
 
@@ -628,11 +640,11 @@ void KZGlobalService::CompleteHandshake(KZ::API::handshake::HelloAck &ack)
 
 void KZGlobalService::ExecuteMessageCallback(u32 messageID, const Json &payload)
 {
-	std::function<void(u32, const Json &)> callback;
+	std::unique_ptr<KZGlobalService::MessageCallback> callback = nullptr;
 
 	{
 		std::unique_lock lock(KZGlobalService::messageCallbacks.mutex);
-		std::unordered_map<u32, std::function<void(u32, const Json &)>> &callbacks = KZGlobalService::messageCallbacks.queue;
+		std::unordered_map<u32, std::unique_ptr<KZGlobalService::MessageCallback>> &callbacks = KZGlobalService::messageCallbacks.queue;
 
 		if (auto found = callbacks.extract(messageID); !found.empty())
 		{
@@ -643,7 +655,34 @@ void KZGlobalService::ExecuteMessageCallback(u32 messageID, const Json &payload)
 	if (callback)
 	{
 		META_CONPRINTF("[KZ::Global] Executing callback #%i\n", messageID);
-		callback(messageID, payload);
+
+		if (!payload.IsValid())
+		{
+			META_CONPRINTF("[KZ::Global] WebSocket message is not valid JSON.\n");
+			return;
+		}
+
+		KZ::API::events::Error error;
+
+		if (payload.Get("data", error))
+		{
+			callback->OnError(error.message);
+		}
+		else
+		{
+			callback->OnSuccess(messageID, payload);
+		}
+	}
+}
+
+void KZGlobalService::DrainMessageCallbacks()
+{
+	std::unique_lock lock(KZGlobalService::messageCallbacks.mutex);
+	std::unordered_map<u32, std::unique_ptr<KZGlobalService::MessageCallback>> &callbacks = KZGlobalService::messageCallbacks.queue;
+
+	for (auto it = callbacks.begin(); it != callbacks.end(); it = callbacks.erase(it))
+	{
+		it->OnCancelled();
 	}
 }
 

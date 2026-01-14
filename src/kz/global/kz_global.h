@@ -15,6 +15,7 @@
 #include "kz/global/api.h"
 #include "kz/global/handshake.h"
 #include "kz/global/events.h"
+#include "kz/global/callbacks.h"
 #include "kz/timer/announce.h"
 
 class KZGlobalService : public KZBaseService
@@ -140,8 +141,7 @@ public:
 	/**
 	 * Submits a new record to the API.
 	 */
-	template<typename CB>
-	SubmitRecordResult SubmitRecord(u16 filterID, f64 time, u32 teleports, std::string_view modeMD5, void *styles, std::string_view metadata, CB &&cb)
+	SubmitRecordResult SubmitRecord(u16 filterID, f64 time, u32 teleports, std::string_view modeMD5, void *styles, std::string_view metadata, u32 uid)
 	{
 		if (!this->player->IsAuthenticated() && !this->player->hasPrime)
 		{
@@ -169,17 +169,19 @@ public:
 		data.time = time;
 		data.metadata = metadata;
 
+		auto sendMessage = [data, uid]() { KZGlobalService::SendMessage("new-record", data, KZ::global::callbacks::OnRecordSubmitted {uid}); };
+
 		switch (KZGlobalService::state.load())
 		{
 			case KZGlobalService::State::HandshakeCompleted:
-				KZGlobalService::SendMessage("new-record", data, cb);
+				sendMessage();
 				return SubmitRecordResult::Submitted;
 
 			case KZGlobalService::State::Disconnected:
 				return SubmitRecordResult::NotConnected;
 
 			default:
-				KZGlobalService::AddMainThreadCallback([=]() { KZGlobalService::SendMessage("new-record", data, cb); });
+				KZGlobalService::AddMainThreadCallback(std::move(sendMessage));
 				return SubmitRecordResult::Queued;
 		}
 	}
@@ -187,9 +189,8 @@ public:
 	/**
 	 * Query the personal best of a player on a certain map, course, mode, style.
 	 */
-	template<typename CB>
 	static bool QueryPB(u64 steamid64, std::string_view targetPlayerName, std::string_view mapName, std::string_view courseNameOrNumber,
-						KZ::API::Mode mode, const CUtlVector<CUtlString> &styleNames, CB &&cb)
+						KZ::API::Mode mode, const CUtlVector<CUtlString> &styleNames, u32 uid)
 	{
 		if (!KZGlobalService::IsAvailable())
 		{
@@ -202,7 +203,7 @@ public:
 		{
 			data.styles.emplace_back(styleNames[i].Get());
 		}
-		return KZGlobalService::SendMessage(event, data, std::move(cb));
+		return KZGlobalService::SendMessage(event, data, KZ::global::callbacks::OnPBQueried {uid});
 	}
 
 	/**
@@ -313,7 +314,7 @@ private:
 	static inline struct
 	{
 		std::mutex mutex;
-		std::unordered_map<u32, std::function<void(u32, const Json &)>> queue;
+		std::unordered_map<u32, std::unique_ptr<KZ::global::callbacks::MessageCallback>> queue;
 	} messageCallbacks {};
 
 	/**
@@ -406,7 +407,7 @@ private:
 	static void AddMessageCallback(u32 messageID, CB &&callback)
 	{
 		std::unique_lock lock(KZGlobalService::messageCallbacks.mutex);
-		KZGlobalService::messageCallbacks.queue[messageID] = std::move(callback);
+		KZGlobalService::messageCallbacks.queue[messageID] = std::make_unique<KZ::global::callbacks::MessageCallback>(callback);
 	}
 
 	/**
@@ -415,6 +416,8 @@ private:
 	 * The callback will be executed on the main thread.
 	 */
 	static void ExecuteMessageCallback(u32 messageID, const Json &payload);
+
+	static void DrainMessageCallbacks();
 
 	/**
 	 * Prepares a message to be sent to the API.
@@ -472,6 +475,7 @@ private:
 		}
 
 		KZGlobalService::socket->send(payload.ToString());
+
 		return true;
 	}
 
@@ -479,7 +483,7 @@ private:
 	 * Sends a message to the API with a callback to be executed when we get a response.
 	 */
 	template<typename T, typename CB>
-	static bool SendMessage(std::string_view event, const T &data, CB &&callback)
+	static bool SendMessage(std::string_view event, const T &data)
 	{
 		u32 messageID = KZGlobalService::nextMessageID++;
 		Json payload;
@@ -489,28 +493,9 @@ private:
 			return false;
 		}
 
-		// clang-format off
-		KZGlobalService::AddMessageCallback(messageID, [callback = std::move(callback)](u32 messageID, const Json& payload)
-		{
-			if (!payload.IsValid())
-			{
-				META_CONPRINTF("[KZ::Global] WebSocket message is not valid JSON.\n");
-				return;
-			}
-
-			std::remove_reference_t<typename decltype(std::function(callback))::argument_type> decoded;
-
-			if (!payload.Get("data", decoded))
-			{
-				META_CONPRINTF("[KZ::Global] WebSocket message does not contain a valid `data` field.\n");
-				return;
-			}
-
-			callback(decoded);
-		});
-		// clang-format on
-
+		KZGlobalService::AddMessageCallback<CB>(messageID);
 		KZGlobalService::socket->send(payload.ToString());
+
 		return true;
 	}
 };

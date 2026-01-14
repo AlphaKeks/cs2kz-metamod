@@ -154,38 +154,11 @@ RecordAnnounce::RecordAnnounce(KZPlayer *player)
 
 void RecordAnnounce::SubmitGlobal()
 {
-	auto callback = [uid = this->uid](KZ::API::events::NewRecordAck &ack)
-	{
-		META_CONPRINTF("[KZ::Global - %u] Record submitted under ID %d\n", uid, ack.recordId);
-
-		RecordAnnounce *rec = RecordAnnounce::Get(uid);
-		if (!rec)
-		{
-			return;
-		}
-		rec->globalResponse.received = true;
-		rec->globalResponse.recordId = ack.recordId;
-		// TODO: Remove this 0.1 when API sends the correct rating
-		rec->globalResponse.playerRating = ack.playerRating * 0.1f;
-		rec->globalResponse.overall.rank = ack.overallData.rank;
-		rec->globalResponse.overall.points = ack.overallData.points;
-		rec->globalResponse.overall.maxRank = ack.overallData.leaderboardSize;
-		rec->globalResponse.pro.rank = ack.proData.rank;
-		rec->globalResponse.pro.points = ack.proData.points;
-		rec->globalResponse.pro.maxRank = ack.proData.leaderboardSize;
-
-		// cache should not be overwritten by styled runs
-		if (rec->styles.empty())
-		{
-			rec->UpdateGlobalCache();
-		}
-	};
-
 	KZPlayer *player = g_pKZPlayerManager->ToPlayer(this->userID);
 
 	// Dirty hack since nested forward declaration isn't possible.
 	KZGlobalService::SubmitRecordResult submissionResult = player->globalService->SubmitRecord(
-		this->globalFilterID, this->time, this->teleports, this->mode.md5, (void *)(&this->styles), this->metadata.c_str(), callback);
+		this->globalFilterID, this->time, this->teleports, this->mode.md5, (void *)(&this->styles), this->metadata.c_str(), this->uid);
 
 	if (kz_debug_announce_global.Get())
 	{

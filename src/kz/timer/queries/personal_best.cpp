@@ -106,53 +106,48 @@ struct PBRequest : public BaseRequest
 			return;
 		}
 		this->globalStatus = ResponseStatus::PENDING;
-		auto callback = [uid = this->uid](KZ::API::events::PersonalBest &pb)
-		{
-			PBRequest *req = (PBRequest *)PBRequest::Find(uid);
-			if (!req)
-			{
-				return;
-			}
-
-			if (req->requestingGlobalPlayer && req->localStatus == ResponseStatus::ENABLED && pb.player.has_value())
-			{
-				req->requestingGlobalPlayer = false;
-				req->queryLocalRanking = !pb.player->isBanned;
-			}
-
-			if (pb.map.has_value() && pb.course.has_value())
-			{
-				req->mapName = pb.map->name.c_str();
-				req->courseName = pb.course->name.c_str();
-				req->globalStatus = ResponseStatus::RECEIVED;
-			}
-			else
-			{
-				req->globalStatus = ResponseStatus::DISABLED;
-				return;
-			}
-
-			req->gpbData.hasPB = pb.overall.has_value();
-			if (req->gpbData.hasPB)
-			{
-				req->gpbData.runTime = pb.overall->time;
-				req->gpbData.rank = pb.overall->nubRank;
-				req->gpbData.maxRank = pb.overall->nubMaxRank;
-				req->gpbData.teleportsUsed = pb.overall->teleports;
-				req->gpbData.points = pb.overall->nubPoints;
-			}
-			req->gpbData.hasPBPro = pb.pro.has_value();
-			if (req->gpbData.hasPBPro)
-			{
-				req->gpbData.runTimePro = pb.pro->time;
-				req->gpbData.rankPro = pb.pro->proRank;
-				req->gpbData.maxRankPro = pb.pro->proMaxRank;
-				req->gpbData.pointsPro = pb.pro->proPoints;
-			}
-		};
 		KZGlobalService::QueryPB(this->targetSteamID64, std::string_view(this->targetPlayerName.Get(), this->targetPlayerName.Length()),
 								 std::string_view(this->mapName.Get(), this->mapName.Length()),
-								 std::string_view(this->courseName.Get(), this->courseName.Length()), this->apiMode, this->styleList, callback);
+								 std::string_view(this->courseName.Get(), this->courseName.Length()), this->apiMode, this->styleList, this->uid);
+	}
+
+	void OnGPBQueried(const KZ::API::events::PersonalBest &pb)
+	{
+		if (this->requestingGlobalPlayer && this->localStatus == ResponseStatus::ENABLED && pb.player.has_value())
+		{
+			this->requestingGlobalPlayer = false;
+			this->queryLocalRanking = !pb.player->isBanned;
+		}
+
+		if (pb.map.has_value() && pb.course.has_value())
+		{
+			this->mapName = pb.map->name.c_str();
+			this->courseName = pb.course->name.c_str();
+			this->globalStatus = ResponseStatus::RECEIVED;
+		}
+		else
+		{
+			this->globalStatus = ResponseStatus::DISABLED;
+			return;
+		}
+
+		this->gpbData.hasPB = pb.overall.has_value();
+		if (this->gpbData.hasPB)
+		{
+			this->gpbData.runTime = pb.overall->time;
+			this->gpbData.rank = pb.overall->nubRank;
+			this->gpbData.maxRank = pb.overall->nubMaxRank;
+			this->gpbData.teleportsUsed = pb.overall->teleports;
+			this->gpbData.points = pb.overall->nubPoints;
+		}
+		this->gpbData.hasPBPro = pb.pro.has_value();
+		if (this->gpbData.hasPBPro)
+		{
+			this->gpbData.runTimePro = pb.pro->time;
+			this->gpbData.rankPro = pb.pro->proRank;
+			this->gpbData.maxRankPro = pb.pro->proMaxRank;
+			this->gpbData.pointsPro = pb.pro->proPoints;
+		}
 	}
 
 	virtual void Reply()
