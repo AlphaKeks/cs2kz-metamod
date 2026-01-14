@@ -11,13 +11,13 @@ Automated translation linter reports for cs2kz-metamod.
 | **Total Languages** | 13 |
 | **Total Phrases** | 521 |
 | **Phrases Missing Translations** | 441 |
-| **Total Missing Entries** | 2038 |
+| **Total Missing Entries** | 2036 |
 | **Menu Files** | 9 |
 
 ## Language Coverage (Phrases)
 
 ```
-  chi (schinese)       [███████████████████░]  99.2% (517/521)
+  chi (schinese)       [███████████████████░]  99.6% (519/521)
   de (german)          [███████████████████░]  99.6% (519/521)
   en (english)         [████████████████████] 100.0% (521/521)
   es (spanish)         [███████████░░░░░░░░░]  55.3% (288/521)
@@ -79,9 +79,9 @@ Automated translation linter reports for cs2kz-metamod.
 
 ## Last Updated
 
-- **Commit:** [`76a1beb`](https://github.com/AlphaKeks/cs2kz-metamod/commit/76a1beb7587d8203f01b37e9ffce1261f7b2309e)
-- **Time:** 2026-01-09 00:43:37 UTC
-- **Message:** update racing to match new coordinator
+- **Commit:** [`328232b`](https://github.com/AlphaKeks/cs2kz-metamod/commit/328232b7409994e31edddcbfa32bf6d643b700ad)
+- **Time:** 2026-01-14 19:36:12 UTC
+- **Message:** Make !pause respawn players
 
 ---
 
