@@ -6,26 +6,26 @@ Generated for: /home/runner/work/cs2kz-metamod/cs2kz-metamod
 SUMMARY
 ----------------------------------------------------------------------
 Total languages: 13
-Total phrases: 521
-Phrases with missing translations: 441
-Total missing translation entries: 2036
+Total phrases: 560
+Phrases with missing translations: 480
+Total missing translation entries: 2472
 
 LANGUAGE COVERAGE (Phrases)
 ----------------------------------------------------------------------
 
-  chi (schinese)       [███████████████████░]  99.6% (519/521)
-  de (german)          [███████████████████░]  99.6% (519/521)
-  en (english)         [████████████████████] 100.0% (521/521)
-  es (spanish)         [███████████░░░░░░░░░]  55.3% (288/521)
-  fi (finnish)         [█████████░░░░░░░░░░░]  45.7% (238/521)
-  it (italian)         [████████░░░░░░░░░░░░]  44.1% (230/521)
-  ko (koreana)         [███████████░░░░░░░░░]  55.9% (291/521)
-  lv (latvian)         [████████████░░░░░░░░]  63.9% (333/521)
-  pl (polish)          [████████████████████] 100.0% (521/521)
-  ru (russian)         [███░░░░░░░░░░░░░░░░░]  17.7% (92/521)
-  sv (swedish)         [███████████████░░░░░]  76.2% (397/521)
-  tr (turkish)         [██████████░░░░░░░░░░]  51.2% (267/521)
-  ua (ukrainian)       [████████████████████] 100.0% (521/521)
+  chi (schinese)       [██████████████████░░]  92.7% (519/560)
+  de (german)          [██████████████████░░]  92.7% (519/560)
+  en (english)         [████████████████████] 100.0% (560/560)
+  es (spanish)         [██████████░░░░░░░░░░]  51.4% (288/560)
+  fi (finnish)         [████████░░░░░░░░░░░░]  42.5% (238/560)
+  it (italian)         [████████░░░░░░░░░░░░]  41.1% (230/560)
+  ko (koreana)         [██████████░░░░░░░░░░]  52.0% (291/560)
+  lv (latvian)         [███████████░░░░░░░░░]  59.5% (333/560)
+  pl (polish)          [██████████████████░░]  93.0% (521/560)
+  ru (russian)         [███░░░░░░░░░░░░░░░░░]  16.4% (92/560)
+  sv (swedish)         [██████████████░░░░░░]  70.9% (397/560)
+  tr (turkish)         [█████████░░░░░░░░░░░]  47.7% (267/560)
+  ua (ukrainian)       [███████████████████░]  98.8% (553/560)
 
 Global languages (13): chi, de, en, es, fi, it, ko, lv, pl, ru, sv, tr, ua
 
@@ -85,6 +85,8 @@ cs2kz-api.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "Global Check"
     Missing (4): es, it, ru, tr
+  Line 16: "Non Global Map Warning"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
 
 cs2kz-beam.phrases.txt
 ----------------------------------------------------------------------
@@ -212,7 +214,7 @@ cs2kz-commands.phrases.txt
     Missing (1): ru
   Line 493: "Command Description - kz_togglestats"
     Missing (1): ru
-  Line 508: "Command Description - kz_togglejs"
+  Line 508: "Command Description - kz_jumpstats"
     Missing (1): ru
   Line 523: "Command Description - kz_jsalways"
     Missing (1): ru
@@ -354,6 +356,16 @@ cs2kz-commands.phrases.txt
     Missing (9): de, es, fi, it, ko, lv, ru, sv, tr
   Line 1455: "Command Description - kz_surrender"
     Missing (9): de, es, fi, it, ko, lv, ru, sv, tr
+  Line 1462: "Command Description - kz_mapinfo"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 1467: "Command Description - kz_tier"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 1472: "Command Description - kz_modernperfstats"
+    Missing (12): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr, ua
+  Line 1476: "Command Description - kz_legacyperfstats"
+    Missing (12): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr, ua
+  Line 1480: "Command Description - kz_resetperfstats"
+    Missing (12): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr, ua
 
 cs2kz-common.phrases.txt
 ----------------------------------------------------------------------
@@ -376,6 +388,56 @@ cs2kz-course.phrases.txt
     Missing (2): it, ru
   Line 32: "Course List Header"
     Missing (2): it, ru
+  Line 47: "Map Info - No API Connection (Short)"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 52: "Map Info - No API Connection"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 57: "Map Info - No API Map Data (Short)"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 62: "Map Info - No API Map Data"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 67: "Map Info - Check Console"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 72: "Map Info - Map In Testing"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 78: "Map Info - Map Info Header"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 84: "Map Info - Mappers"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 90: "Map Info - State"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 96: "Map Info - Description"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 102: "Map Info - Invalid"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 107: "Map Info - In Testing"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 112: "Map Info - Approved"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 118: "Course Info - Unranked"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 123: "Course Info - Pending"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 128: "Course Info - Ranked"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 133: "Courses - Table Name"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 138: "Course Info Header - Name"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 143: "Course Info Header - Mappers"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 148: "Course Info Header - Tier (Vanilla)"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 153: "Course Info Header - Tier (Classic)"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 158: "Course Info Header - State (Vanilla)"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 163: "Course Info Header - State (Classic)"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 169: "Course Data Unavailable"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 176: "Tier Info"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
 
 cs2kz-hud.phrases.txt
 ----------------------------------------------------------------------
@@ -492,6 +554,10 @@ cs2kz-jumpstats.phrases.txt
     Missing (7): es, fi, it, ko, lv, ru, tr
   Line 934: "Jumpstats Option - Extended Chat Stats - Disable"
     Missing (7): es, fi, it, ko, lv, ru, tr
+  Line 943: "Jumpstats Option - Jumpstats Reporting - Enable"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 948: "Jumpstats Option - Jumpstats Reporting - Disable"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
 
 cs2kz-language.phrases.txt
 ----------------------------------------------------------------------
@@ -654,85 +720,87 @@ cs2kz-replays.phrases.txt
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
   Line 242: "Replay - Invalid UUID"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 250: "Replay - Loaded Successfully"
+  Line 250: "Replay - Multiple Matches"
+    Missing (12): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr, ua
+  Line 255: "Replay - Loaded Successfully"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 258: "Replay - No Loading Progress"
+  Line 263: "Replay - No Loading Progress"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 266: "Replay - Loading Progress"
+  Line 271: "Replay - Loading Progress"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 275: "Replay - Loading Completed"
+  Line 280: "Replay - Loading Completed"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 283: "Replay - Loading Cancelled"
+  Line 288: "Replay - Loading Cancelled"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 291: "Replay - Usage Command"
+  Line 296: "Replay - Usage Command"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 299: "Replay - Load Cancelled"
+  Line 304: "Replay - Load Cancelled"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 307: "Replay - Invalid File Format"
+  Line 312: "Replay - Invalid File Format"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 315: "Replay - Manual Replay Failed"
+  Line 320: "Replay - Manual Replay Failed"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 323: "Replay - Manual Replay Saved"
+  Line 328: "Replay - Manual Replay Saved"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 332: "Replay - Manual Replay Saved (Console)"
+  Line 337: "Replay - Manual Replay Saved (Console)"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 341: "Replay - Run Replay Failed"
+  Line 346: "Replay - Run Replay Failed"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 349: "Replay - Run Replay Saved"
+  Line 354: "Replay - Run Replay Saved"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 358: "Replay - Run Replay Saved (Console)"
+  Line 363: "Replay - Run Replay Saved (Console)"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 367: "Replay - Wrong Map"
+  Line 372: "Replay - Wrong Map"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 376: "Replay - Unknown Mode"
+  Line 381: "Replay - Unknown Mode"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 385: "Replay - Unknown Style"
+  Line 390: "Replay - Unknown Style"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 394: "Replay List - Check Console"
+  Line 399: "Replay List - Check Console"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 402: "Replay List - Usage Title"
+  Line 407: "Replay List - Usage Title"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 411: "Replay List - Usage General Options"
+  Line 416: "Replay List - Usage General Options"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 425: "Replay List - Usage Type Options"
+  Line 430: "Replay List - Usage Type Options"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 437: "Replay List - No Matching Replays"
+  Line 442: "Replay List - No Matching Replays"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 445: "Cheater Replays - Table Name"
+  Line 450: "Cheater Replays - Table Name"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 453: "Run Replays - Table Name"
+  Line 458: "Run Replays - Table Name"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 461: "Jump Replays - Table Name"
+  Line 466: "Jump Replays - Table Name"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 469: "Manual Replays - Table Name"
+  Line 474: "Manual Replays - Table Name"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 477: "Replay Table Header - Player"
+  Line 482: "Replay Table Header - Player"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 485: "Replay Table Header - Map"
+  Line 490: "Replay Table Header - Map"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 493: "Replay Table Header - Reason"
+  Line 498: "Replay Table Header - Reason"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 501: "Replay Table Header - SteamID"
+  Line 506: "Replay Table Header - SteamID"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 509: "Replay Table Header - UUID"
+  Line 514: "Replay Table Header - UUID"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 517: "Replay Table Header - Course"
+  Line 522: "Replay Table Header - Course"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 525: "Replay Table Header - Mode"
+  Line 530: "Replay Table Header - Mode"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 533: "Replay Table Header - Time"
+  Line 538: "Replay Table Header - Time"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 541: "Replay Table Header - Teleports"
+  Line 546: "Replay Table Header - Teleports"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 549: "Replay Table Header - Jump Type"
+  Line 554: "Replay Table Header - Jump Type"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 557: "Replay Table Header - Distance"
+  Line 562: "Replay Table Header - Distance"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 565: "Replay Table Header - Block"
+  Line 570: "Replay Table Header - Block"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 573: "Replay Table Header - Strafes"
+  Line 578: "Replay Table Header - Strafes"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
-  Line 581: "Replay Table Header - Saved By"
+  Line 586: "Replay Table Header - Saved By"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
 
 cs2kz-spec.phrases.txt
@@ -762,6 +830,15 @@ cs2kz-styles.phrases.txt
     Missing (1): ru
   Line 97: "Style Not Available"
     Missing (1): ru
+
+cs2kz-telemetry.phrases.txt
+----------------------------------------------------------------------
+  Line 3: "Telemetry - Modern Bhop Stats"
+    Missing (12): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr, ua
+  Line 9: "Telemetry - Legacy Bhop Stats"
+    Missing (12): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr, ua
+  Line 15: "Telemetry - Reset Bhop Stats"
+    Missing (12): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr, ua
 
 cs2kz-timer-coursetop.phrases.txt
 ----------------------------------------------------------------------
@@ -952,6 +1029,10 @@ cs2kz-timer.phrases.txt
     Missing (7): es, fi, it, ko, lv, ru, tr
   Line 840: "Record Volume Set"
     Missing (8): es, fi, it, ko, lv, ru, sv, tr
+  Line 849: "Started Run on Course"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 856: "Started Run on Non Ranked Course"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
 
 cs2kz-tips-general.phrases.txt
 ----------------------------------------------------------------------
@@ -984,7 +1065,7 @@ cs2kz-tips-general.phrases.txt
 
 cs2kz-tips-jumpstats.phrases.txt
 ----------------------------------------------------------------------
-  Line 3: "Tip - kz_togglejs"
+  Line 3: "Tip - kz_js"
     Missing (1): ru
   Line 18: "Tip - kz_jsalways"
     Missing (1): ru
