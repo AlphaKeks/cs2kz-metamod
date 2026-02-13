@@ -79,8 +79,8 @@ Automated translation linter reports for cs2kz-metamod.
 
 ## Last Updated
 
-- **Commit:** [`3ca6977`](https://github.com/AlphaKeks/cs2kz-metamod/commit/3ca697704e7f71a473405e6d249ec6fbdec3319e)
-- **Time:** 2026-02-04 23:28:14 UTC
+- **Commit:** [`0ed8a73`](https://github.com/AlphaKeks/cs2kz-metamod/commit/0ed8a733b4f9396b5788aea5926b10a0ace33efa)
+- **Time:** 2026-02-13 20:03:59 UTC
 - **Message:** refactor GlobalService
 
 ---
