@@ -1,9 +1,9 @@
 {
   "summary": {
     "total_languages": 13,
-    "total_phrases": 560,
-    "phrases_with_missing": 480,
-    "total_missing_entries": 2472,
+    "total_phrases": 566,
+    "phrases_with_missing": 486,
+    "total_missing_entries": 2534,
     "all_languages": [
       "chi",
       "de",
@@ -57,10 +57,22 @@
   "languages": {
     "chi": {
       "name": "schinese",
-      "coverage_percent": 92.68,
+      "coverage_percent": 91.7,
       "translated": 519,
-      "missing": 41,
+      "missing": 47,
       "missing_phrases": [
+        {
+          "file": "cs2kz-anticheat.phrases.txt",
+          "phrase": "Anti-Cheat Warning",
+          "line": 51,
+          "english_text": "{darkred}WARNING: Any use of hardware/software/configs to gain unfair advantage is strictly forbidden! This includes, but is not limited to: hacks, macros, hyperscrolling, SOCD/nulls, desubtick and mouse abuse configs."
+        },
+        {
+          "file": "cs2kz-anticheat.phrases.txt",
+          "phrase": "Cheater Warning",
+          "line": 55,
+          "english_text": "{darkred}WARNING: You are currently banned. Your jumps and records will not be saved."
+        },
         {
           "file": "cs2kz-api.phrases.txt",
           "phrase": "Non Global Map Warning",
@@ -100,14 +112,20 @@
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_legacyperfstats",
-          "line": 1476,
+          "line": 1477,
           "english_text": "Retrieve bhop statistics for legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_resetperfstats",
-          "line": 1480,
+          "line": 1482,
           "english_text": "Reset bhop statistics for modern and legacy jumping."
+        },
+        {
+          "file": "cs2kz-commands.phrases.txt",
+          "phrase": "Command Description - kz_fov",
+          "line": 1487,
+          "english_text": "Change your FOV."
         },
         {
           "file": "cs2kz-course.phrases.txt",
@@ -260,6 +278,18 @@
           "english_text": "{default}{course}{grey} ({purple}{state}{grey}) - Tier {yellow}{tier_nub}{grey}/{blue}{tier_pro}{grey}{description}"
         },
         {
+          "file": "cs2kz-fov.phrases.txt",
+          "phrase": "FOV - Show",
+          "line": 3,
+          "english_text": "{grey}Your FOV is {purple}{fov}{grey}."
+        },
+        {
+          "file": "cs2kz-fov.phrases.txt",
+          "phrase": "Error Message (Invalid FOV)",
+          "line": 9,
+          "english_text": "{darkred}Invalid FOV \\\"{fov}\\\" (allowed {min} - {max})."
+        },
+        {
           "file": "cs2kz-jumpstats.phrases.txt",
           "phrase": "Jumpstats Option - Jumpstats Reporting - Enable",
           "line": 943,
@@ -281,7 +311,7 @@
           "file": "cs2kz-telemetry.phrases.txt",
           "phrase": "Telemetry - Modern Bhop Stats",
           "line": 3,
-          "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{truePerfPercent}%%%% {grey}True ({lime}{truePerfs}{grey}) | {blue}{modernPerfPercent}%%%% {grey}Modern ({lime}{modernPerfs}{grey})"
+          "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{truePerfPercent}%%%% {grey}True ({lime}{truePerfs}{grey}) | {blue}{modernPerfEarlyPercent}%%%% {grey}Early ({lime}{modernPerfsEarly}{grey}) | {blue}{modernPerfLatePercent}%%%% {grey}Late ({lime}{modernPerfsLate}{grey})"
         },
         {
           "file": "cs2kz-telemetry.phrases.txt",
@@ -292,7 +322,7 @@
         {
           "file": "cs2kz-telemetry.phrases.txt",
           "phrase": "Telemetry - Reset Bhop Stats",
-          "line": 15,
+          "line": 16,
           "english_text": "{grey}Bunny hop statistics have been reset."
         },
         {
@@ -306,6 +336,12 @@
           "phrase": "Started Run on Non Ranked Course",
           "line": 856,
           "english_text": "{yellow}Warning: {grey} Course {default}{course_name}{grey} is not ranked. Runs on this course will not affect your global player rating."
+        },
+        {
+          "file": "cs2kz-tips-visual.phrases.txt",
+          "phrase": "Tip - kz_fov",
+          "line": 63,
+          "english_text": "{grey}Use {default}/fov {purple}<value> {default}to change your FOV."
         }
       ],
       "menu": {
@@ -319,10 +355,22 @@
     },
     "de": {
       "name": "german",
-      "coverage_percent": 92.68,
+      "coverage_percent": 91.7,
       "translated": 519,
-      "missing": 41,
+      "missing": 47,
       "missing_phrases": [
+        {
+          "file": "cs2kz-anticheat.phrases.txt",
+          "phrase": "Anti-Cheat Warning",
+          "line": 51,
+          "english_text": "{darkred}WARNING: Any use of hardware/software/configs to gain unfair advantage is strictly forbidden! This includes, but is not limited to: hacks, macros, hyperscrolling, SOCD/nulls, desubtick and mouse abuse configs."
+        },
+        {
+          "file": "cs2kz-anticheat.phrases.txt",
+          "phrase": "Cheater Warning",
+          "line": 55,
+          "english_text": "{darkred}WARNING: You are currently banned. Your jumps and records will not be saved."
+        },
         {
           "file": "cs2kz-api.phrases.txt",
           "phrase": "Non Global Map Warning",
@@ -362,14 +410,20 @@
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_legacyperfstats",
-          "line": 1476,
+          "line": 1477,
           "english_text": "Retrieve bhop statistics for legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_resetperfstats",
-          "line": 1480,
+          "line": 1482,
           "english_text": "Reset bhop statistics for modern and legacy jumping."
+        },
+        {
+          "file": "cs2kz-commands.phrases.txt",
+          "phrase": "Command Description - kz_fov",
+          "line": 1487,
+          "english_text": "Change your FOV."
         },
         {
           "file": "cs2kz-course.phrases.txt",
@@ -522,6 +576,18 @@
           "english_text": "{default}{course}{grey} ({purple}{state}{grey}) - Tier {yellow}{tier_nub}{grey}/{blue}{tier_pro}{grey}{description}"
         },
         {
+          "file": "cs2kz-fov.phrases.txt",
+          "phrase": "FOV - Show",
+          "line": 3,
+          "english_text": "{grey}Your FOV is {purple}{fov}{grey}."
+        },
+        {
+          "file": "cs2kz-fov.phrases.txt",
+          "phrase": "Error Message (Invalid FOV)",
+          "line": 9,
+          "english_text": "{darkred}Invalid FOV \\\"{fov}\\\" (allowed {min} - {max})."
+        },
+        {
           "file": "cs2kz-jumpstats.phrases.txt",
           "phrase": "Jumpstats Option - Jumpstats Reporting - Enable",
           "line": 943,
@@ -543,7 +609,7 @@
           "file": "cs2kz-telemetry.phrases.txt",
           "phrase": "Telemetry - Modern Bhop Stats",
           "line": 3,
-          "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{truePerfPercent}%%%% {grey}True ({lime}{truePerfs}{grey}) | {blue}{modernPerfPercent}%%%% {grey}Modern ({lime}{modernPerfs}{grey})"
+          "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{truePerfPercent}%%%% {grey}True ({lime}{truePerfs}{grey}) | {blue}{modernPerfEarlyPercent}%%%% {grey}Early ({lime}{modernPerfsEarly}{grey}) | {blue}{modernPerfLatePercent}%%%% {grey}Late ({lime}{modernPerfsLate}{grey})"
         },
         {
           "file": "cs2kz-telemetry.phrases.txt",
@@ -554,7 +620,7 @@
         {
           "file": "cs2kz-telemetry.phrases.txt",
           "phrase": "Telemetry - Reset Bhop Stats",
-          "line": 15,
+          "line": 16,
           "english_text": "{grey}Bunny hop statistics have been reset."
         },
         {
@@ -568,6 +634,12 @@
           "phrase": "Started Run on Non Ranked Course",
           "line": 856,
           "english_text": "{yellow}Warning: {grey} Course {default}{course_name}{grey} is not ranked. Runs on this course will not affect your global player rating."
+        },
+        {
+          "file": "cs2kz-tips-visual.phrases.txt",
+          "phrase": "Tip - kz_fov",
+          "line": 63,
+          "english_text": "{grey}Use {default}/fov {purple}<value> {default}to change your FOV."
         }
       ],
       "menu": {
@@ -579,7 +651,7 @@
     "en": {
       "name": "english",
       "coverage_percent": 100.0,
-      "translated": 560,
+      "translated": 566,
       "missing": 0,
       "missing_phrases": [],
       "menu": {
@@ -590,15 +662,15 @@
     },
     "es": {
       "name": "spanish",
-      "coverage_percent": 51.43,
+      "coverage_percent": 50.88,
       "translated": 288,
-      "missing": 272,
+      "missing": 278,
       "missing_phrases": [
         {
           "file": "cs2kz-anticheat.phrases.txt",
           "phrase": "Kick Player m_yaw",
           "line": 3,
-          "english_text": "{yellow}Warning{grey}: Your {default}m_yaw{grey} value must be less or equal to 0.3 to play on this server. You will be disconnected."
+          "english_text": "{darkred}Warning{grey}: Your {default}m_yaw{grey} value must be less or equal to 0.3 to play on this server. You will be disconnected."
         },
         {
           "file": "cs2kz-anticheat.phrases.txt",
@@ -610,13 +682,25 @@
           "file": "cs2kz-anticheat.phrases.txt",
           "phrase": "Kick Player fps_max",
           "line": 27,
-          "english_text": "{yellow}Warning{grey}: Your {default}fps_max{grey} value must be more or equal to 64 to play on this server. You will be disconnected."
+          "english_text": "{darkred}Warning{grey}: Your {default}fps_max{grey} value must be more or equal to 64 to play on this server. You will be disconnected."
         },
         {
           "file": "cs2kz-anticheat.phrases.txt",
           "phrase": "Kick Player fps_max (Console)",
           "line": 39,
           "english_text": "Warning: Your fps_max value must be more or equal to 64 to play on this server. You will be disconnected."
+        },
+        {
+          "file": "cs2kz-anticheat.phrases.txt",
+          "phrase": "Anti-Cheat Warning",
+          "line": 51,
+          "english_text": "{darkred}WARNING: Any use of hardware/software/configs to gain unfair advantage is strictly forbidden! This includes, but is not limited to: hacks, macros, hyperscrolling, SOCD/nulls, desubtick and mouse abuse configs."
+        },
+        {
+          "file": "cs2kz-anticheat.phrases.txt",
+          "phrase": "Cheater Warning",
+          "line": 55,
+          "english_text": "{darkred}WARNING: You are currently banned. Your jumps and records will not be saved."
         },
         {
           "file": "cs2kz-api.phrases.txt",
@@ -1071,14 +1155,20 @@
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_legacyperfstats",
-          "line": 1476,
+          "line": 1477,
           "english_text": "Retrieve bhop statistics for legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_resetperfstats",
-          "line": 1480,
+          "line": 1482,
           "english_text": "Reset bhop statistics for modern and legacy jumping."
+        },
+        {
+          "file": "cs2kz-commands.phrases.txt",
+          "phrase": "Command Description - kz_fov",
+          "line": 1487,
+          "english_text": "Change your FOV."
         },
         {
           "file": "cs2kz-common.phrases.txt",
@@ -1235,6 +1325,18 @@
           "phrase": "Tier Info",
           "line": 176,
           "english_text": "{default}{course}{grey} ({purple}{state}{grey}) - Tier {yellow}{tier_nub}{grey}/{blue}{tier_pro}{grey}{description}"
+        },
+        {
+          "file": "cs2kz-fov.phrases.txt",
+          "phrase": "FOV - Show",
+          "line": 3,
+          "english_text": "{grey}Your FOV is {purple}{fov}{grey}."
+        },
+        {
+          "file": "cs2kz-fov.phrases.txt",
+          "phrase": "Error Message (Invalid FOV)",
+          "line": 9,
+          "english_text": "{darkred}Invalid FOV \\\"{fov}\\\" (allowed {min} - {max})."
         },
         {
           "file": "cs2kz-jumpstats.phrases.txt",
@@ -1707,241 +1809,241 @@
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loaded Successfully",
-          "line": 255,
+          "line": 256,
           "english_text": "{lime}Replay loaded successfully! Starting playback..."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - No Loading Progress",
-          "line": 263,
+          "line": 264,
           "english_text": "{grey}No replay loading in progress"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loading Progress",
-          "line": 271,
+          "line": 272,
           "english_text": "{grey}Loading replay: {progress}%%%% complete"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loading Completed",
-          "line": 280,
+          "line": 281,
           "english_text": "{lime}Replay loading completed"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loading Cancelled",
-          "line": 288,
+          "line": 289,
           "english_text": "{grey}Replay loading cancelled"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Usage Command",
-          "line": 296,
+          "line": 297,
           "english_text": "{grey}Usage: kz_replay <ID>"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Load Cancelled",
-          "line": 304,
+          "line": 305,
           "english_text": "{darkred}Load cancelled by user"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Invalid File Format",
-          "line": 312,
+          "line": 313,
           "english_text": "{darkred}Invalid replay file format"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Failed",
-          "line": 320,
+          "line": 321,
           "english_text": "{darkred}Failed to save manual replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved",
-          "line": 328,
+          "line": 329,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey} ({lime}{duration}{grey}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved (Console)",
-          "line": 337,
+          "line": 338,
           "english_text": "Replay saved: {uuid} ({duration}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Failed",
-          "line": 346,
+          "line": 347,
           "english_text": "{darkred}Failed to save run replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved",
-          "line": 354,
+          "line": 355,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved (Console)",
-          "line": 363,
+          "line": 364,
           "english_text": "Replay saved: {uuid}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Wrong Map",
-          "line": 372,
+          "line": 373,
           "english_text": "{darkred}Replay map does not match current map.{grey} (Replay: {default}{replayMap}{grey}, Current: {default}{currentMap}{grey})"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Mode",
-          "line": 381,
+          "line": 382,
           "english_text": "{darkred}Mode {default}{modeName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Style",
-          "line": 390,
+          "line": 391,
           "english_text": "{darkred}Style {default}{styleName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Check Console",
-          "line": 399,
+          "line": 400,
           "english_text": "{grey}Check console for info!"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Title",
-          "line": 407,
+          "line": 408,
           "english_text": "Usage: !replays [type=run/r/jump/j/manual/m] [options...]"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage General Options",
-          "line": 416,
+          "line": 417,
           "english_text": "\\nGeneral Options:\\n\\tplayer=<name> - Filter by player name\\n\\tsteamid=<id> - Filter by Steam ID\\n\\tmap=<name> - Filter by map name (default: current map)\\n\\toffset=<num> - Skip first N results\\n\\tlimit=<num> - Limit results (max 20)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Type Options",
-          "line": 430,
+          "line": 431,
           "english_text": "\\nType Options:\\n\\tRun: mode=<mode> course=<name> maxtime=<sec> maxteleports=<num> numstyles=<num>\\n\\tJump: jumptype=<type> mindistance=<dist>\\n\\tManual: saver=<name> ssid=<steamid>"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - No Matching Replays",
-          "line": 442,
+          "line": 443,
           "english_text": "{grey}No matching replays found."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Cheater Replays - Table Name",
-          "line": 450,
+          "line": 451,
           "english_text": "Cheater Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Run Replays - Table Name",
-          "line": 458,
+          "line": 459,
           "english_text": "Run Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Jump Replays - Table Name",
-          "line": 466,
+          "line": 467,
           "english_text": "Jump Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Manual Replays - Table Name",
-          "line": 474,
+          "line": 475,
           "english_text": "Manual Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Player",
-          "line": 482,
+          "line": 483,
           "english_text": "Player"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Map",
-          "line": 490,
+          "line": 491,
           "english_text": "Map"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Reason",
-          "line": 498,
+          "line": 499,
           "english_text": "Reason"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - SteamID",
-          "line": 506,
+          "line": 507,
           "english_text": "SteamID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - UUID",
-          "line": 514,
+          "line": 515,
           "english_text": "UUID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Course",
-          "line": 522,
+          "line": 523,
           "english_text": "Course"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Mode",
-          "line": 530,
+          "line": 531,
           "english_text": "Mode"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Time",
-          "line": 538,
+          "line": 539,
           "english_text": "Time"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Teleports",
-          "line": 546,
+          "line": 547,
           "english_text": "Teleports"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Jump Type",
-          "line": 554,
+          "line": 555,
           "english_text": "Jump Type"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Distance",
-          "line": 562,
+          "line": 563,
           "english_text": "Distance"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Block",
-          "line": 570,
+          "line": 571,
           "english_text": "Block"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Strafes",
-          "line": 578,
+          "line": 579,
           "english_text": "Strafes"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Saved By",
-          "line": 586,
+          "line": 587,
           "english_text": "Saved By"
         },
         {
@@ -1996,7 +2098,7 @@
           "file": "cs2kz-telemetry.phrases.txt",
           "phrase": "Telemetry - Modern Bhop Stats",
           "line": 3,
-          "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{truePerfPercent}%%%% {grey}True ({lime}{truePerfs}{grey}) | {blue}{modernPerfPercent}%%%% {grey}Modern ({lime}{modernPerfs}{grey})"
+          "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{truePerfPercent}%%%% {grey}True ({lime}{truePerfs}{grey}) | {blue}{modernPerfEarlyPercent}%%%% {grey}Early ({lime}{modernPerfsEarly}{grey}) | {blue}{modernPerfLatePercent}%%%% {grey}Late ({lime}{modernPerfsLate}{grey})"
         },
         {
           "file": "cs2kz-telemetry.phrases.txt",
@@ -2007,7 +2109,7 @@
         {
           "file": "cs2kz-telemetry.phrases.txt",
           "phrase": "Telemetry - Reset Bhop Stats",
-          "line": 15,
+          "line": 16,
           "english_text": "{grey}Bunny hop statistics have been reset."
         },
         {
@@ -2086,13 +2188,13 @@
           "file": "cs2kz-timer.phrases.txt",
           "phrase": "Beat Course Info - Global Points (TP)",
           "line": 146,
-          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey})"
+          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey}) | Player Rating: {purple}{player_rating}{grey}"
         },
         {
           "file": "cs2kz-timer.phrases.txt",
           "phrase": "Beat Course Info - Global Points (PRO)",
           "line": 158,
-          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey}) / {purple}{points_pro}{grey} {blue}PRO{grey} (+{purple}{points_gained_pro}{grey})"
+          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey}) / {purple}{points}{grey} {blue}PRO{grey} (+{purple}{points_gained}{grey}) | Player Rating: {purple}{player_rating}{grey}"
         },
         {
           "file": "cs2kz-timer.phrases.txt",
@@ -2225,6 +2327,12 @@
           "phrase": "Tip - kz_rphidelegs",
           "line": 92,
           "english_text": "{grey}Type {default}!rphidelegs {grey}to toggle the visibility of the replay bot's first person legs."
+        },
+        {
+          "file": "cs2kz-tips-visual.phrases.txt",
+          "phrase": "Tip - kz_fov",
+          "line": 63,
+          "english_text": "{grey}Use {default}/fov {purple}<value> {default}to change your FOV."
         }
       ],
       "menu": {
@@ -2238,10 +2346,22 @@
     },
     "fi": {
       "name": "finnish",
-      "coverage_percent": 42.5,
+      "coverage_percent": 42.05,
       "translated": 238,
-      "missing": 322,
+      "missing": 328,
       "missing_phrases": [
+        {
+          "file": "cs2kz-anticheat.phrases.txt",
+          "phrase": "Anti-Cheat Warning",
+          "line": 51,
+          "english_text": "{darkred}WARNING: Any use of hardware/software/configs to gain unfair advantage is strictly forbidden! This includes, but is not limited to: hacks, macros, hyperscrolling, SOCD/nulls, desubtick and mouse abuse configs."
+        },
+        {
+          "file": "cs2kz-anticheat.phrases.txt",
+          "phrase": "Cheater Warning",
+          "line": 55,
+          "english_text": "{darkred}WARNING: You are currently banned. Your jumps and records will not be saved."
+        },
         {
           "file": "cs2kz-api.phrases.txt",
           "phrase": "Non Global Map Warning",
@@ -2797,14 +2917,20 @@
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_legacyperfstats",
-          "line": 1476,
+          "line": 1477,
           "english_text": "Retrieve bhop statistics for legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_resetperfstats",
-          "line": 1480,
+          "line": 1482,
           "english_text": "Reset bhop statistics for modern and legacy jumping."
+        },
+        {
+          "file": "cs2kz-commands.phrases.txt",
+          "phrase": "Command Description - kz_fov",
+          "line": 1487,
+          "english_text": "Change your FOV."
         },
         {
           "file": "cs2kz-common.phrases.txt",
@@ -2961,6 +3087,18 @@
           "phrase": "Tier Info",
           "line": 176,
           "english_text": "{default}{course}{grey} ({purple}{state}{grey}) - Tier {yellow}{tier_nub}{grey}/{blue}{tier_pro}{grey}{description}"
+        },
+        {
+          "file": "cs2kz-fov.phrases.txt",
+          "phrase": "FOV - Show",
+          "line": 3,
+          "english_text": "{grey}Your FOV is {purple}{fov}{grey}."
+        },
+        {
+          "file": "cs2kz-fov.phrases.txt",
+          "phrase": "Error Message (Invalid FOV)",
+          "line": 9,
+          "english_text": "{darkred}Invalid FOV \\\"{fov}\\\" (allowed {min} - {max})."
         },
         {
           "file": "cs2kz-jumpstats.phrases.txt",
@@ -3445,241 +3583,241 @@
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loaded Successfully",
-          "line": 255,
+          "line": 256,
           "english_text": "{lime}Replay loaded successfully! Starting playback..."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - No Loading Progress",
-          "line": 263,
+          "line": 264,
           "english_text": "{grey}No replay loading in progress"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loading Progress",
-          "line": 271,
+          "line": 272,
           "english_text": "{grey}Loading replay: {progress}%%%% complete"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loading Completed",
-          "line": 280,
+          "line": 281,
           "english_text": "{lime}Replay loading completed"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loading Cancelled",
-          "line": 288,
+          "line": 289,
           "english_text": "{grey}Replay loading cancelled"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Usage Command",
-          "line": 296,
+          "line": 297,
           "english_text": "{grey}Usage: kz_replay <ID>"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Load Cancelled",
-          "line": 304,
+          "line": 305,
           "english_text": "{darkred}Load cancelled by user"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Invalid File Format",
-          "line": 312,
+          "line": 313,
           "english_text": "{darkred}Invalid replay file format"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Failed",
-          "line": 320,
+          "line": 321,
           "english_text": "{darkred}Failed to save manual replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved",
-          "line": 328,
+          "line": 329,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey} ({lime}{duration}{grey}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved (Console)",
-          "line": 337,
+          "line": 338,
           "english_text": "Replay saved: {uuid} ({duration}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Failed",
-          "line": 346,
+          "line": 347,
           "english_text": "{darkred}Failed to save run replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved",
-          "line": 354,
+          "line": 355,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved (Console)",
-          "line": 363,
+          "line": 364,
           "english_text": "Replay saved: {uuid}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Wrong Map",
-          "line": 372,
+          "line": 373,
           "english_text": "{darkred}Replay map does not match current map.{grey} (Replay: {default}{replayMap}{grey}, Current: {default}{currentMap}{grey})"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Mode",
-          "line": 381,
+          "line": 382,
           "english_text": "{darkred}Mode {default}{modeName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Style",
-          "line": 390,
+          "line": 391,
           "english_text": "{darkred}Style {default}{styleName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Check Console",
-          "line": 399,
+          "line": 400,
           "english_text": "{grey}Check console for info!"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Title",
-          "line": 407,
+          "line": 408,
           "english_text": "Usage: !replays [type=run/r/jump/j/manual/m] [options...]"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage General Options",
-          "line": 416,
+          "line": 417,
           "english_text": "\\nGeneral Options:\\n\\tplayer=<name> - Filter by player name\\n\\tsteamid=<id> - Filter by Steam ID\\n\\tmap=<name> - Filter by map name (default: current map)\\n\\toffset=<num> - Skip first N results\\n\\tlimit=<num> - Limit results (max 20)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Type Options",
-          "line": 430,
+          "line": 431,
           "english_text": "\\nType Options:\\n\\tRun: mode=<mode> course=<name> maxtime=<sec> maxteleports=<num> numstyles=<num>\\n\\tJump: jumptype=<type> mindistance=<dist>\\n\\tManual: saver=<name> ssid=<steamid>"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - No Matching Replays",
-          "line": 442,
+          "line": 443,
           "english_text": "{grey}No matching replays found."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Cheater Replays - Table Name",
-          "line": 450,
+          "line": 451,
           "english_text": "Cheater Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Run Replays - Table Name",
-          "line": 458,
+          "line": 459,
           "english_text": "Run Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Jump Replays - Table Name",
-          "line": 466,
+          "line": 467,
           "english_text": "Jump Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Manual Replays - Table Name",
-          "line": 474,
+          "line": 475,
           "english_text": "Manual Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Player",
-          "line": 482,
+          "line": 483,
           "english_text": "Player"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Map",
-          "line": 490,
+          "line": 491,
           "english_text": "Map"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Reason",
-          "line": 498,
+          "line": 499,
           "english_text": "Reason"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - SteamID",
-          "line": 506,
+          "line": 507,
           "english_text": "SteamID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - UUID",
-          "line": 514,
+          "line": 515,
           "english_text": "UUID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Course",
-          "line": 522,
+          "line": 523,
           "english_text": "Course"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Mode",
-          "line": 530,
+          "line": 531,
           "english_text": "Mode"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Time",
-          "line": 538,
+          "line": 539,
           "english_text": "Time"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Teleports",
-          "line": 546,
+          "line": 547,
           "english_text": "Teleports"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Jump Type",
-          "line": 554,
+          "line": 555,
           "english_text": "Jump Type"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Distance",
-          "line": 562,
+          "line": 563,
           "english_text": "Distance"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Block",
-          "line": 570,
+          "line": 571,
           "english_text": "Block"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Strafes",
-          "line": 578,
+          "line": 579,
           "english_text": "Strafes"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Saved By",
-          "line": 586,
+          "line": 587,
           "english_text": "Saved By"
         },
         {
@@ -3734,7 +3872,7 @@
           "file": "cs2kz-telemetry.phrases.txt",
           "phrase": "Telemetry - Modern Bhop Stats",
           "line": 3,
-          "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{truePerfPercent}%%%% {grey}True ({lime}{truePerfs}{grey}) | {blue}{modernPerfPercent}%%%% {grey}Modern ({lime}{modernPerfs}{grey})"
+          "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{truePerfPercent}%%%% {grey}True ({lime}{truePerfs}{grey}) | {blue}{modernPerfEarlyPercent}%%%% {grey}Early ({lime}{modernPerfsEarly}{grey}) | {blue}{modernPerfLatePercent}%%%% {grey}Late ({lime}{modernPerfsLate}{grey})"
         },
         {
           "file": "cs2kz-telemetry.phrases.txt",
@@ -3745,7 +3883,7 @@
         {
           "file": "cs2kz-telemetry.phrases.txt",
           "phrase": "Telemetry - Reset Bhop Stats",
-          "line": 15,
+          "line": 16,
           "english_text": "{grey}Bunny hop statistics have been reset."
         },
         {
@@ -3794,13 +3932,13 @@
           "file": "cs2kz-timer.phrases.txt",
           "phrase": "Beat Course Info - Global Points (TP)",
           "line": 146,
-          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey})"
+          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey}) | Player Rating: {purple}{player_rating}{grey}"
         },
         {
           "file": "cs2kz-timer.phrases.txt",
           "phrase": "Beat Course Info - Global Points (PRO)",
           "line": 158,
-          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey}) / {purple}{points_pro}{grey} {blue}PRO{grey} (+{purple}{points_gained_pro}{grey})"
+          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey}) / {purple}{points}{grey} {blue}PRO{grey} (+{purple}{points_gained}{grey}) | Player Rating: {purple}{player_rating}{grey}"
         },
         {
           "file": "cs2kz-timer.phrases.txt",
@@ -4173,6 +4311,12 @@
           "phrase": "Tip - kz_comparelevel",
           "line": 3,
           "english_text": "{grey}You can select different benchmarks to compare your run against by using {default}/comparelevel{grey}."
+        },
+        {
+          "file": "cs2kz-tips-visual.phrases.txt",
+          "phrase": "Tip - kz_fov",
+          "line": 63,
+          "english_text": "{grey}Use {default}/fov {purple}<value> {default}to change your FOV."
         }
       ],
       "menu": {
@@ -4186,15 +4330,15 @@
     },
     "it": {
       "name": "italian",
-      "coverage_percent": 41.07,
+      "coverage_percent": 40.64,
       "translated": 230,
-      "missing": 330,
+      "missing": 336,
       "missing_phrases": [
         {
           "file": "cs2kz-anticheat.phrases.txt",
           "phrase": "Kick Player m_yaw",
           "line": 3,
-          "english_text": "{yellow}Warning{grey}: Your {default}m_yaw{grey} value must be less or equal to 0.3 to play on this server. You will be disconnected."
+          "english_text": "{darkred}Warning{grey}: Your {default}m_yaw{grey} value must be less or equal to 0.3 to play on this server. You will be disconnected."
         },
         {
           "file": "cs2kz-anticheat.phrases.txt",
@@ -4206,13 +4350,25 @@
           "file": "cs2kz-anticheat.phrases.txt",
           "phrase": "Kick Player fps_max",
           "line": 27,
-          "english_text": "{yellow}Warning{grey}: Your {default}fps_max{grey} value must be more or equal to 64 to play on this server. You will be disconnected."
+          "english_text": "{darkred}Warning{grey}: Your {default}fps_max{grey} value must be more or equal to 64 to play on this server. You will be disconnected."
         },
         {
           "file": "cs2kz-anticheat.phrases.txt",
           "phrase": "Kick Player fps_max (Console)",
           "line": 39,
           "english_text": "Warning: Your fps_max value must be more or equal to 64 to play on this server. You will be disconnected."
+        },
+        {
+          "file": "cs2kz-anticheat.phrases.txt",
+          "phrase": "Anti-Cheat Warning",
+          "line": 51,
+          "english_text": "{darkred}WARNING: Any use of hardware/software/configs to gain unfair advantage is strictly forbidden! This includes, but is not limited to: hacks, macros, hyperscrolling, SOCD/nulls, desubtick and mouse abuse configs."
+        },
+        {
+          "file": "cs2kz-anticheat.phrases.txt",
+          "phrase": "Cheater Warning",
+          "line": 55,
+          "english_text": "{darkred}WARNING: You are currently banned. Your jumps and records will not be saved."
         },
         {
           "file": "cs2kz-api.phrases.txt",
@@ -4721,14 +4877,20 @@
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_legacyperfstats",
-          "line": 1476,
+          "line": 1477,
           "english_text": "Retrieve bhop statistics for legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_resetperfstats",
-          "line": 1480,
+          "line": 1482,
           "english_text": "Reset bhop statistics for modern and legacy jumping."
+        },
+        {
+          "file": "cs2kz-commands.phrases.txt",
+          "phrase": "Command Description - kz_fov",
+          "line": 1487,
+          "english_text": "Change your FOV."
         },
         {
           "file": "cs2kz-common.phrases.txt",
@@ -4927,6 +5089,18 @@
           "phrase": "Tier Info",
           "line": 176,
           "english_text": "{default}{course}{grey} ({purple}{state}{grey}) - Tier {yellow}{tier_nub}{grey}/{blue}{tier_pro}{grey}{description}"
+        },
+        {
+          "file": "cs2kz-fov.phrases.txt",
+          "phrase": "FOV - Show",
+          "line": 3,
+          "english_text": "{grey}Your FOV is {purple}{fov}{grey}."
+        },
+        {
+          "file": "cs2kz-fov.phrases.txt",
+          "phrase": "Error Message (Invalid FOV)",
+          "line": 9,
+          "english_text": "{darkred}Invalid FOV \\\"{fov}\\\" (allowed {min} - {max})."
         },
         {
           "file": "cs2kz-jumpstats.phrases.txt",
@@ -5411,241 +5585,241 @@
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loaded Successfully",
-          "line": 255,
+          "line": 256,
           "english_text": "{lime}Replay loaded successfully! Starting playback..."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - No Loading Progress",
-          "line": 263,
+          "line": 264,
           "english_text": "{grey}No replay loading in progress"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loading Progress",
-          "line": 271,
+          "line": 272,
           "english_text": "{grey}Loading replay: {progress}%%%% complete"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loading Completed",
-          "line": 280,
+          "line": 281,
           "english_text": "{lime}Replay loading completed"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loading Cancelled",
-          "line": 288,
+          "line": 289,
           "english_text": "{grey}Replay loading cancelled"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Usage Command",
-          "line": 296,
+          "line": 297,
           "english_text": "{grey}Usage: kz_replay <ID>"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Load Cancelled",
-          "line": 304,
+          "line": 305,
           "english_text": "{darkred}Load cancelled by user"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Invalid File Format",
-          "line": 312,
+          "line": 313,
           "english_text": "{darkred}Invalid replay file format"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Failed",
-          "line": 320,
+          "line": 321,
           "english_text": "{darkred}Failed to save manual replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved",
-          "line": 328,
+          "line": 329,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey} ({lime}{duration}{grey}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved (Console)",
-          "line": 337,
+          "line": 338,
           "english_text": "Replay saved: {uuid} ({duration}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Failed",
-          "line": 346,
+          "line": 347,
           "english_text": "{darkred}Failed to save run replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved",
-          "line": 354,
+          "line": 355,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved (Console)",
-          "line": 363,
+          "line": 364,
           "english_text": "Replay saved: {uuid}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Wrong Map",
-          "line": 372,
+          "line": 373,
           "english_text": "{darkred}Replay map does not match current map.{grey} (Replay: {default}{replayMap}{grey}, Current: {default}{currentMap}{grey})"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Mode",
-          "line": 381,
+          "line": 382,
           "english_text": "{darkred}Mode {default}{modeName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Style",
-          "line": 390,
+          "line": 391,
           "english_text": "{darkred}Style {default}{styleName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Check Console",
-          "line": 399,
+          "line": 400,
           "english_text": "{grey}Check console for info!"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Title",
-          "line": 407,
+          "line": 408,
           "english_text": "Usage: !replays [type=run/r/jump/j/manual/m] [options...]"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage General Options",
-          "line": 416,
+          "line": 417,
           "english_text": "\\nGeneral Options:\\n\\tplayer=<name> - Filter by player name\\n\\tsteamid=<id> - Filter by Steam ID\\n\\tmap=<name> - Filter by map name (default: current map)\\n\\toffset=<num> - Skip first N results\\n\\tlimit=<num> - Limit results (max 20)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Type Options",
-          "line": 430,
+          "line": 431,
           "english_text": "\\nType Options:\\n\\tRun: mode=<mode> course=<name> maxtime=<sec> maxteleports=<num> numstyles=<num>\\n\\tJump: jumptype=<type> mindistance=<dist>\\n\\tManual: saver=<name> ssid=<steamid>"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - No Matching Replays",
-          "line": 442,
+          "line": 443,
           "english_text": "{grey}No matching replays found."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Cheater Replays - Table Name",
-          "line": 450,
+          "line": 451,
           "english_text": "Cheater Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Run Replays - Table Name",
-          "line": 458,
+          "line": 459,
           "english_text": "Run Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Jump Replays - Table Name",
-          "line": 466,
+          "line": 467,
           "english_text": "Jump Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Manual Replays - Table Name",
-          "line": 474,
+          "line": 475,
           "english_text": "Manual Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Player",
-          "line": 482,
+          "line": 483,
           "english_text": "Player"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Map",
-          "line": 490,
+          "line": 491,
           "english_text": "Map"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Reason",
-          "line": 498,
+          "line": 499,
           "english_text": "Reason"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - SteamID",
-          "line": 506,
+          "line": 507,
           "english_text": "SteamID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - UUID",
-          "line": 514,
+          "line": 515,
           "english_text": "UUID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Course",
-          "line": 522,
+          "line": 523,
           "english_text": "Course"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Mode",
-          "line": 530,
+          "line": 531,
           "english_text": "Mode"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Time",
-          "line": 538,
+          "line": 539,
           "english_text": "Time"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Teleports",
-          "line": 546,
+          "line": 547,
           "english_text": "Teleports"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Jump Type",
-          "line": 554,
+          "line": 555,
           "english_text": "Jump Type"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Distance",
-          "line": 562,
+          "line": 563,
           "english_text": "Distance"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Block",
-          "line": 570,
+          "line": 571,
           "english_text": "Block"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Strafes",
-          "line": 578,
+          "line": 579,
           "english_text": "Strafes"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Saved By",
-          "line": 586,
+          "line": 587,
           "english_text": "Saved By"
         },
         {
@@ -5700,7 +5874,7 @@
           "file": "cs2kz-telemetry.phrases.txt",
           "phrase": "Telemetry - Modern Bhop Stats",
           "line": 3,
-          "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{truePerfPercent}%%%% {grey}True ({lime}{truePerfs}{grey}) | {blue}{modernPerfPercent}%%%% {grey}Modern ({lime}{modernPerfs}{grey})"
+          "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{truePerfPercent}%%%% {grey}True ({lime}{truePerfs}{grey}) | {blue}{modernPerfEarlyPercent}%%%% {grey}Early ({lime}{modernPerfsEarly}{grey}) | {blue}{modernPerfLatePercent}%%%% {grey}Late ({lime}{modernPerfsLate}{grey})"
         },
         {
           "file": "cs2kz-telemetry.phrases.txt",
@@ -5711,7 +5885,7 @@
         {
           "file": "cs2kz-telemetry.phrases.txt",
           "phrase": "Telemetry - Reset Bhop Stats",
-          "line": 15,
+          "line": 16,
           "english_text": "{grey}Bunny hop statistics have been reset."
         },
         {
@@ -5790,13 +5964,13 @@
           "file": "cs2kz-timer.phrases.txt",
           "phrase": "Beat Course Info - Global Points (TP)",
           "line": 146,
-          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey})"
+          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey}) | Player Rating: {purple}{player_rating}{grey}"
         },
         {
           "file": "cs2kz-timer.phrases.txt",
           "phrase": "Beat Course Info - Global Points (PRO)",
           "line": 158,
-          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey}) / {purple}{points_pro}{grey} {blue}PRO{grey} (+{purple}{points_gained_pro}{grey})"
+          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey}) / {purple}{points}{grey} {blue}PRO{grey} (+{purple}{points_gained}{grey}) | Player Rating: {purple}{player_rating}{grey}"
         },
         {
           "file": "cs2kz-timer.phrases.txt",
@@ -6169,6 +6343,12 @@
           "phrase": "Tip - kz_comparelevel",
           "line": 3,
           "english_text": "{grey}You can select different benchmarks to compare your run against by using {default}/comparelevel{grey}."
+        },
+        {
+          "file": "cs2kz-tips-visual.phrases.txt",
+          "phrase": "Tip - kz_fov",
+          "line": 63,
+          "english_text": "{grey}Use {default}/fov {purple}<value> {default}to change your FOV."
         }
       ],
       "menu": {
@@ -6182,10 +6362,22 @@
     },
     "ko": {
       "name": "koreana",
-      "coverage_percent": 51.96,
+      "coverage_percent": 51.41,
       "translated": 291,
-      "missing": 269,
+      "missing": 275,
       "missing_phrases": [
+        {
+          "file": "cs2kz-anticheat.phrases.txt",
+          "phrase": "Anti-Cheat Warning",
+          "line": 51,
+          "english_text": "{darkred}WARNING: Any use of hardware/software/configs to gain unfair advantage is strictly forbidden! This includes, but is not limited to: hacks, macros, hyperscrolling, SOCD/nulls, desubtick and mouse abuse configs."
+        },
+        {
+          "file": "cs2kz-anticheat.phrases.txt",
+          "phrase": "Cheater Warning",
+          "line": 55,
+          "english_text": "{darkred}WARNING: You are currently banned. Your jumps and records will not be saved."
+        },
         {
           "file": "cs2kz-api.phrases.txt",
           "phrase": "Non Global Map Warning",
@@ -6639,14 +6831,20 @@
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_legacyperfstats",
-          "line": 1476,
+          "line": 1477,
           "english_text": "Retrieve bhop statistics for legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_resetperfstats",
-          "line": 1480,
+          "line": 1482,
           "english_text": "Reset bhop statistics for modern and legacy jumping."
+        },
+        {
+          "file": "cs2kz-commands.phrases.txt",
+          "phrase": "Command Description - kz_fov",
+          "line": 1487,
+          "english_text": "Change your FOV."
         },
         {
           "file": "cs2kz-common.phrases.txt",
@@ -6803,6 +7001,18 @@
           "phrase": "Tier Info",
           "line": 176,
           "english_text": "{default}{course}{grey} ({purple}{state}{grey}) - Tier {yellow}{tier_nub}{grey}/{blue}{tier_pro}{grey}{description}"
+        },
+        {
+          "file": "cs2kz-fov.phrases.txt",
+          "phrase": "FOV - Show",
+          "line": 3,
+          "english_text": "{grey}Your FOV is {purple}{fov}{grey}."
+        },
+        {
+          "file": "cs2kz-fov.phrases.txt",
+          "phrase": "Error Message (Invalid FOV)",
+          "line": 9,
+          "english_text": "{darkred}Invalid FOV \\\"{fov}\\\" (allowed {min} - {max})."
         },
         {
           "file": "cs2kz-jumpstats.phrases.txt",
@@ -7263,248 +7473,248 @@
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loaded Successfully",
-          "line": 255,
+          "line": 256,
           "english_text": "{lime}Replay loaded successfully! Starting playback..."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - No Loading Progress",
-          "line": 263,
+          "line": 264,
           "english_text": "{grey}No replay loading in progress"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loading Progress",
-          "line": 271,
+          "line": 272,
           "english_text": "{grey}Loading replay: {progress}%%%% complete"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loading Completed",
-          "line": 280,
+          "line": 281,
           "english_text": "{lime}Replay loading completed"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loading Cancelled",
-          "line": 288,
+          "line": 289,
           "english_text": "{grey}Replay loading cancelled"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Usage Command",
-          "line": 296,
+          "line": 297,
           "english_text": "{grey}Usage: kz_replay <ID>"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Load Cancelled",
-          "line": 304,
+          "line": 305,
           "english_text": "{darkred}Load cancelled by user"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Invalid File Format",
-          "line": 312,
+          "line": 313,
           "english_text": "{darkred}Invalid replay file format"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Failed",
-          "line": 320,
+          "line": 321,
           "english_text": "{darkred}Failed to save manual replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved",
-          "line": 328,
+          "line": 329,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey} ({lime}{duration}{grey}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved (Console)",
-          "line": 337,
+          "line": 338,
           "english_text": "Replay saved: {uuid} ({duration}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Failed",
-          "line": 346,
+          "line": 347,
           "english_text": "{darkred}Failed to save run replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved",
-          "line": 354,
+          "line": 355,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved (Console)",
-          "line": 363,
+          "line": 364,
           "english_text": "Replay saved: {uuid}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Wrong Map",
-          "line": 372,
+          "line": 373,
           "english_text": "{darkred}Replay map does not match current map.{grey} (Replay: {default}{replayMap}{grey}, Current: {default}{currentMap}{grey})"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Mode",
-          "line": 381,
+          "line": 382,
           "english_text": "{darkred}Mode {default}{modeName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Style",
-          "line": 390,
+          "line": 391,
           "english_text": "{darkred}Style {default}{styleName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Check Console",
-          "line": 399,
+          "line": 400,
           "english_text": "{grey}Check console for info!"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Title",
-          "line": 407,
+          "line": 408,
           "english_text": "Usage: !replays [type=run/r/jump/j/manual/m] [options...]"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage General Options",
-          "line": 416,
+          "line": 417,
           "english_text": "\\nGeneral Options:\\n\\tplayer=<name> - Filter by player name\\n\\tsteamid=<id> - Filter by Steam ID\\n\\tmap=<name> - Filter by map name (default: current map)\\n\\toffset=<num> - Skip first N results\\n\\tlimit=<num> - Limit results (max 20)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Type Options",
-          "line": 430,
+          "line": 431,
           "english_text": "\\nType Options:\\n\\tRun: mode=<mode> course=<name> maxtime=<sec> maxteleports=<num> numstyles=<num>\\n\\tJump: jumptype=<type> mindistance=<dist>\\n\\tManual: saver=<name> ssid=<steamid>"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - No Matching Replays",
-          "line": 442,
+          "line": 443,
           "english_text": "{grey}No matching replays found."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Cheater Replays - Table Name",
-          "line": 450,
+          "line": 451,
           "english_text": "Cheater Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Run Replays - Table Name",
-          "line": 458,
+          "line": 459,
           "english_text": "Run Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Jump Replays - Table Name",
-          "line": 466,
+          "line": 467,
           "english_text": "Jump Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Manual Replays - Table Name",
-          "line": 474,
+          "line": 475,
           "english_text": "Manual Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Player",
-          "line": 482,
+          "line": 483,
           "english_text": "Player"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Map",
-          "line": 490,
+          "line": 491,
           "english_text": "Map"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Reason",
-          "line": 498,
+          "line": 499,
           "english_text": "Reason"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - SteamID",
-          "line": 506,
+          "line": 507,
           "english_text": "SteamID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - UUID",
-          "line": 514,
+          "line": 515,
           "english_text": "UUID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Course",
-          "line": 522,
+          "line": 523,
           "english_text": "Course"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Mode",
-          "line": 530,
+          "line": 531,
           "english_text": "Mode"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Time",
-          "line": 538,
+          "line": 539,
           "english_text": "Time"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Teleports",
-          "line": 546,
+          "line": 547,
           "english_text": "Teleports"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Jump Type",
-          "line": 554,
+          "line": 555,
           "english_text": "Jump Type"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Distance",
-          "line": 562,
+          "line": 563,
           "english_text": "Distance"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Block",
-          "line": 570,
+          "line": 571,
           "english_text": "Block"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Strafes",
-          "line": 578,
+          "line": 579,
           "english_text": "Strafes"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Saved By",
-          "line": 586,
+          "line": 587,
           "english_text": "Saved By"
         },
         {
           "file": "cs2kz-telemetry.phrases.txt",
           "phrase": "Telemetry - Modern Bhop Stats",
           "line": 3,
-          "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{truePerfPercent}%%%% {grey}True ({lime}{truePerfs}{grey}) | {blue}{modernPerfPercent}%%%% {grey}Modern ({lime}{modernPerfs}{grey})"
+          "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{truePerfPercent}%%%% {grey}True ({lime}{truePerfs}{grey}) | {blue}{modernPerfEarlyPercent}%%%% {grey}Early ({lime}{modernPerfsEarly}{grey}) | {blue}{modernPerfLatePercent}%%%% {grey}Late ({lime}{modernPerfsLate}{grey})"
         },
         {
           "file": "cs2kz-telemetry.phrases.txt",
@@ -7515,7 +7725,7 @@
         {
           "file": "cs2kz-telemetry.phrases.txt",
           "phrase": "Telemetry - Reset Bhop Stats",
-          "line": 15,
+          "line": 16,
           "english_text": "{grey}Bunny hop statistics have been reset."
         },
         {
@@ -7594,13 +7804,13 @@
           "file": "cs2kz-timer.phrases.txt",
           "phrase": "Beat Course Info - Global Points (TP)",
           "line": 146,
-          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey})"
+          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey}) | Player Rating: {purple}{player_rating}{grey}"
         },
         {
           "file": "cs2kz-timer.phrases.txt",
           "phrase": "Beat Course Info - Global Points (PRO)",
           "line": 158,
-          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey}) / {purple}{points_pro}{grey} {blue}PRO{grey} (+{purple}{points_gained_pro}{grey})"
+          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey}) / {purple}{points}{grey} {blue}PRO{grey} (+{purple}{points_gained}{grey}) | Player Rating: {purple}{player_rating}{grey}"
         },
         {
           "file": "cs2kz-timer.phrases.txt",
@@ -7799,6 +8009,12 @@
           "phrase": "Tip - kz_rphidelegs",
           "line": 92,
           "english_text": "{grey}Type {default}!rphidelegs {grey}to toggle the visibility of the replay bot's first person legs."
+        },
+        {
+          "file": "cs2kz-tips-visual.phrases.txt",
+          "phrase": "Tip - kz_fov",
+          "line": 63,
+          "english_text": "{grey}Use {default}/fov {purple}<value> {default}to change your FOV."
         }
       ],
       "menu": {
@@ -7809,10 +8025,22 @@
     },
     "lv": {
       "name": "latvian",
-      "coverage_percent": 59.46,
+      "coverage_percent": 58.83,
       "translated": 333,
-      "missing": 227,
+      "missing": 233,
       "missing_phrases": [
+        {
+          "file": "cs2kz-anticheat.phrases.txt",
+          "phrase": "Anti-Cheat Warning",
+          "line": 51,
+          "english_text": "{darkred}WARNING: Any use of hardware/software/configs to gain unfair advantage is strictly forbidden! This includes, but is not limited to: hacks, macros, hyperscrolling, SOCD/nulls, desubtick and mouse abuse configs."
+        },
+        {
+          "file": "cs2kz-anticheat.phrases.txt",
+          "phrase": "Cheater Warning",
+          "line": 55,
+          "english_text": "{darkred}WARNING: You are currently banned. Your jumps and records will not be saved."
+        },
         {
           "file": "cs2kz-api.phrases.txt",
           "phrase": "Non Global Map Warning",
@@ -8116,14 +8344,20 @@
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_legacyperfstats",
-          "line": 1476,
+          "line": 1477,
           "english_text": "Retrieve bhop statistics for legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_resetperfstats",
-          "line": 1480,
+          "line": 1482,
           "english_text": "Reset bhop statistics for modern and legacy jumping."
+        },
+        {
+          "file": "cs2kz-commands.phrases.txt",
+          "phrase": "Command Description - kz_fov",
+          "line": 1487,
+          "english_text": "Change your FOV."
         },
         {
           "file": "cs2kz-common.phrases.txt",
@@ -8280,6 +8514,18 @@
           "phrase": "Tier Info",
           "line": 176,
           "english_text": "{default}{course}{grey} ({purple}{state}{grey}) - Tier {yellow}{tier_nub}{grey}/{blue}{tier_pro}{grey}{description}"
+        },
+        {
+          "file": "cs2kz-fov.phrases.txt",
+          "phrase": "FOV - Show",
+          "line": 3,
+          "english_text": "{grey}Your FOV is {purple}{fov}{grey}."
+        },
+        {
+          "file": "cs2kz-fov.phrases.txt",
+          "phrase": "Error Message (Invalid FOV)",
+          "line": 9,
+          "english_text": "{darkred}Invalid FOV \\\"{fov}\\\" (allowed {min} - {max})."
         },
         {
           "file": "cs2kz-jumpstats.phrases.txt",
@@ -8740,241 +8986,241 @@
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loaded Successfully",
-          "line": 255,
+          "line": 256,
           "english_text": "{lime}Replay loaded successfully! Starting playback..."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - No Loading Progress",
-          "line": 263,
+          "line": 264,
           "english_text": "{grey}No replay loading in progress"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loading Progress",
-          "line": 271,
+          "line": 272,
           "english_text": "{grey}Loading replay: {progress}%%%% complete"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loading Completed",
-          "line": 280,
+          "line": 281,
           "english_text": "{lime}Replay loading completed"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loading Cancelled",
-          "line": 288,
+          "line": 289,
           "english_text": "{grey}Replay loading cancelled"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Usage Command",
-          "line": 296,
+          "line": 297,
           "english_text": "{grey}Usage: kz_replay <ID>"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Load Cancelled",
-          "line": 304,
+          "line": 305,
           "english_text": "{darkred}Load cancelled by user"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Invalid File Format",
-          "line": 312,
+          "line": 313,
           "english_text": "{darkred}Invalid replay file format"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Failed",
-          "line": 320,
+          "line": 321,
           "english_text": "{darkred}Failed to save manual replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved",
-          "line": 328,
+          "line": 329,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey} ({lime}{duration}{grey}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved (Console)",
-          "line": 337,
+          "line": 338,
           "english_text": "Replay saved: {uuid} ({duration}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Failed",
-          "line": 346,
+          "line": 347,
           "english_text": "{darkred}Failed to save run replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved",
-          "line": 354,
+          "line": 355,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved (Console)",
-          "line": 363,
+          "line": 364,
           "english_text": "Replay saved: {uuid}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Wrong Map",
-          "line": 372,
+          "line": 373,
           "english_text": "{darkred}Replay map does not match current map.{grey} (Replay: {default}{replayMap}{grey}, Current: {default}{currentMap}{grey})"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Mode",
-          "line": 381,
+          "line": 382,
           "english_text": "{darkred}Mode {default}{modeName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Style",
-          "line": 390,
+          "line": 391,
           "english_text": "{darkred}Style {default}{styleName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Check Console",
-          "line": 399,
+          "line": 400,
           "english_text": "{grey}Check console for info!"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Title",
-          "line": 407,
+          "line": 408,
           "english_text": "Usage: !replays [type=run/r/jump/j/manual/m] [options...]"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage General Options",
-          "line": 416,
+          "line": 417,
           "english_text": "\\nGeneral Options:\\n\\tplayer=<name> - Filter by player name\\n\\tsteamid=<id> - Filter by Steam ID\\n\\tmap=<name> - Filter by map name (default: current map)\\n\\toffset=<num> - Skip first N results\\n\\tlimit=<num> - Limit results (max 20)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Type Options",
-          "line": 430,
+          "line": 431,
           "english_text": "\\nType Options:\\n\\tRun: mode=<mode> course=<name> maxtime=<sec> maxteleports=<num> numstyles=<num>\\n\\tJump: jumptype=<type> mindistance=<dist>\\n\\tManual: saver=<name> ssid=<steamid>"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - No Matching Replays",
-          "line": 442,
+          "line": 443,
           "english_text": "{grey}No matching replays found."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Cheater Replays - Table Name",
-          "line": 450,
+          "line": 451,
           "english_text": "Cheater Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Run Replays - Table Name",
-          "line": 458,
+          "line": 459,
           "english_text": "Run Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Jump Replays - Table Name",
-          "line": 466,
+          "line": 467,
           "english_text": "Jump Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Manual Replays - Table Name",
-          "line": 474,
+          "line": 475,
           "english_text": "Manual Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Player",
-          "line": 482,
+          "line": 483,
           "english_text": "Player"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Map",
-          "line": 490,
+          "line": 491,
           "english_text": "Map"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Reason",
-          "line": 498,
+          "line": 499,
           "english_text": "Reason"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - SteamID",
-          "line": 506,
+          "line": 507,
           "english_text": "SteamID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - UUID",
-          "line": 514,
+          "line": 515,
           "english_text": "UUID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Course",
-          "line": 522,
+          "line": 523,
           "english_text": "Course"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Mode",
-          "line": 530,
+          "line": 531,
           "english_text": "Mode"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Time",
-          "line": 538,
+          "line": 539,
           "english_text": "Time"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Teleports",
-          "line": 546,
+          "line": 547,
           "english_text": "Teleports"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Jump Type",
-          "line": 554,
+          "line": 555,
           "english_text": "Jump Type"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Distance",
-          "line": 562,
+          "line": 563,
           "english_text": "Distance"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Block",
-          "line": 570,
+          "line": 571,
           "english_text": "Block"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Strafes",
-          "line": 578,
+          "line": 579,
           "english_text": "Strafes"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Saved By",
-          "line": 586,
+          "line": 587,
           "english_text": "Saved By"
         },
         {
@@ -9029,7 +9275,7 @@
           "file": "cs2kz-telemetry.phrases.txt",
           "phrase": "Telemetry - Modern Bhop Stats",
           "line": 3,
-          "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{truePerfPercent}%%%% {grey}True ({lime}{truePerfs}{grey}) | {blue}{modernPerfPercent}%%%% {grey}Modern ({lime}{modernPerfs}{grey})"
+          "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{truePerfPercent}%%%% {grey}True ({lime}{truePerfs}{grey}) | {blue}{modernPerfEarlyPercent}%%%% {grey}Early ({lime}{modernPerfsEarly}{grey}) | {blue}{modernPerfLatePercent}%%%% {grey}Late ({lime}{modernPerfsLate}{grey})"
         },
         {
           "file": "cs2kz-telemetry.phrases.txt",
@@ -9040,7 +9286,7 @@
         {
           "file": "cs2kz-telemetry.phrases.txt",
           "phrase": "Telemetry - Reset Bhop Stats",
-          "line": 15,
+          "line": 16,
           "english_text": "{grey}Bunny hop statistics have been reset."
         },
         {
@@ -9174,6 +9420,12 @@
           "phrase": "Tip - kz_rphidelegs",
           "line": 92,
           "english_text": "{grey}Type {default}!rphidelegs {grey}to toggle the visibility of the replay bot's first person legs."
+        },
+        {
+          "file": "cs2kz-tips-visual.phrases.txt",
+          "phrase": "Tip - kz_fov",
+          "line": 63,
+          "english_text": "{grey}Use {default}/fov {purple}<value> {default}to change your FOV."
         }
       ],
       "menu": {
@@ -9184,10 +9436,22 @@
     },
     "pl": {
       "name": "polish",
-      "coverage_percent": 93.04,
+      "coverage_percent": 92.05,
       "translated": 521,
-      "missing": 39,
+      "missing": 45,
       "missing_phrases": [
+        {
+          "file": "cs2kz-anticheat.phrases.txt",
+          "phrase": "Anti-Cheat Warning",
+          "line": 51,
+          "english_text": "{darkred}WARNING: Any use of hardware/software/configs to gain unfair advantage is strictly forbidden! This includes, but is not limited to: hacks, macros, hyperscrolling, SOCD/nulls, desubtick and mouse abuse configs."
+        },
+        {
+          "file": "cs2kz-anticheat.phrases.txt",
+          "phrase": "Cheater Warning",
+          "line": 55,
+          "english_text": "{darkred}WARNING: You are currently banned. Your jumps and records will not be saved."
+        },
         {
           "file": "cs2kz-api.phrases.txt",
           "phrase": "Non Global Map Warning",
@@ -9215,14 +9479,20 @@
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_legacyperfstats",
-          "line": 1476,
+          "line": 1477,
           "english_text": "Retrieve bhop statistics for legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_resetperfstats",
-          "line": 1480,
+          "line": 1482,
           "english_text": "Reset bhop statistics for modern and legacy jumping."
+        },
+        {
+          "file": "cs2kz-commands.phrases.txt",
+          "phrase": "Command Description - kz_fov",
+          "line": 1487,
+          "english_text": "Change your FOV."
         },
         {
           "file": "cs2kz-course.phrases.txt",
@@ -9375,6 +9645,18 @@
           "english_text": "{default}{course}{grey} ({purple}{state}{grey}) - Tier {yellow}{tier_nub}{grey}/{blue}{tier_pro}{grey}{description}"
         },
         {
+          "file": "cs2kz-fov.phrases.txt",
+          "phrase": "FOV - Show",
+          "line": 3,
+          "english_text": "{grey}Your FOV is {purple}{fov}{grey}."
+        },
+        {
+          "file": "cs2kz-fov.phrases.txt",
+          "phrase": "Error Message (Invalid FOV)",
+          "line": 9,
+          "english_text": "{darkred}Invalid FOV \\\"{fov}\\\" (allowed {min} - {max})."
+        },
+        {
           "file": "cs2kz-jumpstats.phrases.txt",
           "phrase": "Jumpstats Option - Jumpstats Reporting - Enable",
           "line": 943,
@@ -9396,7 +9678,7 @@
           "file": "cs2kz-telemetry.phrases.txt",
           "phrase": "Telemetry - Modern Bhop Stats",
           "line": 3,
-          "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{truePerfPercent}%%%% {grey}True ({lime}{truePerfs}{grey}) | {blue}{modernPerfPercent}%%%% {grey}Modern ({lime}{modernPerfs}{grey})"
+          "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{truePerfPercent}%%%% {grey}True ({lime}{truePerfs}{grey}) | {blue}{modernPerfEarlyPercent}%%%% {grey}Early ({lime}{modernPerfsEarly}{grey}) | {blue}{modernPerfLatePercent}%%%% {grey}Late ({lime}{modernPerfsLate}{grey})"
         },
         {
           "file": "cs2kz-telemetry.phrases.txt",
@@ -9407,7 +9689,7 @@
         {
           "file": "cs2kz-telemetry.phrases.txt",
           "phrase": "Telemetry - Reset Bhop Stats",
-          "line": 15,
+          "line": 16,
           "english_text": "{grey}Bunny hop statistics have been reset."
         },
         {
@@ -9421,6 +9703,12 @@
           "phrase": "Started Run on Non Ranked Course",
           "line": 856,
           "english_text": "{yellow}Warning: {grey} Course {default}{course_name}{grey} is not ranked. Runs on this course will not affect your global player rating."
+        },
+        {
+          "file": "cs2kz-tips-visual.phrases.txt",
+          "phrase": "Tip - kz_fov",
+          "line": 63,
+          "english_text": "{grey}Use {default}/fov {purple}<value> {default}to change your FOV."
         }
       ],
       "menu": {
@@ -9431,15 +9719,15 @@
     },
     "ru": {
       "name": "russian",
-      "coverage_percent": 16.43,
+      "coverage_percent": 16.25,
       "translated": 92,
-      "missing": 468,
+      "missing": 474,
       "missing_phrases": [
         {
           "file": "cs2kz-anticheat.phrases.txt",
           "phrase": "Kick Player m_yaw",
           "line": 3,
-          "english_text": "{yellow}Warning{grey}: Your {default}m_yaw{grey} value must be less or equal to 0.3 to play on this server. You will be disconnected."
+          "english_text": "{darkred}Warning{grey}: Your {default}m_yaw{grey} value must be less or equal to 0.3 to play on this server. You will be disconnected."
         },
         {
           "file": "cs2kz-anticheat.phrases.txt",
@@ -9451,13 +9739,25 @@
           "file": "cs2kz-anticheat.phrases.txt",
           "phrase": "Kick Player fps_max",
           "line": 27,
-          "english_text": "{yellow}Warning{grey}: Your {default}fps_max{grey} value must be more or equal to 64 to play on this server. You will be disconnected."
+          "english_text": "{darkred}Warning{grey}: Your {default}fps_max{grey} value must be more or equal to 64 to play on this server. You will be disconnected."
         },
         {
           "file": "cs2kz-anticheat.phrases.txt",
           "phrase": "Kick Player fps_max (Console)",
           "line": 39,
           "english_text": "Warning: Your fps_max value must be more or equal to 64 to play on this server. You will be disconnected."
+        },
+        {
+          "file": "cs2kz-anticheat.phrases.txt",
+          "phrase": "Anti-Cheat Warning",
+          "line": 51,
+          "english_text": "{darkred}WARNING: Any use of hardware/software/configs to gain unfair advantage is strictly forbidden! This includes, but is not limited to: hacks, macros, hyperscrolling, SOCD/nulls, desubtick and mouse abuse configs."
+        },
+        {
+          "file": "cs2kz-anticheat.phrases.txt",
+          "phrase": "Cheater Warning",
+          "line": 55,
+          "english_text": "{darkred}WARNING: You are currently banned. Your jumps and records will not be saved."
         },
         {
           "file": "cs2kz-api.phrases.txt",
@@ -10272,14 +10572,20 @@
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_legacyperfstats",
-          "line": 1476,
+          "line": 1477,
           "english_text": "Retrieve bhop statistics for legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_resetperfstats",
-          "line": 1480,
+          "line": 1482,
           "english_text": "Reset bhop statistics for modern and legacy jumping."
+        },
+        {
+          "file": "cs2kz-commands.phrases.txt",
+          "phrase": "Command Description - kz_fov",
+          "line": 1487,
+          "english_text": "Change your FOV."
         },
         {
           "file": "cs2kz-common.phrases.txt",
@@ -10472,6 +10778,18 @@
           "phrase": "Tier Info",
           "line": 176,
           "english_text": "{default}{course}{grey} ({purple}{state}{grey}) - Tier {yellow}{tier_nub}{grey}/{blue}{tier_pro}{grey}{description}"
+        },
+        {
+          "file": "cs2kz-fov.phrases.txt",
+          "phrase": "FOV - Show",
+          "line": 3,
+          "english_text": "{grey}Your FOV is {purple}{fov}{grey}."
+        },
+        {
+          "file": "cs2kz-fov.phrases.txt",
+          "phrase": "Error Message (Invalid FOV)",
+          "line": 9,
+          "english_text": "{darkred}Invalid FOV \\\"{fov}\\\" (allowed {min} - {max})."
         },
         {
           "file": "cs2kz-hud.phrases.txt",
@@ -11208,241 +11526,241 @@
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loaded Successfully",
-          "line": 255,
+          "line": 256,
           "english_text": "{lime}Replay loaded successfully! Starting playback..."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - No Loading Progress",
-          "line": 263,
+          "line": 264,
           "english_text": "{grey}No replay loading in progress"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loading Progress",
-          "line": 271,
+          "line": 272,
           "english_text": "{grey}Loading replay: {progress}%%%% complete"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loading Completed",
-          "line": 280,
+          "line": 281,
           "english_text": "{lime}Replay loading completed"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loading Cancelled",
-          "line": 288,
+          "line": 289,
           "english_text": "{grey}Replay loading cancelled"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Usage Command",
-          "line": 296,
+          "line": 297,
           "english_text": "{grey}Usage: kz_replay <ID>"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Load Cancelled",
-          "line": 304,
+          "line": 305,
           "english_text": "{darkred}Load cancelled by user"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Invalid File Format",
-          "line": 312,
+          "line": 313,
           "english_text": "{darkred}Invalid replay file format"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Failed",
-          "line": 320,
+          "line": 321,
           "english_text": "{darkred}Failed to save manual replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved",
-          "line": 328,
+          "line": 329,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey} ({lime}{duration}{grey}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved (Console)",
-          "line": 337,
+          "line": 338,
           "english_text": "Replay saved: {uuid} ({duration}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Failed",
-          "line": 346,
+          "line": 347,
           "english_text": "{darkred}Failed to save run replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved",
-          "line": 354,
+          "line": 355,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved (Console)",
-          "line": 363,
+          "line": 364,
           "english_text": "Replay saved: {uuid}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Wrong Map",
-          "line": 372,
+          "line": 373,
           "english_text": "{darkred}Replay map does not match current map.{grey} (Replay: {default}{replayMap}{grey}, Current: {default}{currentMap}{grey})"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Mode",
-          "line": 381,
+          "line": 382,
           "english_text": "{darkred}Mode {default}{modeName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Style",
-          "line": 390,
+          "line": 391,
           "english_text": "{darkred}Style {default}{styleName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Check Console",
-          "line": 399,
+          "line": 400,
           "english_text": "{grey}Check console for info!"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Title",
-          "line": 407,
+          "line": 408,
           "english_text": "Usage: !replays [type=run/r/jump/j/manual/m] [options...]"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage General Options",
-          "line": 416,
+          "line": 417,
           "english_text": "\\nGeneral Options:\\n\\tplayer=<name> - Filter by player name\\n\\tsteamid=<id> - Filter by Steam ID\\n\\tmap=<name> - Filter by map name (default: current map)\\n\\toffset=<num> - Skip first N results\\n\\tlimit=<num> - Limit results (max 20)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Type Options",
-          "line": 430,
+          "line": 431,
           "english_text": "\\nType Options:\\n\\tRun: mode=<mode> course=<name> maxtime=<sec> maxteleports=<num> numstyles=<num>\\n\\tJump: jumptype=<type> mindistance=<dist>\\n\\tManual: saver=<name> ssid=<steamid>"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - No Matching Replays",
-          "line": 442,
+          "line": 443,
           "english_text": "{grey}No matching replays found."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Cheater Replays - Table Name",
-          "line": 450,
+          "line": 451,
           "english_text": "Cheater Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Run Replays - Table Name",
-          "line": 458,
+          "line": 459,
           "english_text": "Run Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Jump Replays - Table Name",
-          "line": 466,
+          "line": 467,
           "english_text": "Jump Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Manual Replays - Table Name",
-          "line": 474,
+          "line": 475,
           "english_text": "Manual Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Player",
-          "line": 482,
+          "line": 483,
           "english_text": "Player"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Map",
-          "line": 490,
+          "line": 491,
           "english_text": "Map"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Reason",
-          "line": 498,
+          "line": 499,
           "english_text": "Reason"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - SteamID",
-          "line": 506,
+          "line": 507,
           "english_text": "SteamID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - UUID",
-          "line": 514,
+          "line": 515,
           "english_text": "UUID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Course",
-          "line": 522,
+          "line": 523,
           "english_text": "Course"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Mode",
-          "line": 530,
+          "line": 531,
           "english_text": "Mode"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Time",
-          "line": 538,
+          "line": 539,
           "english_text": "Time"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Teleports",
-          "line": 546,
+          "line": 547,
           "english_text": "Teleports"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Jump Type",
-          "line": 554,
+          "line": 555,
           "english_text": "Jump Type"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Distance",
-          "line": 562,
+          "line": 563,
           "english_text": "Distance"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Block",
-          "line": 570,
+          "line": 571,
           "english_text": "Block"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Strafes",
-          "line": 578,
+          "line": 579,
           "english_text": "Strafes"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Saved By",
-          "line": 586,
+          "line": 587,
           "english_text": "Saved By"
         },
         {
@@ -11485,7 +11803,7 @@
           "file": "cs2kz-telemetry.phrases.txt",
           "phrase": "Telemetry - Modern Bhop Stats",
           "line": 3,
-          "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{truePerfPercent}%%%% {grey}True ({lime}{truePerfs}{grey}) | {blue}{modernPerfPercent}%%%% {grey}Modern ({lime}{modernPerfs}{grey})"
+          "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{truePerfPercent}%%%% {grey}True ({lime}{truePerfs}{grey}) | {blue}{modernPerfEarlyPercent}%%%% {grey}Early ({lime}{modernPerfsEarly}{grey}) | {blue}{modernPerfLatePercent}%%%% {grey}Late ({lime}{modernPerfsLate}{grey})"
         },
         {
           "file": "cs2kz-telemetry.phrases.txt",
@@ -11496,7 +11814,7 @@
         {
           "file": "cs2kz-telemetry.phrases.txt",
           "phrase": "Telemetry - Reset Bhop Stats",
-          "line": 15,
+          "line": 16,
           "english_text": "{grey}Bunny hop statistics have been reset."
         },
         {
@@ -11743,13 +12061,13 @@
           "file": "cs2kz-timer.phrases.txt",
           "phrase": "Beat Course Info - Global Points (TP)",
           "line": 146,
-          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey})"
+          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey}) | Player Rating: {purple}{player_rating}{grey}"
         },
         {
           "file": "cs2kz-timer.phrases.txt",
           "phrase": "Beat Course Info - Global Points (PRO)",
           "line": 158,
-          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey}) / {purple}{points_pro}{grey} {blue}PRO{grey} (+{purple}{points_gained_pro}{grey})"
+          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey}) / {purple}{points}{grey} {blue}PRO{grey} (+{purple}{points_gained}{grey}) | Player Rating: {purple}{player_rating}{grey}"
         },
         {
           "file": "cs2kz-timer.phrases.txt",
@@ -12242,6 +12560,12 @@
           "phrase": "Tip - kz_hideweapon",
           "line": 48,
           "english_text": "{grey}Type {default}/hideweapon {grey}to toggle your weapon visibility."
+        },
+        {
+          "file": "cs2kz-tips-visual.phrases.txt",
+          "phrase": "Tip - kz_fov",
+          "line": 63,
+          "english_text": "{grey}Use {default}/fov {purple}<value> {default}to change your FOV."
         }
       ],
       "menu": {
@@ -12255,10 +12579,22 @@
     },
     "sv": {
       "name": "swedish",
-      "coverage_percent": 70.89,
+      "coverage_percent": 70.14,
       "translated": 397,
-      "missing": 163,
+      "missing": 169,
       "missing_phrases": [
+        {
+          "file": "cs2kz-anticheat.phrases.txt",
+          "phrase": "Anti-Cheat Warning",
+          "line": 51,
+          "english_text": "{darkred}WARNING: Any use of hardware/software/configs to gain unfair advantage is strictly forbidden! This includes, but is not limited to: hacks, macros, hyperscrolling, SOCD/nulls, desubtick and mouse abuse configs."
+        },
+        {
+          "file": "cs2kz-anticheat.phrases.txt",
+          "phrase": "Cheater Warning",
+          "line": 55,
+          "english_text": "{darkred}WARNING: You are currently banned. Your jumps and records will not be saved."
+        },
         {
           "file": "cs2kz-api.phrases.txt",
           "phrase": "Non Global Map Warning",
@@ -12400,14 +12736,20 @@
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_legacyperfstats",
-          "line": 1476,
+          "line": 1477,
           "english_text": "Retrieve bhop statistics for legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_resetperfstats",
-          "line": 1480,
+          "line": 1482,
           "english_text": "Reset bhop statistics for modern and legacy jumping."
+        },
+        {
+          "file": "cs2kz-commands.phrases.txt",
+          "phrase": "Command Description - kz_fov",
+          "line": 1487,
+          "english_text": "Change your FOV."
         },
         {
           "file": "cs2kz-course.phrases.txt",
@@ -12558,6 +12900,18 @@
           "phrase": "Tier Info",
           "line": 176,
           "english_text": "{default}{course}{grey} ({purple}{state}{grey}) - Tier {yellow}{tier_nub}{grey}/{blue}{tier_pro}{grey}{description}"
+        },
+        {
+          "file": "cs2kz-fov.phrases.txt",
+          "phrase": "FOV - Show",
+          "line": 3,
+          "english_text": "{grey}Your FOV is {purple}{fov}{grey}."
+        },
+        {
+          "file": "cs2kz-fov.phrases.txt",
+          "phrase": "Error Message (Invalid FOV)",
+          "line": 9,
+          "english_text": "{darkred}Invalid FOV \\\"{fov}\\\" (allowed {min} - {max})."
         },
         {
           "file": "cs2kz-jumpstats.phrases.txt",
@@ -12880,248 +13234,248 @@
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loaded Successfully",
-          "line": 255,
+          "line": 256,
           "english_text": "{lime}Replay loaded successfully! Starting playback..."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - No Loading Progress",
-          "line": 263,
+          "line": 264,
           "english_text": "{grey}No replay loading in progress"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loading Progress",
-          "line": 271,
+          "line": 272,
           "english_text": "{grey}Loading replay: {progress}%%%% complete"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loading Completed",
-          "line": 280,
+          "line": 281,
           "english_text": "{lime}Replay loading completed"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loading Cancelled",
-          "line": 288,
+          "line": 289,
           "english_text": "{grey}Replay loading cancelled"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Usage Command",
-          "line": 296,
+          "line": 297,
           "english_text": "{grey}Usage: kz_replay <ID>"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Load Cancelled",
-          "line": 304,
+          "line": 305,
           "english_text": "{darkred}Load cancelled by user"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Invalid File Format",
-          "line": 312,
+          "line": 313,
           "english_text": "{darkred}Invalid replay file format"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Failed",
-          "line": 320,
+          "line": 321,
           "english_text": "{darkred}Failed to save manual replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved",
-          "line": 328,
+          "line": 329,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey} ({lime}{duration}{grey}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved (Console)",
-          "line": 337,
+          "line": 338,
           "english_text": "Replay saved: {uuid} ({duration}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Failed",
-          "line": 346,
+          "line": 347,
           "english_text": "{darkred}Failed to save run replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved",
-          "line": 354,
+          "line": 355,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved (Console)",
-          "line": 363,
+          "line": 364,
           "english_text": "Replay saved: {uuid}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Wrong Map",
-          "line": 372,
+          "line": 373,
           "english_text": "{darkred}Replay map does not match current map.{grey} (Replay: {default}{replayMap}{grey}, Current: {default}{currentMap}{grey})"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Mode",
-          "line": 381,
+          "line": 382,
           "english_text": "{darkred}Mode {default}{modeName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Style",
-          "line": 390,
+          "line": 391,
           "english_text": "{darkred}Style {default}{styleName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Check Console",
-          "line": 399,
+          "line": 400,
           "english_text": "{grey}Check console for info!"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Title",
-          "line": 407,
+          "line": 408,
           "english_text": "Usage: !replays [type=run/r/jump/j/manual/m] [options...]"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage General Options",
-          "line": 416,
+          "line": 417,
           "english_text": "\\nGeneral Options:\\n\\tplayer=<name> - Filter by player name\\n\\tsteamid=<id> - Filter by Steam ID\\n\\tmap=<name> - Filter by map name (default: current map)\\n\\toffset=<num> - Skip first N results\\n\\tlimit=<num> - Limit results (max 20)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Type Options",
-          "line": 430,
+          "line": 431,
           "english_text": "\\nType Options:\\n\\tRun: mode=<mode> course=<name> maxtime=<sec> maxteleports=<num> numstyles=<num>\\n\\tJump: jumptype=<type> mindistance=<dist>\\n\\tManual: saver=<name> ssid=<steamid>"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - No Matching Replays",
-          "line": 442,
+          "line": 443,
           "english_text": "{grey}No matching replays found."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Cheater Replays - Table Name",
-          "line": 450,
+          "line": 451,
           "english_text": "Cheater Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Run Replays - Table Name",
-          "line": 458,
+          "line": 459,
           "english_text": "Run Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Jump Replays - Table Name",
-          "line": 466,
+          "line": 467,
           "english_text": "Jump Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Manual Replays - Table Name",
-          "line": 474,
+          "line": 475,
           "english_text": "Manual Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Player",
-          "line": 482,
+          "line": 483,
           "english_text": "Player"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Map",
-          "line": 490,
+          "line": 491,
           "english_text": "Map"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Reason",
-          "line": 498,
+          "line": 499,
           "english_text": "Reason"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - SteamID",
-          "line": 506,
+          "line": 507,
           "english_text": "SteamID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - UUID",
-          "line": 514,
+          "line": 515,
           "english_text": "UUID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Course",
-          "line": 522,
+          "line": 523,
           "english_text": "Course"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Mode",
-          "line": 530,
+          "line": 531,
           "english_text": "Mode"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Time",
-          "line": 538,
+          "line": 539,
           "english_text": "Time"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Teleports",
-          "line": 546,
+          "line": 547,
           "english_text": "Teleports"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Jump Type",
-          "line": 554,
+          "line": 555,
           "english_text": "Jump Type"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Distance",
-          "line": 562,
+          "line": 563,
           "english_text": "Distance"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Block",
-          "line": 570,
+          "line": 571,
           "english_text": "Block"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Strafes",
-          "line": 578,
+          "line": 579,
           "english_text": "Strafes"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Saved By",
-          "line": 586,
+          "line": 587,
           "english_text": "Saved By"
         },
         {
           "file": "cs2kz-telemetry.phrases.txt",
           "phrase": "Telemetry - Modern Bhop Stats",
           "line": 3,
-          "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{truePerfPercent}%%%% {grey}True ({lime}{truePerfs}{grey}) | {blue}{modernPerfPercent}%%%% {grey}Modern ({lime}{modernPerfs}{grey})"
+          "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{truePerfPercent}%%%% {grey}True ({lime}{truePerfs}{grey}) | {blue}{modernPerfEarlyPercent}%%%% {grey}Early ({lime}{modernPerfsEarly}{grey}) | {blue}{modernPerfLatePercent}%%%% {grey}Late ({lime}{modernPerfsLate}{grey})"
         },
         {
           "file": "cs2kz-telemetry.phrases.txt",
@@ -13132,7 +13486,7 @@
         {
           "file": "cs2kz-telemetry.phrases.txt",
           "phrase": "Telemetry - Reset Bhop Stats",
-          "line": 15,
+          "line": 16,
           "english_text": "{grey}Bunny hop statistics have been reset."
         },
         {
@@ -13236,6 +13590,12 @@
           "phrase": "Tip - kz_rphidelegs",
           "line": 92,
           "english_text": "{grey}Type {default}!rphidelegs {grey}to toggle the visibility of the replay bot's first person legs."
+        },
+        {
+          "file": "cs2kz-tips-visual.phrases.txt",
+          "phrase": "Tip - kz_fov",
+          "line": 63,
+          "english_text": "{grey}Use {default}/fov {purple}<value> {default}to change your FOV."
         }
       ],
       "menu": {
@@ -13246,15 +13606,15 @@
     },
     "tr": {
       "name": "turkish",
-      "coverage_percent": 47.68,
+      "coverage_percent": 47.17,
       "translated": 267,
-      "missing": 293,
+      "missing": 299,
       "missing_phrases": [
         {
           "file": "cs2kz-anticheat.phrases.txt",
           "phrase": "Kick Player m_yaw",
           "line": 3,
-          "english_text": "{yellow}Warning{grey}: Your {default}m_yaw{grey} value must be less or equal to 0.3 to play on this server. You will be disconnected."
+          "english_text": "{darkred}Warning{grey}: Your {default}m_yaw{grey} value must be less or equal to 0.3 to play on this server. You will be disconnected."
         },
         {
           "file": "cs2kz-anticheat.phrases.txt",
@@ -13266,13 +13626,25 @@
           "file": "cs2kz-anticheat.phrases.txt",
           "phrase": "Kick Player fps_max",
           "line": 27,
-          "english_text": "{yellow}Warning{grey}: Your {default}fps_max{grey} value must be more or equal to 64 to play on this server. You will be disconnected."
+          "english_text": "{darkred}Warning{grey}: Your {default}fps_max{grey} value must be more or equal to 64 to play on this server. You will be disconnected."
         },
         {
           "file": "cs2kz-anticheat.phrases.txt",
           "phrase": "Kick Player fps_max (Console)",
           "line": 39,
           "english_text": "Warning: Your fps_max value must be more or equal to 64 to play on this server. You will be disconnected."
+        },
+        {
+          "file": "cs2kz-anticheat.phrases.txt",
+          "phrase": "Anti-Cheat Warning",
+          "line": 51,
+          "english_text": "{darkred}WARNING: Any use of hardware/software/configs to gain unfair advantage is strictly forbidden! This includes, but is not limited to: hacks, macros, hyperscrolling, SOCD/nulls, desubtick and mouse abuse configs."
+        },
+        {
+          "file": "cs2kz-anticheat.phrases.txt",
+          "phrase": "Cheater Warning",
+          "line": 55,
+          "english_text": "{darkred}WARNING: You are currently banned. Your jumps and records will not be saved."
         },
         {
           "file": "cs2kz-api.phrases.txt",
@@ -13757,14 +14129,20 @@
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_legacyperfstats",
-          "line": 1476,
+          "line": 1477,
           "english_text": "Retrieve bhop statistics for legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_resetperfstats",
-          "line": 1480,
+          "line": 1482,
           "english_text": "Reset bhop statistics for modern and legacy jumping."
+        },
+        {
+          "file": "cs2kz-commands.phrases.txt",
+          "phrase": "Command Description - kz_fov",
+          "line": 1487,
+          "english_text": "Change your FOV."
         },
         {
           "file": "cs2kz-common.phrases.txt",
@@ -13927,6 +14305,18 @@
           "phrase": "Tier Info",
           "line": 176,
           "english_text": "{default}{course}{grey} ({purple}{state}{grey}) - Tier {yellow}{tier_nub}{grey}/{blue}{tier_pro}{grey}{description}"
+        },
+        {
+          "file": "cs2kz-fov.phrases.txt",
+          "phrase": "FOV - Show",
+          "line": 3,
+          "english_text": "{grey}Your FOV is {purple}{fov}{grey}."
+        },
+        {
+          "file": "cs2kz-fov.phrases.txt",
+          "phrase": "Error Message (Invalid FOV)",
+          "line": 9,
+          "english_text": "{darkred}Invalid FOV \\\"{fov}\\\" (allowed {min} - {max})."
         },
         {
           "file": "cs2kz-jumpstats.phrases.txt",
@@ -14411,241 +14801,241 @@
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loaded Successfully",
-          "line": 255,
+          "line": 256,
           "english_text": "{lime}Replay loaded successfully! Starting playback..."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - No Loading Progress",
-          "line": 263,
+          "line": 264,
           "english_text": "{grey}No replay loading in progress"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loading Progress",
-          "line": 271,
+          "line": 272,
           "english_text": "{grey}Loading replay: {progress}%%%% complete"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loading Completed",
-          "line": 280,
+          "line": 281,
           "english_text": "{lime}Replay loading completed"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Loading Cancelled",
-          "line": 288,
+          "line": 289,
           "english_text": "{grey}Replay loading cancelled"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Usage Command",
-          "line": 296,
+          "line": 297,
           "english_text": "{grey}Usage: kz_replay <ID>"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Load Cancelled",
-          "line": 304,
+          "line": 305,
           "english_text": "{darkred}Load cancelled by user"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Invalid File Format",
-          "line": 312,
+          "line": 313,
           "english_text": "{darkred}Invalid replay file format"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Failed",
-          "line": 320,
+          "line": 321,
           "english_text": "{darkred}Failed to save manual replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved",
-          "line": 328,
+          "line": 329,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey} ({lime}{duration}{grey}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved (Console)",
-          "line": 337,
+          "line": 338,
           "english_text": "Replay saved: {uuid} ({duration}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Failed",
-          "line": 346,
+          "line": 347,
           "english_text": "{darkred}Failed to save run replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved",
-          "line": 354,
+          "line": 355,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved (Console)",
-          "line": 363,
+          "line": 364,
           "english_text": "Replay saved: {uuid}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Wrong Map",
-          "line": 372,
+          "line": 373,
           "english_text": "{darkred}Replay map does not match current map.{grey} (Replay: {default}{replayMap}{grey}, Current: {default}{currentMap}{grey})"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Mode",
-          "line": 381,
+          "line": 382,
           "english_text": "{darkred}Mode {default}{modeName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Style",
-          "line": 390,
+          "line": 391,
           "english_text": "{darkred}Style {default}{styleName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Check Console",
-          "line": 399,
+          "line": 400,
           "english_text": "{grey}Check console for info!"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Title",
-          "line": 407,
+          "line": 408,
           "english_text": "Usage: !replays [type=run/r/jump/j/manual/m] [options...]"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage General Options",
-          "line": 416,
+          "line": 417,
           "english_text": "\\nGeneral Options:\\n\\tplayer=<name> - Filter by player name\\n\\tsteamid=<id> - Filter by Steam ID\\n\\tmap=<name> - Filter by map name (default: current map)\\n\\toffset=<num> - Skip first N results\\n\\tlimit=<num> - Limit results (max 20)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Type Options",
-          "line": 430,
+          "line": 431,
           "english_text": "\\nType Options:\\n\\tRun: mode=<mode> course=<name> maxtime=<sec> maxteleports=<num> numstyles=<num>\\n\\tJump: jumptype=<type> mindistance=<dist>\\n\\tManual: saver=<name> ssid=<steamid>"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - No Matching Replays",
-          "line": 442,
+          "line": 443,
           "english_text": "{grey}No matching replays found."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Cheater Replays - Table Name",
-          "line": 450,
+          "line": 451,
           "english_text": "Cheater Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Run Replays - Table Name",
-          "line": 458,
+          "line": 459,
           "english_text": "Run Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Jump Replays - Table Name",
-          "line": 466,
+          "line": 467,
           "english_text": "Jump Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Manual Replays - Table Name",
-          "line": 474,
+          "line": 475,
           "english_text": "Manual Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Player",
-          "line": 482,
+          "line": 483,
           "english_text": "Player"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Map",
-          "line": 490,
+          "line": 491,
           "english_text": "Map"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Reason",
-          "line": 498,
+          "line": 499,
           "english_text": "Reason"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - SteamID",
-          "line": 506,
+          "line": 507,
           "english_text": "SteamID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - UUID",
-          "line": 514,
+          "line": 515,
           "english_text": "UUID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Course",
-          "line": 522,
+          "line": 523,
           "english_text": "Course"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Mode",
-          "line": 530,
+          "line": 531,
           "english_text": "Mode"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Time",
-          "line": 538,
+          "line": 539,
           "english_text": "Time"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Teleports",
-          "line": 546,
+          "line": 547,
           "english_text": "Teleports"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Jump Type",
-          "line": 554,
+          "line": 555,
           "english_text": "Jump Type"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Distance",
-          "line": 562,
+          "line": 563,
           "english_text": "Distance"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Block",
-          "line": 570,
+          "line": 571,
           "english_text": "Block"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Strafes",
-          "line": 578,
+          "line": 579,
           "english_text": "Strafes"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Saved By",
-          "line": 586,
+          "line": 587,
           "english_text": "Saved By"
         },
         {
@@ -14700,7 +15090,7 @@
           "file": "cs2kz-telemetry.phrases.txt",
           "phrase": "Telemetry - Modern Bhop Stats",
           "line": 3,
-          "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{truePerfPercent}%%%% {grey}True ({lime}{truePerfs}{grey}) | {blue}{modernPerfPercent}%%%% {grey}Modern ({lime}{modernPerfs}{grey})"
+          "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{truePerfPercent}%%%% {grey}True ({lime}{truePerfs}{grey}) | {blue}{modernPerfEarlyPercent}%%%% {grey}Early ({lime}{modernPerfsEarly}{grey}) | {blue}{modernPerfLatePercent}%%%% {grey}Late ({lime}{modernPerfsLate}{grey})"
         },
         {
           "file": "cs2kz-telemetry.phrases.txt",
@@ -14711,7 +15101,7 @@
         {
           "file": "cs2kz-telemetry.phrases.txt",
           "phrase": "Telemetry - Reset Bhop Stats",
-          "line": 15,
+          "line": 16,
           "english_text": "{grey}Bunny hop statistics have been reset."
         },
         {
@@ -14790,13 +15180,13 @@
           "file": "cs2kz-timer.phrases.txt",
           "phrase": "Beat Course Info - Global Points (TP)",
           "line": 146,
-          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey})"
+          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey}) | Player Rating: {purple}{player_rating}{grey}"
         },
         {
           "file": "cs2kz-timer.phrases.txt",
           "phrase": "Beat Course Info - Global Points (PRO)",
           "line": 158,
-          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey}) / {purple}{points_pro}{grey} {blue}PRO{grey} (+{purple}{points_gained_pro}{grey})"
+          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey}) / {purple}{points}{grey} {blue}PRO{grey} (+{purple}{points_gained}{grey}) | Player Rating: {purple}{player_rating}{grey}"
         },
         {
           "file": "cs2kz-timer.phrases.txt",
@@ -15007,6 +15397,12 @@
           "phrase": "Tip - kz_rphidelegs",
           "line": 92,
           "english_text": "{grey}Type {default}!rphidelegs {grey}to toggle the visibility of the replay bot's first person legs."
+        },
+        {
+          "file": "cs2kz-tips-visual.phrases.txt",
+          "phrase": "Tip - kz_fov",
+          "line": 63,
+          "english_text": "{grey}Use {default}/fov {purple}<value> {default}to change your FOV."
         }
       ],
       "menu": {
@@ -15020,51 +15416,27 @@
     },
     "ua": {
       "name": "ukrainian",
-      "coverage_percent": 98.75,
-      "translated": 553,
-      "missing": 7,
+      "coverage_percent": 99.47,
+      "translated": 563,
+      "missing": 3,
       "missing_phrases": [
         {
-          "file": "cs2kz-commands.phrases.txt",
-          "phrase": "Command Description - kz_modernperfstats",
-          "line": 1472,
-          "english_text": "Retrieve bhop statistics for modern jumping."
+          "file": "cs2kz-anticheat.phrases.txt",
+          "phrase": "Anti-Cheat Warning",
+          "line": 51,
+          "english_text": "{darkred}WARNING: Any use of hardware/software/configs to gain unfair advantage is strictly forbidden! This includes, but is not limited to: hacks, macros, hyperscrolling, SOCD/nulls, desubtick and mouse abuse configs."
         },
         {
-          "file": "cs2kz-commands.phrases.txt",
-          "phrase": "Command Description - kz_legacyperfstats",
-          "line": 1476,
-          "english_text": "Retrieve bhop statistics for legacy jumping."
-        },
-        {
-          "file": "cs2kz-commands.phrases.txt",
-          "phrase": "Command Description - kz_resetperfstats",
-          "line": 1480,
-          "english_text": "Reset bhop statistics for modern and legacy jumping."
-        },
-        {
-          "file": "cs2kz-replays.phrases.txt",
-          "phrase": "Replay - Multiple Matches",
-          "line": 250,
-          "english_text": "{darkred}Multiple replays match UUID substring {grey}'{default}{uuid}{grey}'."
+          "file": "cs2kz-anticheat.phrases.txt",
+          "phrase": "Cheater Warning",
+          "line": 55,
+          "english_text": "{darkred}WARNING: You are currently banned. Your jumps and records will not be saved."
         },
         {
           "file": "cs2kz-telemetry.phrases.txt",
           "phrase": "Telemetry - Modern Bhop Stats",
           "line": 3,
-          "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{truePerfPercent}%%%% {grey}True ({lime}{truePerfs}{grey}) | {blue}{modernPerfPercent}%%%% {grey}Modern ({lime}{modernPerfs}{grey})"
-        },
-        {
-          "file": "cs2kz-telemetry.phrases.txt",
-          "phrase": "Telemetry - Legacy Bhop Stats",
-          "line": 9,
-          "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{perfPercent}%%%% {grey}Perf ({lime}{perfs}{grey})"
-        },
-        {
-          "file": "cs2kz-telemetry.phrases.txt",
-          "phrase": "Telemetry - Reset Bhop Stats",
-          "line": 15,
-          "english_text": "{grey}Bunny hop statistics have been reset."
+          "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{truePerfPercent}%%%% {grey}True ({lime}{truePerfs}{grey}) | {blue}{modernPerfEarlyPercent}%%%% {grey}Early ({lime}{modernPerfsEarly}{grey}) | {blue}{modernPerfLatePercent}%%%% {grey}Late ({lime}{modernPerfsLate}{grey})"
         }
       ],
       "menu": {
@@ -15076,12 +15448,12 @@
   },
   "files": {
     "cs2kz-anticheat.phrases.txt": {
-      "phrases_with_missing": 4,
+      "phrases_with_missing": 6,
       "phrases": [
         {
           "name": "Kick Player m_yaw",
           "line": 3,
-          "english_text": "{yellow}Warning{grey}: Your {default}m_yaw{grey} value must be less or equal to 0.3 to play on this server. You will be disconnected.",
+          "english_text": "{darkred}Warning{grey}: Your {default}m_yaw{grey} value must be less or equal to 0.3 to play on this server. You will be disconnected.",
           "existing_languages": [
             "chi",
             "de",
@@ -15125,7 +15497,7 @@
         {
           "name": "Kick Player fps_max",
           "line": 27,
-          "english_text": "{yellow}Warning{grey}: Your {default}fps_max{grey} value must be more or equal to 64 to play on this server. You will be disconnected.",
+          "english_text": "{darkred}Warning{grey}: Your {default}fps_max{grey} value must be more or equal to 64 to play on this server. You will be disconnected.",
           "existing_languages": [
             "chi",
             "de",
@@ -15164,6 +15536,50 @@
             "it",
             "ru",
             "tr"
+          ]
+        },
+        {
+          "name": "Anti-Cheat Warning",
+          "line": 51,
+          "english_text": "{darkred}WARNING: Any use of hardware/software/configs to gain unfair advantage is strictly forbidden! This includes, but is not limited to: hacks, macros, hyperscrolling, SOCD/nulls, desubtick and mouse abuse configs.",
+          "existing_languages": [
+            "en"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "ru",
+            "sv",
+            "tr",
+            "ua"
+          ]
+        },
+        {
+          "name": "Cheater Warning",
+          "line": 55,
+          "english_text": "{darkred}WARNING: You are currently banned. Your jumps and records will not be saved.",
+          "existing_languages": [
+            "en"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "ru",
+            "sv",
+            "tr",
+            "ua"
           ]
         }
       ]
@@ -15624,7 +16040,7 @@
       ]
     },
     "cs2kz-commands.phrases.txt": {
-      "phrases_with_missing": 117,
+      "phrases_with_missing": 118,
       "phrases": [
         {
           "name": "Command Help Response (Chat)",
@@ -18139,7 +18555,8 @@
           "line": 1472,
           "english_text": "Retrieve bhop statistics for modern jumping.",
           "existing_languages": [
-            "en"
+            "en",
+            "ua"
           ],
           "missing_languages": [
             "chi",
@@ -18152,16 +18569,16 @@
             "pl",
             "ru",
             "sv",
-            "tr",
-            "ua"
+            "tr"
           ]
         },
         {
           "name": "Command Description - kz_legacyperfstats",
-          "line": 1476,
+          "line": 1477,
           "english_text": "Retrieve bhop statistics for legacy jumping.",
           "existing_languages": [
-            "en"
+            "en",
+            "ua"
           ],
           "missing_languages": [
             "chi",
@@ -18174,16 +18591,16 @@
             "pl",
             "ru",
             "sv",
-            "tr",
-            "ua"
+            "tr"
           ]
         },
         {
           "name": "Command Description - kz_resetperfstats",
-          "line": 1480,
+          "line": 1482,
           "english_text": "Reset bhop statistics for modern and legacy jumping.",
           "existing_languages": [
-            "en"
+            "en",
+            "ua"
           ],
           "missing_languages": [
             "chi",
@@ -18196,8 +18613,29 @@
             "pl",
             "ru",
             "sv",
-            "tr",
+            "tr"
+          ]
+        },
+        {
+          "name": "Command Description - kz_fov",
+          "line": 1487,
+          "english_text": "Change your FOV.",
+          "existing_languages": [
+            "en",
             "ua"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "ru",
+            "sv",
+            "tr"
           ]
         }
       ]
@@ -18918,6 +19356,55 @@
           "name": "Tier Info",
           "line": 176,
           "english_text": "{default}{course}{grey} ({purple}{state}{grey}) - Tier {yellow}{tier_nub}{grey}/{blue}{tier_pro}{grey}{description}",
+          "existing_languages": [
+            "en",
+            "ua"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "ru",
+            "sv",
+            "tr"
+          ]
+        }
+      ]
+    },
+    "cs2kz-fov.phrases.txt": {
+      "phrases_with_missing": 2,
+      "phrases": [
+        {
+          "name": "FOV - Show",
+          "line": 3,
+          "english_text": "{grey}Your FOV is {purple}{fov}{grey}.",
+          "existing_languages": [
+            "en",
+            "ua"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "ru",
+            "sv",
+            "tr"
+          ]
+        },
+        {
+          "name": "Error Message (Invalid FOV)",
+          "line": 9,
+          "english_text": "{darkred}Invalid FOV \\\"{fov}\\\" (allowed {min} - {max}).",
           "existing_languages": [
             "en",
             "ua"
@@ -21763,7 +22250,8 @@
           "line": 250,
           "english_text": "{darkred}Multiple replays match UUID substring {grey}'{default}{uuid}{grey}'.",
           "existing_languages": [
-            "en"
+            "en",
+            "ua"
           ],
           "missing_languages": [
             "chi",
@@ -21776,13 +22264,12 @@
             "pl",
             "ru",
             "sv",
-            "tr",
-            "ua"
+            "tr"
           ]
         },
         {
           "name": "Replay - Loaded Successfully",
-          "line": 255,
+          "line": 256,
           "english_text": "{lime}Replay loaded successfully! Starting playback...",
           "existing_languages": [
             "chi",
@@ -21804,7 +22291,7 @@
         },
         {
           "name": "Replay - No Loading Progress",
-          "line": 263,
+          "line": 264,
           "english_text": "{grey}No replay loading in progress",
           "existing_languages": [
             "chi",
@@ -21826,7 +22313,7 @@
         },
         {
           "name": "Replay - Loading Progress",
-          "line": 271,
+          "line": 272,
           "english_text": "{grey}Loading replay: {progress}%%%% complete",
           "existing_languages": [
             "chi",
@@ -21848,7 +22335,7 @@
         },
         {
           "name": "Replay - Loading Completed",
-          "line": 280,
+          "line": 281,
           "english_text": "{lime}Replay loading completed",
           "existing_languages": [
             "chi",
@@ -21870,7 +22357,7 @@
         },
         {
           "name": "Replay - Loading Cancelled",
-          "line": 288,
+          "line": 289,
           "english_text": "{grey}Replay loading cancelled",
           "existing_languages": [
             "chi",
@@ -21892,7 +22379,7 @@
         },
         {
           "name": "Replay - Usage Command",
-          "line": 296,
+          "line": 297,
           "english_text": "{grey}Usage: kz_replay <ID>",
           "existing_languages": [
             "chi",
@@ -21914,7 +22401,7 @@
         },
         {
           "name": "Replay - Load Cancelled",
-          "line": 304,
+          "line": 305,
           "english_text": "{darkred}Load cancelled by user",
           "existing_languages": [
             "chi",
@@ -21936,7 +22423,7 @@
         },
         {
           "name": "Replay - Invalid File Format",
-          "line": 312,
+          "line": 313,
           "english_text": "{darkred}Invalid replay file format",
           "existing_languages": [
             "chi",
@@ -21958,7 +22445,7 @@
         },
         {
           "name": "Replay - Manual Replay Failed",
-          "line": 320,
+          "line": 321,
           "english_text": "{darkred}Failed to save manual replay.",
           "existing_languages": [
             "chi",
@@ -21980,7 +22467,7 @@
         },
         {
           "name": "Replay - Manual Replay Saved",
-          "line": 328,
+          "line": 329,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey} ({lime}{duration}{grey}s)",
           "existing_languages": [
             "chi",
@@ -22002,7 +22489,7 @@
         },
         {
           "name": "Replay - Manual Replay Saved (Console)",
-          "line": 337,
+          "line": 338,
           "english_text": "Replay saved: {uuid} ({duration}s)",
           "existing_languages": [
             "chi",
@@ -22024,7 +22511,7 @@
         },
         {
           "name": "Replay - Run Replay Failed",
-          "line": 346,
+          "line": 347,
           "english_text": "{darkred}Failed to save run replay.",
           "existing_languages": [
             "chi",
@@ -22046,7 +22533,7 @@
         },
         {
           "name": "Replay - Run Replay Saved",
-          "line": 354,
+          "line": 355,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey}",
           "existing_languages": [
             "chi",
@@ -22068,7 +22555,7 @@
         },
         {
           "name": "Replay - Run Replay Saved (Console)",
-          "line": 363,
+          "line": 364,
           "english_text": "Replay saved: {uuid}",
           "existing_languages": [
             "chi",
@@ -22090,7 +22577,7 @@
         },
         {
           "name": "Replay - Wrong Map",
-          "line": 372,
+          "line": 373,
           "english_text": "{darkred}Replay map does not match current map.{grey} (Replay: {default}{replayMap}{grey}, Current: {default}{currentMap}{grey})",
           "existing_languages": [
             "chi",
@@ -22112,7 +22599,7 @@
         },
         {
           "name": "Replay - Unknown Mode",
-          "line": 381,
+          "line": 382,
           "english_text": "{darkred}Mode {default}{modeName}{darkred} is not available. Playback might be inaccurate.",
           "existing_languages": [
             "chi",
@@ -22134,7 +22621,7 @@
         },
         {
           "name": "Replay - Unknown Style",
-          "line": 390,
+          "line": 391,
           "english_text": "{darkred}Style {default}{styleName}{darkred} is not available. Playback might be inaccurate.",
           "existing_languages": [
             "chi",
@@ -22156,7 +22643,7 @@
         },
         {
           "name": "Replay List - Check Console",
-          "line": 399,
+          "line": 400,
           "english_text": "{grey}Check console for info!",
           "existing_languages": [
             "chi",
@@ -22178,7 +22665,7 @@
         },
         {
           "name": "Replay List - Usage Title",
-          "line": 407,
+          "line": 408,
           "english_text": "Usage: !replays [type=run/r/jump/j/manual/m] [options...]",
           "existing_languages": [
             "chi",
@@ -22200,7 +22687,7 @@
         },
         {
           "name": "Replay List - Usage General Options",
-          "line": 416,
+          "line": 417,
           "english_text": "\\nGeneral Options:\\n\\tplayer=<name> - Filter by player name\\n\\tsteamid=<id> - Filter by Steam ID\\n\\tmap=<name> - Filter by map name (default: current map)\\n\\toffset=<num> - Skip first N results\\n\\tlimit=<num> - Limit results (max 20)",
           "existing_languages": [
             "chi",
@@ -22222,7 +22709,7 @@
         },
         {
           "name": "Replay List - Usage Type Options",
-          "line": 430,
+          "line": 431,
           "english_text": "\\nType Options:\\n\\tRun: mode=<mode> course=<name> maxtime=<sec> maxteleports=<num> numstyles=<num>\\n\\tJump: jumptype=<type> mindistance=<dist>\\n\\tManual: saver=<name> ssid=<steamid>",
           "existing_languages": [
             "chi",
@@ -22244,7 +22731,7 @@
         },
         {
           "name": "Replay List - No Matching Replays",
-          "line": 442,
+          "line": 443,
           "english_text": "{grey}No matching replays found.",
           "existing_languages": [
             "chi",
@@ -22266,7 +22753,7 @@
         },
         {
           "name": "Cheater Replays - Table Name",
-          "line": 450,
+          "line": 451,
           "english_text": "Cheater Replays",
           "existing_languages": [
             "chi",
@@ -22288,7 +22775,7 @@
         },
         {
           "name": "Run Replays - Table Name",
-          "line": 458,
+          "line": 459,
           "english_text": "Run Replays",
           "existing_languages": [
             "chi",
@@ -22310,7 +22797,7 @@
         },
         {
           "name": "Jump Replays - Table Name",
-          "line": 466,
+          "line": 467,
           "english_text": "Jump Replays",
           "existing_languages": [
             "chi",
@@ -22332,7 +22819,7 @@
         },
         {
           "name": "Manual Replays - Table Name",
-          "line": 474,
+          "line": 475,
           "english_text": "Manual Replays",
           "existing_languages": [
             "chi",
@@ -22354,7 +22841,7 @@
         },
         {
           "name": "Replay Table Header - Player",
-          "line": 482,
+          "line": 483,
           "english_text": "Player",
           "existing_languages": [
             "chi",
@@ -22376,7 +22863,7 @@
         },
         {
           "name": "Replay Table Header - Map",
-          "line": 490,
+          "line": 491,
           "english_text": "Map",
           "existing_languages": [
             "chi",
@@ -22398,7 +22885,7 @@
         },
         {
           "name": "Replay Table Header - Reason",
-          "line": 498,
+          "line": 499,
           "english_text": "Reason",
           "existing_languages": [
             "chi",
@@ -22420,7 +22907,7 @@
         },
         {
           "name": "Replay Table Header - SteamID",
-          "line": 506,
+          "line": 507,
           "english_text": "SteamID",
           "existing_languages": [
             "chi",
@@ -22442,7 +22929,7 @@
         },
         {
           "name": "Replay Table Header - UUID",
-          "line": 514,
+          "line": 515,
           "english_text": "UUID",
           "existing_languages": [
             "chi",
@@ -22464,7 +22951,7 @@
         },
         {
           "name": "Replay Table Header - Course",
-          "line": 522,
+          "line": 523,
           "english_text": "Course",
           "existing_languages": [
             "chi",
@@ -22486,7 +22973,7 @@
         },
         {
           "name": "Replay Table Header - Mode",
-          "line": 530,
+          "line": 531,
           "english_text": "Mode",
           "existing_languages": [
             "chi",
@@ -22508,7 +22995,7 @@
         },
         {
           "name": "Replay Table Header - Time",
-          "line": 538,
+          "line": 539,
           "english_text": "Time",
           "existing_languages": [
             "chi",
@@ -22530,7 +23017,7 @@
         },
         {
           "name": "Replay Table Header - Teleports",
-          "line": 546,
+          "line": 547,
           "english_text": "Teleports",
           "existing_languages": [
             "chi",
@@ -22552,7 +23039,7 @@
         },
         {
           "name": "Replay Table Header - Jump Type",
-          "line": 554,
+          "line": 555,
           "english_text": "Jump Type",
           "existing_languages": [
             "chi",
@@ -22574,7 +23061,7 @@
         },
         {
           "name": "Replay Table Header - Distance",
-          "line": 562,
+          "line": 563,
           "english_text": "Distance",
           "existing_languages": [
             "chi",
@@ -22596,7 +23083,7 @@
         },
         {
           "name": "Replay Table Header - Block",
-          "line": 570,
+          "line": 571,
           "english_text": "Block",
           "existing_languages": [
             "chi",
@@ -22618,7 +23105,7 @@
         },
         {
           "name": "Replay Table Header - Strafes",
-          "line": 578,
+          "line": 579,
           "english_text": "Strafes",
           "existing_languages": [
             "chi",
@@ -22640,7 +23127,7 @@
         },
         {
           "name": "Replay Table Header - Saved By",
-          "line": 586,
+          "line": 587,
           "english_text": "Saved By",
           "existing_languages": [
             "chi",
@@ -22920,7 +23407,7 @@
         {
           "name": "Telemetry - Modern Bhop Stats",
           "line": 3,
-          "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{truePerfPercent}%%%% {grey}True ({lime}{truePerfs}{grey}) | {blue}{modernPerfPercent}%%%% {grey}Modern ({lime}{modernPerfs}{grey})",
+          "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{truePerfPercent}%%%% {grey}True ({lime}{truePerfs}{grey}) | {blue}{modernPerfEarlyPercent}%%%% {grey}Early ({lime}{modernPerfsEarly}{grey}) | {blue}{modernPerfLatePercent}%%%% {grey}Late ({lime}{modernPerfsLate}{grey})",
           "existing_languages": [
             "en"
           ],
@@ -22944,7 +23431,8 @@
           "line": 9,
           "english_text": "{grey}Jumps: {lime}{numJumps} {grey}| {green}{perfPercent}%%%% {grey}Perf ({lime}{perfs}{grey})",
           "existing_languages": [
-            "en"
+            "en",
+            "ua"
           ],
           "missing_languages": [
             "chi",
@@ -22957,16 +23445,16 @@
             "pl",
             "ru",
             "sv",
-            "tr",
-            "ua"
+            "tr"
           ]
         },
         {
           "name": "Telemetry - Reset Bhop Stats",
-          "line": 15,
+          "line": 16,
           "english_text": "{grey}Bunny hop statistics have been reset.",
           "existing_languages": [
-            "en"
+            "en",
+            "ua"
           ],
           "missing_languages": [
             "chi",
@@ -22979,8 +23467,7 @@
             "pl",
             "ru",
             "sv",
-            "tr",
-            "ua"
+            "tr"
           ]
         }
       ]
@@ -23886,7 +24373,7 @@
         {
           "name": "Beat Course Info - Global Points (TP)",
           "line": 146,
-          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey})",
+          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey}) | Player Rating: {purple}{player_rating}{grey}",
           "existing_languages": [
             "chi",
             "de",
@@ -23908,7 +24395,7 @@
         {
           "name": "Beat Course Info - Global Points (PRO)",
           "line": 158,
-          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey}) / {purple}{points_pro}{grey} {blue}PRO{grey} (+{purple}{points_gained_pro}{grey})",
+          "english_text": "{grey}Course Points: {purple}{points}{grey} {yellow}Overall{grey} (+{purple}{points_gained}{grey}) / {purple}{points}{grey} {blue}PRO{grey} (+{purple}{points_gained}{grey}) | Player Rating: {purple}{player_rating}{grey}",
           "existing_languages": [
             "chi",
             "de",
@@ -25688,7 +26175,7 @@
       ]
     },
     "cs2kz-tips-visual.phrases.txt": {
-      "phrases_with_missing": 4,
+      "phrases_with_missing": 5,
       "phrases": [
         {
           "name": "Tip - kz_panel",
@@ -25776,6 +26263,28 @@
           ],
           "missing_languages": [
             "ru"
+          ]
+        },
+        {
+          "name": "Tip - kz_fov",
+          "line": 63,
+          "english_text": "{grey}Use {default}/fov {purple}<value> {default}to change your FOV.",
+          "existing_languages": [
+            "en",
+            "ua"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "ru",
+            "sv",
+            "tr"
           ]
         }
       ]
