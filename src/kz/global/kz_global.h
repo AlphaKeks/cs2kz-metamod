@@ -680,7 +680,15 @@ public:
 		}
 	}
 
-	static void SubmitBan(u64 steamID, std::string reason, std::string details);
+	template<typename Callback>
+	static bool SubmitInfraction(const KZ::api::messages::SubmitInfraction &payload, Callback &&callback)
+	{
+		if (!KZGlobalService::IsAvailable())
+		{
+			return false;
+		}
+		return WS::SendMessage(payload, std::forward<Callback>(callback));
+	}
 
 	struct QueryPBParams
 	{

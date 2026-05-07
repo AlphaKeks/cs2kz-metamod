@@ -139,4 +139,12 @@ namespace KZ::api
 
 		bool FromJson(const Json &json);
 	};
+
+	struct BanInfo
+	{
+		std::string reason {};
+		f32 duration {};
+
+		bool FromJson(const Json &json);
+	};
 }; // namespace KZ::api

@@ -4,6 +4,7 @@
 #include "kz/timer/kz_timer.h"
 #include "kz/db/kz_db.h"
 #include "kz/global/kz_global.h"
+#include "kz/global/api.h"
 #include "utils/ctimer.h"
 #include "sdk/usercmd.h"
 
@@ -112,7 +113,7 @@ void KZAnticheatService::ClearDetectionBuffers()
 	this->yawAccelPercent = 0.0f;
 }
 
-void KZAnticheatService::OnGlobalAuthFinished(BanInfo *banInfo)
+void KZAnticheatService::OnGlobalAuthFinished(KZ::api::BanInfo *banInfo)
 {
 	if (this->player->IsFakeClient() || this->player->IsCSTV())
 	{
@@ -122,7 +123,14 @@ void KZAnticheatService::OnGlobalAuthFinished(BanInfo *banInfo)
 	// Already banned? Just add the player to the local ban database and ignore any current infraction.
 	if (banInfo)
 	{
-		KZDatabaseService::AddOrUpdateBan(this->player->GetSteamId64(), banInfo->reason.c_str(), banInfo->expirationDate.c_str(), banInfo->banId);
+		// Compute expiration date string from duration (seconds from now).
+		char endTimeBuf[32] = {};
+		if (banInfo->duration > 0.0f)
+		{
+			time_t expiry = (time_t)(std::time(nullptr) + (time_t)banInfo->duration);
+			std::strftime(endTimeBuf, sizeof(endTimeBuf), "%Y-%m-%d %H:%M:%S", std::gmtime(&expiry));
+		}
+		KZDatabaseService::AddOrUpdateBan(this->player->GetSteamId64(), banInfo->reason.c_str(), endTimeBuf);
 		if (this->GetPendingInfraction())
 		{
 			this->GetPendingInfraction()->replay = nullptr; // Wipe replay to avoid saving it

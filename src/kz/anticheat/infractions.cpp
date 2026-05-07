@@ -16,6 +16,18 @@ KZAnticheatService::Infraction *KZAnticheatService::GetPendingInfraction(const U
 	return nullptr;
 }
 
+KZAnticheatService::Infraction *KZAnticheatService::GetPendingInfraction(u64 steamID)
+{
+	for (KZAnticheatService::Infraction &infraction : KZAnticheatService::pendingBans)
+	{
+		if (infraction.steamID == steamID && !infraction.submitted)
+		{
+			return &infraction;
+		}
+	}
+	return nullptr;
+}
+
 KZAnticheatService::Infraction *KZAnticheatService::GetPendingInfraction()
 {
 	for (KZAnticheatService::Infraction &infraction : KZAnticheatService::pendingBans)
@@ -82,8 +94,59 @@ void KZAnticheatService::MarkInfraction(Infraction::Type type, const std::string
 
 void KZAnticheatService::Infraction::SubmitGlobalInfraction()
 {
-	// TODO Anticheat: Make API call to submit global infraction
-	this->OnGlobalSubmitFailure();
+	if (!KZGlobalService::IsAvailable())
+	{
+		this->OnGlobalSubmitFailure();
+		return;
+	}
+
+	KZ::api::messages::SubmitInfraction message;
+	message.steamID = this->steamID;
+	message.type = static_cast<u8>(this->type);
+	message.details = this->details;
+	if (this->replayUUID.IsV7())
+	{
+		message.replayID = this->replayUUID.ToString();
+	}
+
+	UUID_t infractionId = this->id;
+	u64 steamID = this->steamID;
+
+	KZGlobalService::MessageCallback<KZ::api::messages::SubmitInfractionAck> callback(
+		[infractionId](const KZ::api::messages::SubmitInfractionAck &ack)
+		{
+			UUID_t ackInfractionId(ack.infractionID.c_str());
+			UUID_t ackReplayUUID(ack.replayUUID.c_str());
+			if (KZAnticheatService::Infraction *infraction = KZAnticheatService::GetPendingInfraction(ackInfractionId))
+			{
+				infraction->OnGlobalSubmitSuccess(ackInfractionId, ackReplayUUID, ack.banDuration);
+			}
+			else if (KZAnticheatService::Infraction *infraction = KZAnticheatService::GetPendingInfraction(infractionId))
+			{
+				infraction->OnGlobalSubmitSuccess(ackInfractionId, ackReplayUUID, ack.banDuration);
+			}
+		});
+	callback.OnError(
+		[steamID](const KZ::api::messages::Error &)
+		{
+			if (KZAnticheatService::Infraction *infraction = KZAnticheatService::GetPendingInfraction(steamID))
+			{
+				infraction->OnGlobalSubmitFailure();
+			}
+		});
+	callback.OnCancelled(
+		[steamID](KZGlobalService::MessageCallbackCancelReason)
+		{
+			if (KZAnticheatService::Infraction *infraction = KZAnticheatService::GetPendingInfraction(steamID))
+			{
+				infraction->OnGlobalSubmitFailure();
+			}
+		});
+
+	if (!KZGlobalService::SubmitInfraction(message, std::move(callback)))
+	{
+		this->OnGlobalSubmitFailure();
+	}
 }
 
 void KZAnticheatService::Infraction::OnGlobalSubmitSuccess(const UUID_t &infractionId, const UUID_t &replayUUID, f32 banDuration)

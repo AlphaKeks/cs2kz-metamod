@@ -368,3 +368,8 @@ bool KZ::api::Record::CourseInfo::FromJson(const Json &json)
 {
 	return json.Get("id", this->id) && json.Get("name", this->name);
 }
+
+bool KZ::api::BanInfo::FromJson(const Json &json)
+{
+	return json.Get("reason", this->reason) && json.Get("duration", this->duration);
+}

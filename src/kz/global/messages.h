@@ -112,7 +112,7 @@ namespace KZ::api::messages
 	struct PlayerJoinAck
 	{
 		Json preferences;
-		bool isBanned;
+		std::optional<KZ::api::BanInfo> ban;
 		bool hasPrime;
 
 		bool FromJson(const Json &json);
@@ -343,5 +343,31 @@ namespace KZ::api::messages
 		{
 			return true;
 		}
+	};
+
+	const char *InfractionTypeToApiReason(u8 type);
+
+	struct SubmitInfraction
+	{
+		u64 steamID {};
+		u8 type {};
+		std::string details {};
+		std::optional<std::string> replayID {};
+
+		inline static const char *Name()
+		{
+			return "submit-infraction";
+		}
+
+		bool ToJson(Json &json) const;
+	};
+
+	struct SubmitInfractionAck
+	{
+		std::string infractionID {};
+		std::string replayUUID {};
+		f32 banDuration {};
+
+		bool FromJson(const Json &json);
 	};
 }; // namespace KZ::api::messages

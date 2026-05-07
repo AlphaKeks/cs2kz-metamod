@@ -1,5 +1,6 @@
 #include "messages.h"
 #include "version_gen.h"
+#include "kz/anticheat/kz_anticheat.h"
 
 bool KZ::api::messages::handshake::Hello::PlayerInfo::ToJson(Json &json) const
 {
@@ -70,7 +71,21 @@ bool KZ::api::messages::PlayerJoinAck::FromJson(const Json &json)
 {
 	// Backwards compat with older plugin versions that didn't include hasPrime in the ack
 	json.Get("has_prime", this->hasPrime);
-	return json.Get("preferences", this->preferences) && json.Get("is_banned", this->isBanned);
+	if (!json.Get("preferences", this->preferences))
+	{
+		return false;
+	}
+	// Optional ban object from API
+	Json banJson;
+	if (json.Get("ban", banJson) && banJson.IsValid())
+	{
+		KZ::api::BanInfo ban;
+		if (ban.FromJson(banJson))
+		{
+			this->ban = std::move(ban);
+		}
+	}
+	return true;
 }
 
 bool KZ::api::messages::PlayerLeave::ToJson(Json &json) const
@@ -261,4 +276,58 @@ bool KZ::api::messages::NewReplay::ToJson(Json &json) const
 bool KZ::api::messages::WantReplay::ToJson(Json &json) const
 {
 	return json.Set("id", this->replayID);
+}
+
+const char *KZ::api::messages::InfractionTypeToApiReason(u8 type)
+{
+	switch (static_cast<KZAnticheatService::Infraction::Type>(type))
+	{
+		case KZAnticheatService::Infraction::Type::StrafeHack:
+			return "strafe-hack";
+		case KZAnticheatService::Infraction::Type::BhopHack:
+			return "bhop-hack";
+		case KZAnticheatService::Infraction::Type::Hyperscroll:
+			return "hyperscroll";
+		case KZAnticheatService::Infraction::Type::InvalidCvar:
+			return "invalid-cvar";
+		case KZAnticheatService::Infraction::Type::InvalidInput:
+			return "invalid-input";
+		case KZAnticheatService::Infraction::Type::Nulls:
+			return "nulls";
+		case KZAnticheatService::Infraction::Type::SubtickSpam:
+			return "subtick-spam";
+		case KZAnticheatService::Infraction::Type::Desubtick:
+			return "desubtick";
+		default:
+			return "other";
+	}
+}
+
+bool KZ::api::messages::SubmitInfraction::ToJson(Json &json) const
+{
+	if (!json.Set("steam_id", this->steamID))
+	{
+		return false;
+	}
+	if (!json.Set("reason", InfractionTypeToApiReason(this->type)))
+	{
+		return false;
+	}
+	if (!json.Set("details", this->details))
+	{
+		return false;
+	}
+	if (this->replayID.has_value())
+	{
+		if (!json.Set("replay_id", this->replayID.value()))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+bool KZ::api::messages::SubmitInfractionAck::FromJson(const Json &json)
+{
+	return json.Get("id", this->infractionID) && json.Get("replay_uuid", this->replayUUID) && json.Get("ban_duration", this->banDuration);
 }
