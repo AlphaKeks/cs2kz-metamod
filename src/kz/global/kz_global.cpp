@@ -356,6 +356,8 @@ void KZGlobalService::OnServerGamePostSimulate()
 					KZGlobalService::ws.messageCallbacks.callbacks.merge(messageCallbacks);
 				}
 			}
+
+			KZGlobalService::replayManager.ProcessUploads();
 		}
 		break;
 
