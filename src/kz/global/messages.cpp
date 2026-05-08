@@ -278,11 +278,6 @@ bool KZ::api::messages::NewReplay::ToJson(Json &json) const
 	return json.Set("id", this->replayID);
 }
 
-bool KZ::api::messages::WantReplay::ToJson(Json &json) const
-{
-	return json.Set("id", this->replayID);
-}
-
 const char *KZ::api::messages::InfractionTypeToApiReason(u8 type)
 {
 	switch (static_cast<KZAnticheatService::Infraction::Type>(type))

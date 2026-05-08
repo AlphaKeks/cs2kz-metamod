@@ -320,31 +320,6 @@ namespace KZ::api::messages
 		bool ToJson(Json &json) const;
 	};
 
-	struct WantReplay
-	{
-		std::string_view replayID;
-
-		inline static const char *Name()
-		{
-			return "want-replay";
-		}
-
-		bool ToJson(Json &json) const;
-	};
-
-	struct ReplayData
-	{
-		inline static const char *Name()
-		{
-			return "replay-data";
-		}
-
-		bool FromJson(const Json &json)
-		{
-			return true;
-		}
-	};
-
 	const char *InfractionTypeToApiReason(u8 type);
 
 	struct SubmitInfraction
