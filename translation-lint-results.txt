@@ -1,19 +1,19 @@
-Loaded 32 language codes from config.txt
+Loaded 33 language entries from config.txt
 Base directory: /home/runner/work/cs2kz-metamod/cs2kz-metamod
 Translations directory: /home/runner/work/cs2kz-metamod/cs2kz-metamod/translations
 Menu directory: /home/runner/work/cs2kz-metamod/cs2kz-metamod/menu
 
-Checking 32 translation files in '/home/runner/work/cs2kz-metamod/cs2kz-metamod/translations'...
+Checking 33 translation files in '/home/runner/work/cs2kz-metamod/cs2kz-metamod/translations'...
 
 Languages found across all files: ['chi', 'de', 'en', 'es', 'fi', 'it', 'ko', 'lv', 'pl', 'ru', 'sv', 'tr', 'ua']
 
-Checking 9 menu files in '/home/runner/work/cs2kz-metamod/cs2kz-metamod/menu'...
+Checking 10 menu files in '/home/runner/work/cs2kz-metamod/cs2kz-metamod/menu'...
 
 ======================================================================
-SUMMARY: 0 error(s), 24 warning(s)
+SUMMARY: 0 error(s), 23 warning(s)
 ======================================================================
 
-menu/ (0 errors, 24 warnings)
+menu/ (0 errors, 23 warnings)
 --------------------------------------------------
   menu/:0: [WARNING] Missing: Missing menu translation file: arabic.txt (for language code 'ar')
   menu/:0: [WARNING] Missing: Missing menu translation file: brazilian.txt (for language code 'pt')
@@ -31,7 +31,6 @@ menu/ (0 errors, 24 warnings)
   menu/:0: [WARNING] Missing: Missing menu translation file: norwegian.txt (for language code 'no')
   menu/:0: [WARNING] Missing: Missing menu translation file: portuguese.txt (for language code 'pt_p')
   menu/:0: [WARNING] Missing: Missing menu translation file: romanian.txt (for language code 'ro')
-  menu/:0: [WARNING] Missing: Missing menu translation file: russian.txt (for language code 'ru')
   menu/:0: [WARNING] Missing: Missing menu translation file: schinese.txt (for language code 'chi')
   menu/:0: [WARNING] Missing: Missing menu translation file: slovak.txt (for language code 'sk')
   menu/:0: [WARNING] Missing: Missing menu translation file: spanish.txt (for language code 'es')
@@ -41,7 +40,7 @@ menu/ (0 errors, 24 warnings)
   menu/:0: [WARNING] Missing: Missing menu translation file: vietnamese.txt (for language code 'vi')
 
 ======================================================================
-TOTAL: 0 error(s), 24 warning(s) in 1 file(s)
+TOTAL: 0 error(s), 23 warning(s) in 1 file(s)
 ======================================================================
 Missing translations report written to: missing-translations.txt
 Missing translations JSON written to: missing-translations.json
