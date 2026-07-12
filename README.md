@@ -79,9 +79,9 @@ Automated translation linter reports for cs2kz-metamod.
 
 ## Last Updated
 
-- **Commit:** [`2c4e029`](https://github.com/AlphaKeks/cs2kz-metamod/commit/2c4e02962bd055963a7a0e20c6e164aa577f2368)
-- **Time:** 2026-07-01 17:31:59 UTC
-- **Message:** Update cs2menus for abi changes (ver 3) (#586)
+- **Commit:** [`449fd83`](https://github.com/AlphaKeks/cs2kz-metamod/commit/449fd83b3b73d1db3df261d12b4839b0ffc363c6)
+- **Time:** 2026-07-12 18:57:58 UTC
+- **Message:** Fix prime detection
 
 ---
 
