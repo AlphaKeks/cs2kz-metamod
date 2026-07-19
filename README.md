@@ -7,11 +7,11 @@ Automated translation linter reports for cs2kz-metamod.
 | Metric | Value |
 |--------|-------|
 | **Linter Errors** | 0 |
-| **Linter Warnings** | 27 |
+| **Linter Warnings** | 22 |
 | **Total Languages** | 13 |
 | **Total Phrases** | 724 |
-| **Phrases Missing Translations** | 508 |
-| **Total Missing Entries** | 3271 |
+| **Phrases Missing Translations** | 507 |
+| **Total Missing Entries** | 2834 |
 | **Menu Files** | 11 |
 
 ## Language Coverage (Phrases)
@@ -23,7 +23,7 @@ Automated translation linter reports for cs2kz-metamod.
   es (spanish)         [█████████████░░░░░░░]  67.8% (491/724)
   fi (finnish)         [██████░░░░░░░░░░░░░░]  32.3% (234/724)
   it (italian)         [██████░░░░░░░░░░░░░░]  31.2% (226/724)
-  ko (korean)          [███████░░░░░░░░░░░░░]  39.6% (287/724)
+  ko (korean)          [████████████████████] 100.0% (724/724)
   lv (latvian)         [█████████░░░░░░░░░░░]  45.4% (329/724)
   pl (polish)          [██████████████░░░░░░]  71.3% (516/724)
   ru (russian)         [███████████████████░]  99.7% (722/724)
@@ -79,9 +79,9 @@ Automated translation linter reports for cs2kz-metamod.
 
 ## Last Updated
 
-- **Commit:** [`449fd83`](https://github.com/AlphaKeks/cs2kz-metamod/commit/449fd83b3b73d1db3df261d12b4839b0ffc363c6)
-- **Time:** 2026-07-12 18:57:58 UTC
-- **Message:** Fix prime detection
+- **Commit:** [`e0d0140`](https://github.com/AlphaKeks/cs2kz-metamod/commit/e0d0140d3fc60fc2c8c9104510f3d0623b5493e4)
+- **Time:** 2026-07-19 08:16:46 UTC
+- **Message:** Fix -flto not playing nicely with static libs
 
 ---
 
