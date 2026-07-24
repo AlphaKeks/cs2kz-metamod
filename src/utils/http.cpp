@@ -20,9 +20,9 @@ namespace HTTP
 		headers[name] = value;
 	}
 
-	void Request::SetBody(std::string body)
+	void Request::SetBody(std::vector<char> &&body)
 	{
-		this->body = body;
+		this->body = std::move(body);
 	}
 
 	void Request::Send(ResponseCallback onResponse, ErrorCallback onError) const
@@ -103,7 +103,8 @@ namespace HTTP
 			KZ_LOG_DEBUG(LogChannel::General, "[HTTP] Sending HTTP %s request to `%s`\n", methodStr.c_str(), url.c_str());
 			if (!body.empty())
 			{
-				KZ_LOG_DEBUG(LogChannel::General, "[HTTP] Body: %s\n", body.c_str());
+				// FIXME: how do we print a raw body?
+				// KZ_LOG_DEBUG(LogChannel::General, "[HTTP] Body: %s\n", body.c_str());
 			}
 			if (!headers.empty())
 			{
@@ -142,19 +143,7 @@ namespace HTTP
 		return headerValue;
 	}
 
-	std::optional<std::string> Response::Body() const
-	{
-		std::optional<std::vector<char>> rawBody = RawBody();
-
-		if (rawBody.has_value())
-		{
-			return std::make_optional(std::string(rawBody->data(), rawBody->size()));
-		}
-
-		return std::nullopt;
-	}
-
-	std::optional<std::vector<char>> Response::RawBody() const
+	std::optional<std::vector<char>> Response::Body() const
 	{
 		u32 responseBodySize;
 
@@ -196,7 +185,8 @@ namespace HTTP
 			}
 			else
 			{
-				KZ_LOG_DEBUG(LogChannel::General, "[HTTP] Response body: %s\n", response.Body()->c_str());
+				// FIXME: how do we print a raw body?
+				// KZ_LOG_DEBUG(LogChannel::General, "[HTTP] Response body: %s\n", response.Body()->c_str());
 			}
 		}
 		onResponse(response);

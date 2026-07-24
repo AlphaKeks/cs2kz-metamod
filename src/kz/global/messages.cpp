@@ -123,6 +123,11 @@ bool KZ::api::messages::NewRecordAck::FromJson(const Json &json)
 		return false;
 	}
 
+	if (!json.Get("replay_upload_key", this->replayUploadKey))
+	{
+		return false;
+	}
+
 	Json pbData;
 
 	if (!json.Get("pb_data", pbData))

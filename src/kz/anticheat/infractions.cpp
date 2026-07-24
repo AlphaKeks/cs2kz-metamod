@@ -158,7 +158,7 @@ void KZAnticheatService::Infraction::SaveReplay(bool uploadToAPI)
 			}
 			if (uploadToAPI)
 			{
-				KZGlobalService::QueueReplayUpload(uuid, std::move(buf));
+				// KZGlobalService::QueueReplayUpload(uuid, std::move(buf));
 			}
 			KZ_LOG_INFO(LogChannel::AC, "Cheater replay %s saved for player %s (%llu)\n", uuid.ToString().c_str(), name.c_str(), steamID);
 		},

@@ -829,9 +829,9 @@ private:
 		std::mutex mutex;
 		// Message example:
 		// {"event":"new-replay","data":{"id":"a14ca802-0449-4441-8d19-08aeee7c2f9a"}}<BINARY DATA>
-		std::vector<std::pair<UUID_t, std::vector<char>>> pendingUploads;
+		std::vector<std::pair<std::pair<UUID_t, std::string>, std::vector<char>>> pendingUploads;
 
-		bool QueueUpload(const UUID_t &uploadID, std::vector<char> &&replayData);
+		bool QueueUpload(const UUID_t &recordID, const std::string &replayUploadKey, std::vector<char> &&replayData);
 		void ProcessUploads();
 
 		std::optional<UUID_t> pendingDownload;
@@ -841,9 +841,9 @@ private:
 	} replayManager;
 
 public:
-	static bool QueueReplayUpload(const UUID_t &uploadID, std::vector<char> &&replayData)
+	static bool QueueReplayUpload(const UUID_t &uploadID, const std::string &replayUploadKey, std::vector<char> &&replayData)
 	{
-		return replayManager.QueueUpload(uploadID, std::move(replayData));
+		return replayManager.QueueUpload(uploadID, replayUploadKey, std::move(replayData));
 	}
 
 	static void RequestReplay(KZPlayer *requester, UUID_t replayID)

@@ -19,7 +19,7 @@
 
 static_function bool GetApiUrl(std::string &url)
 {
-	url = KZOptionService::GetOptionStr("apiUrl", KZOptionService::GetOptionStr("apiUrl", "https://api.cs2kz.org"));
+	url = KZOptionService::GetOptionStr("apiUrl", "https://api.cs2kz.org");
 
 	if (url.empty())
 	{

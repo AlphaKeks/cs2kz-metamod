@@ -199,6 +199,7 @@ namespace KZ::api::messages
 		};
 
 		std::string recordId {};
+		std::string replayUploadKey {};
 		RecordData overallData {};
 		RecordData proData {};
 

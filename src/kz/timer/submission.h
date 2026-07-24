@@ -120,6 +120,7 @@ struct RunSubmission
 	{
 		bool received {};
 		std::string recordId {};
+		std::string replayUploadKey {};
 
 		struct RunData
 		{
@@ -203,7 +204,7 @@ private:
 
 	// Called when the API responds AFTER finalization has already occurred with localUUID.
 	// Renames the replay file, updates the DB row, and queues the upload.
-	void DoLateAPIResponse(const std::string &apiUUID);
+	void DoLateAPIResponse(const std::string &apiUUID, const std::string &replayUploadKey);
 
 	// Submit to the global API; sets pendingQueuedSubmission if queued offline.
 	void SubmitGlobal();

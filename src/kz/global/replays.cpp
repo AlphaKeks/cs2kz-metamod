@@ -1,6 +1,7 @@
 #include "kz/global/kz_global.h"
 #include "kz/language/kz_language.h"
 #include "kz/replays/kz_replay.h"
+#include "kz/option/kz_option.h"
 #include "kz/replays/data.h"
 #include "kz/replays/bot.h"
 #include "kz/replays/playback.h"
@@ -11,16 +12,16 @@
 
 using namespace KZ::replaysystem;
 
-bool KZGlobalService::ReplayManager::QueueUpload(const UUID_t &uploadID, std::vector<char> &&replayData)
+bool KZGlobalService::ReplayManager::QueueUpload(const UUID_t &recordID, const std::string &replayUploadKey, std::vector<char> &&replayData)
 {
 	std::lock_guard _guard(this->mutex);
-	this->pendingUploads.emplace_back(uploadID, std::move(replayData));
+	this->pendingUploads.emplace_back(std::make_pair(recordID, replayUploadKey), std::move(replayData));
 	return true;
 }
 
 void KZGlobalService::ReplayManager::ProcessUploads()
 {
-	std::vector<std::pair<UUID_t, std::vector<char>>> uploadsToProcess;
+	std::vector<std::pair<std::pair<UUID_t, std::string>, std::vector<char>>> uploadsToProcess;
 
 	{
 		std::lock_guard _guard(this->mutex);
@@ -28,9 +29,33 @@ void KZGlobalService::ReplayManager::ProcessUploads()
 		this->pendingUploads.clear();
 	}
 
-	for (auto &[uploadID, replayData] : uploadsToProcess)
+	for (auto &[record_id_and_replay_upload_key, replayData] : uploadsToProcess)
 	{
-		KZGlobalService::WS::SendMessageWithBinary(KZ::api::messages::NewReplay {uploadID.ToString()}, replayData);
+		// KZGlobalService::WS::SendMessageWithBinary(KZ::api::messages::NewReplay {uploadID.ToString()}, replayData);
+
+		// FIXME: this should not be hard-coded
+		std::string url(KZOptionService::GetOptionStr("apiUrl", "https://api.cs2kz.org"));
+		url += "/records/";
+		url += record_id_and_replay_upload_key.first.ToString();
+		url += "/replay";
+		HTTP::Request request(HTTP::Method::POST, url);
+		request.SetHeader("authorization", std::string("Bearer ") + record_id_and_replay_upload_key.second);
+		KZ_LOG_DEBUG(LogChannel::Global, "upload key is `%s`\n", record_id_and_replay_upload_key.second.c_str());
+		request.SetBody(std::move(replayData));
+
+		KZ_LOG_DEBUG(LogChannel::Global, "Uploading replay to %s.\n", url.c_str());
+
+		auto doOnErrorCleanup = []()
+		{
+			// TODO
+		};
+
+		auto onResponse = [](HTTP::Response response)
+		{
+			// TODO
+		};
+
+		request.Send(onResponse, doOnErrorCleanup);
 	}
 }
 
@@ -154,7 +179,7 @@ void KZGlobalService::ReplayManager::RequestReplay(KZPlayer *requester, UUID_t r
 			return;
 		}
 
-		std::optional<std::vector<char>> body = response.RawBody();
+		std::optional<std::vector<char>> body = response.Body();
 
 		if (body.has_value())
 		{

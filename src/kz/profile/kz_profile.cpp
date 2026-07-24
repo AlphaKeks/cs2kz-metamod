@@ -148,7 +148,13 @@ void KZProfileService::RequestRating()
 			KZ_LOG_DEBUG(LogChannel::Profile, "Player %s mode changed since request, ignoring response.\n", player->GetName());
 			return;
 		}
-		Json json(response.Body().value_or(""));
+
+		std::string responseBody;
+		if (std::optional<std::vector<char>> rawResponseBody = response.Body())
+		{
+			responseBody = std::string(rawResponseBody->data(), rawResponseBody->size());
+		}
+		Json json(responseBody);
 
 		const char *ratingField = (mode == KZ::api::Mode::Classic) ? "ckz_rating" : "vnl_rating";
 		f32 oldRating = player->profileService->currentRating;

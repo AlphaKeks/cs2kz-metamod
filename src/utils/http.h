@@ -45,7 +45,7 @@ namespace HTTP
 		void SetHeader(std::string name, std::string value);
 
 		// Set the request body.
-		void SetBody(std::string body);
+		void SetBody(std::vector<char> &&body);
 
 		// Send the request.
 		void Send(ResponseCallback onResponse, ErrorCallback onError = nullptr) const;
@@ -55,7 +55,7 @@ namespace HTTP
 		std::string url {};
 		bool hasQueryParams {};
 		HeaderMap headers {};
-		std::string body {};
+		std::vector<char> body {};
 	};
 
 	// An HTTP response.
@@ -70,10 +70,7 @@ namespace HTTP
 		std::optional<std::string> Header(const char *name) const;
 
 		// Extracts the body if it exists.
-		std::optional<std::string> Body() const;
-
-		// Extracts the body if it exists.
-		std::optional<std::vector<char>> RawBody() const;
+		std::optional<std::vector<char>> Body() const;
 
 	private:
 		HTTPRequestHandle requestHandle;
@@ -84,8 +81,8 @@ namespace HTTP
 	public:
 		InFlightRequest(const InFlightRequest &req) = delete;
 
-		InFlightRequest(HTTPRequestHandle handle, SteamAPICall_t steamCallHandle, std::string url, std::string body, ResponseCallback onResponse,
-						ErrorCallback onError)
+		InFlightRequest(HTTPRequestHandle handle, SteamAPICall_t steamCallHandle, std::string url, std::vector<char> body,
+						ResponseCallback onResponse, ErrorCallback onError)
 			: url(url), body(body), handle(handle), onResponse(onResponse), onError(onError)
 		{
 			callResult.SetGameserverFlag();
@@ -107,7 +104,7 @@ namespace HTTP
 
 	private:
 		std::string url;
-		std::string body;
+		std::vector<char> body;
 		HTTPRequestHandle handle;
 		CCallResult<InFlightRequest, HTTPRequestCompleted_t> callResult;
 		ResponseCallback onResponse;
